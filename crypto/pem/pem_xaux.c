@@ -67,3 +67,9 @@
 IMPLEMENT_PEM_rw(X509_AUX, X509, PEM_STRING_X509_TRUSTED, X509_AUX)
 IMPLEMENT_PEM_rw(X509_CERT_PAIR, X509_CERT_PAIR, PEM_STRING_X509_PAIR,
     X509_CERT_PAIR)
+
+
+X509 *ecall_PEM_read_bio_X509_AUX(BIO *bp, X509 **x, void *cb, void *u)
+{
+	return PEM_read_bio_X509_AUX(bp, x, (pem_password_cb*)cb, u);
+}

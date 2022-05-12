@@ -116,7 +116,7 @@ idea_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,
 
 		idea_set_encrypt_key(key, &tmp);
 		idea_set_decrypt_key(&tmp, ctx->cipher_data);
-		explicit_bzero((unsigned char *)&tmp,
+		bzero((unsigned char *)&tmp,
 		    sizeof(IDEA_KEY_SCHEDULE));
 	}
 	return 1;

@@ -4,6 +4,14 @@
 
 #include <openssl/bio.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern int my_vasprintf(char **strp, const char *fmt, va_list ap);
+extern int my_vfprintf(FILE *stream, const char *format, va_list ap);
+#else
+#define my_vasprintf(strp, fmt, ap) vasprintf(strp, fmt, ap)
+#define my_vfprintf(stream, format, ap) vfprintf(stream, format, ap)
+#endif
+
 int
 BIO_printf(BIO *bio, const char *format, ...)
 {
@@ -34,7 +42,7 @@ BIO_vprintf(BIO *bio, const char *format, va_list args)
 		ret = -1;
 		goto fail;
 	}
-	ret = vfprintf(fp, format, args);
+	ret = my_vfprintf(fp, format, args);
 	fclose(fp);
 fail:
 	return (ret);
@@ -48,7 +56,7 @@ BIO_vprintf(BIO *bio, const char *format, va_list args)
 	int ret;
 	char *buf = NULL;
 
-	ret = vasprintf(&buf, format, args);
+	ret = my_vasprintf(&buf, format, args);
 	if (buf == NULL) {
 		ret = -1;
 		goto fail;

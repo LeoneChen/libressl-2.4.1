@@ -75,7 +75,7 @@ unsigned char *SHA1(const unsigned char *d, size_t n, unsigned char *md)
 		return NULL;
 	SHA1_Update(&c,d,n);
 	SHA1_Final(md,&c);
-	explicit_bzero(&c,sizeof(c));
+	bzero(&c,sizeof(c));
 	return(md);
 	}
 #endif

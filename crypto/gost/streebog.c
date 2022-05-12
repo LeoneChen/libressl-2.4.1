@@ -1455,7 +1455,7 @@ STREEBOG256(const unsigned char *d, size_t n, unsigned char *md)
 	STREEBOG256_Init(&c);
 	STREEBOG256_Update(&c, d, n);
 	STREEBOG256_Final(md, &c);
-	explicit_bzero(&c, sizeof(c));
+	bzero(&c, sizeof(c));
 	return (md);
 }
 
@@ -1470,7 +1470,7 @@ STREEBOG512(const unsigned char *d, size_t n, unsigned char *md)
 	STREEBOG512_Init(&c);
 	STREEBOG512_Update(&c, d, n);
 	STREEBOG512_Final(md, &c);
-	explicit_bzero(&c, sizeof(c));
+	bzero(&c, sizeof(c));
 	return (md);
 }
 

@@ -67,6 +67,10 @@
 #include <openssl/x509.h>
 
 int
+ecall_X509_NAME_get_text_by_NID(X509_NAME *name, int nid, char *buf, int len) {
+	return X509_NAME_get_text_by_NID(name, nid, buf, len);
+}
+int
 X509_NAME_get_text_by_NID(X509_NAME *name, int nid, char *buf, int len)
 {
 	ASN1_OBJECT *obj;
@@ -107,6 +111,10 @@ X509_NAME_entry_count(X509_NAME *name)
 }
 
 int
+ecall_X509_NAME_get_index_by_NID(X509_NAME *name, int nid, int lastpos) {
+	return X509_NAME_get_index_by_NID(name, nid, lastpos);
+}
+int
 X509_NAME_get_index_by_NID(X509_NAME *name, int nid, int lastpos)
 {
 	ASN1_OBJECT *obj;
@@ -140,6 +148,10 @@ X509_NAME_get_index_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj, int lastpos)
 }
 
 X509_NAME_ENTRY *
+ecall_X509_NAME_get_entry(X509_NAME *name, int loc) {
+	return X509_NAME_get_entry(name, loc);
+}
+X509_NAME_ENTRY *
 X509_NAME_get_entry(X509_NAME *name, int loc)
 {
 	if (name == NULL || sk_X509_NAME_ENTRY_num(name->entries) <= loc ||
@@ -149,6 +161,10 @@ X509_NAME_get_entry(X509_NAME *name, int loc)
 		return (sk_X509_NAME_ENTRY_value(name->entries, loc));
 }
 
+X509_NAME_ENTRY *
+ecall_X509_NAME_delete_entry(X509_NAME *name, int loc) {
+	return X509_NAME_delete_entry(name, loc);
+}
 X509_NAME_ENTRY *
 X509_NAME_delete_entry(X509_NAME *name, int loc)
 {
@@ -202,6 +218,11 @@ X509_NAME_add_entry_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj, int type,
 	return ret;
 }
 
+int
+ecall_X509_NAME_add_entry_by_NID(X509_NAME *name, int nid, int type,
+    unsigned char *bytes, int len, int loc, int set) {
+	return X509_NAME_add_entry_by_NID(name, nid, type, bytes, len, loc, set);
+}
 int
 X509_NAME_add_entry_by_NID(X509_NAME *name, int nid, int type,
     unsigned char *bytes, int len, int loc, int set)
@@ -401,6 +422,11 @@ X509_NAME_ENTRY_get_object(X509_NAME_ENTRY *ne)
 	return (ne->object);
 }
 
+ASN1_STRING *
+ecall_X509_NAME_ENTRY_get_data(X509_NAME_ENTRY *ne)
+{
+	return X509_NAME_ENTRY_get_data(ne);
+}
 ASN1_STRING *
 X509_NAME_ENTRY_get_data(X509_NAME_ENTRY *ne)
 {

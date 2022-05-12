@@ -564,7 +564,7 @@ EVP_CIPHER_CTX_cleanup(EVP_CIPHER_CTX *c)
 			return 0;
 		/* Cleanse cipher context data */
 		if (c->cipher_data)
-			explicit_bzero(c->cipher_data, c->cipher->ctx_size);
+			bzero(c->cipher_data, c->cipher->ctx_size);
 	}
 	free(c->cipher_data);
 #ifndef OPENSSL_NO_ENGINE
@@ -573,7 +573,7 @@ EVP_CIPHER_CTX_cleanup(EVP_CIPHER_CTX *c)
 		 * functional reference we held for this reason. */
 		ENGINE_finish(c->engine);
 #endif
-	explicit_bzero(c, sizeof(EVP_CIPHER_CTX));
+	bzero(c, sizeof(EVP_CIPHER_CTX));
 	return 1;
 }
 

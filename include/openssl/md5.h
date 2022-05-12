@@ -94,9 +94,12 @@ typedef struct MD5state_st
 	unsigned int num;
 	} MD5_CTX;
 
+int ecall_MD5_Init(MD5_CTX *c);
 int MD5_Init(MD5_CTX *c);
+int ecall_MD5_Update(MD5_CTX *c, const void *data, size_t len);
 int MD5_Update(MD5_CTX *c, const void *data, size_t len)
 	__attribute__ ((__bounded__(__buffer__,2,3)));
+int ecall_MD5_Final(unsigned char *md, MD5_CTX *c);
 int MD5_Final(unsigned char *md, MD5_CTX *c);
 unsigned char *MD5(const unsigned char *d, size_t n, unsigned char *md)
 	__attribute__ ((__bounded__(__buffer__,1,2)));

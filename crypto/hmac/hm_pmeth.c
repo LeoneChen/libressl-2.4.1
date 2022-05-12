@@ -66,6 +66,13 @@
 
 #include "evp_locl.h"
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+#include "sgx_trts.h"
+
+extern sgx_status_t ocall_free(void* ptr);
+#endif
+
 /* HMAC pkey context structure */
 
 typedef struct {
@@ -123,9 +130,18 @@ pkey_hmac_cleanup(EVP_PKEY_CTX *ctx)
 
 	HMAC_CTX_cleanup(&hctx->ctx);
 	if (hctx->ktmp.data) {
-		if (hctx->ktmp.length)
-			explicit_bzero(hctx->ktmp.data, hctx->ktmp.length);
-		free(hctx->ktmp.data);
+	    if (hctx->ktmp.length) {
+                bzero(hctx->ktmp.data, hctx->ktmp.length);
+        }
+#ifdef COMPILE_WITH_INTEL_SGX
+        if (sgx_is_within_enclave(hctx->ktmp.data, 1)) {
+#endif
+        free(hctx->ktmp.data);
+#ifdef COMPILE_WITH_INTEL_SGX
+        } else {
+		ocall_free(hctx->ktmp.data);
+	}
+#endif
 		hctx->ktmp.data = NULL;
 	}
 	free(hctx);

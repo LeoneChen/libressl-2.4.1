@@ -110,6 +110,11 @@ static const EVP_MD sha1_md = {
 };
 
 const EVP_MD *
+ecall_EVP_sha1(void) {
+	return EVP_sha1();
+}
+
+const EVP_MD *
 EVP_sha1(void)
 {
 	return (&sha1_md);

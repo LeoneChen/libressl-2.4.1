@@ -188,7 +188,9 @@ const DH_METHOD *DH_get_default_method(void);
 int DH_set_method(DH *dh, const DH_METHOD *meth);
 DH *DH_new_method(ENGINE *engine);
 
+DH *	ecall_DH_new(void);
 DH *	DH_new(void);
+void	ecall_DH_free(DH *dh);
 void	DH_free(DH *dh);
 int	DH_up_ref(DH *dh);
 int	DH_size(const DH *dh);

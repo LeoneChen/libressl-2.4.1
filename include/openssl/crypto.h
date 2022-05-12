@@ -330,7 +330,7 @@ int CRYPTO_is_mem_check_on(void);
 	CRYPTO_malloc_locked((int)num,__FILE__,__LINE__)
 #define OPENSSL_free_locked(addr) CRYPTO_free_locked(addr)
 
-
+char *ecall_SSLeay_version(int type);
 const char *SSLeay_version(int type);
 unsigned long SSLeay(void);
 
@@ -364,6 +364,7 @@ int CRYPTO_get_new_lockid(char *name);
 
 int CRYPTO_num_locks(void); /* return CRYPTO_NUM_LOCKS (shared libs!) */
 void CRYPTO_lock(int mode, int type, const char *file, int line);
+void ecall_CRYPTO_set_locking_callback(void *func);
 void CRYPTO_set_locking_callback(void (*func)(int mode, int type,
     const char *file, int line));
 void (*CRYPTO_get_locking_callback(void))(int mode, int type,
@@ -388,18 +389,24 @@ int CRYPTO_THREADID_cmp(const CRYPTO_THREADID *a, const CRYPTO_THREADID *b);
 void CRYPTO_THREADID_cpy(CRYPTO_THREADID *dest, const CRYPTO_THREADID *src);
 unsigned long CRYPTO_THREADID_hash(const CRYPTO_THREADID *id);
 #ifndef OPENSSL_NO_DEPRECATED
+void ecall_CRYPTO_set_id_callback(void *func);
 void CRYPTO_set_id_callback(unsigned long (*func)(void));
 unsigned long (*CRYPTO_get_id_callback(void))(void);
 unsigned long CRYPTO_thread_id(void);
 #endif
 
 const char *CRYPTO_get_lock_name(int type);
+int ecall_CRYPTO_add_lock(int *pointer, int amount, int type, const char *file,
+    int line);
 int CRYPTO_add_lock(int *pointer, int amount, int type, const char *file,
     int line);
 
 int CRYPTO_get_new_dynlockid(void);
 void CRYPTO_destroy_dynlockid(int i);
 struct CRYPTO_dynlock_value *CRYPTO_get_dynlock_value(int i);
+void ecall_CRYPTO_set_dynlock_create_callback(void* func);
+void ecall_CRYPTO_set_dynlock_lock_callback(void* func);
+void ecall_CRYPTO_set_dynlock_destroy_callback(void* func);
 void CRYPTO_set_dynlock_create_callback(struct CRYPTO_dynlock_value *(*dyn_create_function)(const char *file, int line));
 void CRYPTO_set_dynlock_lock_callback(void (*dyn_lock_function)(int mode, struct CRYPTO_dynlock_value *l, const char *file, int line));
 void CRYPTO_set_dynlock_destroy_callback(void (*dyn_destroy_function)(struct CRYPTO_dynlock_value *l, const char *file, int line));

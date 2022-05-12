@@ -67,7 +67,7 @@ UI_UTIL_read_pw_string(char *buf, int length, const char *prompt, int verify)
 
 	ret = UI_UTIL_read_pw(buf, buff, (length > BUFSIZ) ? BUFSIZ : length,
 	    prompt, verify);
-	explicit_bzero(buff, BUFSIZ);
+	bzero(buff, BUFSIZ);
 	return (ret);
 }
 

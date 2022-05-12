@@ -129,6 +129,10 @@
 #include <openssl/rsa.h>
 #endif
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "enclaveshim_ocalls.h"
+#endif
+
 #ifndef OPENSSL_NO_RSA
 static RSA *pkey_get_rsa(EVP_PKEY *key, RSA **rsa);
 #endif
@@ -283,6 +287,28 @@ PEM_read_bio_ECPrivateKey(BIO *bp, EC_KEY **key, pem_password_cb *cb, void *u)
 	return pkey_get_eckey(pktmp, key);	/* will free pktmp */
 }
 
+#ifdef COMPILE_WITH_INTEL_SGX
+pem_password_cb* pem_read_bio_ecpkparam_cb_addr = NULL;
+int pem_read_bio_ecpkparams_fake_cb(char *buf, int size, int rwflag, void *userdata) {
+	my_fprintf(0, "%s:%s:%i need to implement callback\n", __FILE__, __func__, __LINE__);
+	if (pem_read_bio_ecpkparam_cb_addr) {
+		//TODO ocall(pem_read_bio_ecpkparam_cb_addr, buf, size, rwflag, userdata);
+	}
+	return 0;
+}
+#endif
+
+EC_GROUP *ecall_PEM_read_bio_ECPKParameters(BIO *bp, EC_GROUP **x, void* func, void *u) {
+	pem_password_cb* cb;
+#ifdef COMPILE_WITH_INTEL_SGX
+	pem_read_bio_ecpkparam_cb_addr = (pem_password_cb*)func;
+	cb = pem_read_bio_ecpkparams_fake_cb;
+#else
+	cb = (pem_password_cb*)func;
+#endif
+	return PEM_read_bio_ECPKParameters(bp, x, cb, u);
+}
+
 IMPLEMENT_PEM_rw_const(ECPKParameters, EC_GROUP, PEM_STRING_ECPARAMETERS,
     ECPKParameters)
 
@@ -305,6 +331,28 @@ PEM_read_ECPrivateKey(FILE *fp, EC_KEY **eckey, pem_password_cb *cb, void *u)
 #endif
 
 #ifndef OPENSSL_NO_DH
+
+#ifdef COMPILE_WITH_INTEL_SGX
+pem_password_cb* pem_read_bio_dhparams_cb_addr = NULL;
+int pem_read_bio_dhparams_fake_cb(char *buf, int size, int rwflag, void *userdata) {
+	my_fprintf(0, "%s:%s:%i need to implement callback\n", __FILE__, __func__, __LINE__);
+	if (pem_read_bio_dhparams_cb_addr) {
+		//TODO ocall(pem_read_bio_dhparams_cb_addr, buf, size, rwflag, userdata);
+	}
+	return 0;
+}
+#endif
+
+DH *ecall_PEM_read_bio_DHparams(BIO *bp, DH **x, void* func, void *u) {
+	pem_password_cb* cb;
+#ifdef COMPILE_WITH_INTEL_SGX
+	pem_read_bio_dhparams_cb_addr = (pem_password_cb*)func;
+	cb = pem_read_bio_dhparams_fake_cb;
+#else
+	cb = (pem_password_cb*)func;
+#endif
+	return PEM_read_bio_DHparams(bp, x, cb, u);
+}
 
 IMPLEMENT_PEM_rw_const(DHparams, DH, PEM_STRING_DHPARAMS, DHparams)
 

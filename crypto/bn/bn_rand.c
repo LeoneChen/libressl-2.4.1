@@ -187,7 +187,7 @@ bnrand(int pseudorand, BIGNUM *rnd, int bits, int top, int bottom)
 
 err:
 	if (buf != NULL) {
-		explicit_bzero(buf, bytes);
+		bzero(buf, bytes);
 		free(buf);
 	}
 	bn_check_top(rnd);

@@ -29,6 +29,14 @@
 #define GENTIME_LENGTH 15
 #define UTCTIME_LENGTH 13
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern int my_asprintf(char **strp, const char *fmt, ...);
+extern char *my_strdup(const char *s);
+#else
+#define my_asprintf(strp, fmt, ...) asprintf(strp, fmt, __VA_ARGS__)
+#define my_strdup(s) strdup(s)
+#endif
+
 int
 asn1_tm_cmp(struct tm *tm1, struct tm *tm2) {
 	if (tm1->tm_year < tm2->tm_year)
@@ -69,7 +77,7 @@ gentime_string_from_tm(struct tm *tm)
 	if (year < 0 || year > 9999)
 		return (NULL);
 
-	if (asprintf(&ret, "%04u%02u%02u%02u%02u%02uZ", year,
+	if (my_asprintf(&ret, "%04u%02u%02u%02u%02u%02uZ", year,
 	    tm->tm_mon + 1, tm->tm_mday, tm->tm_hour, tm->tm_min,
 	    tm->tm_sec) == -1)
 		ret = NULL;
@@ -86,7 +94,7 @@ utctime_string_from_tm(struct tm *tm)
 	if (tm->tm_year >= 150 || tm->tm_year < 50)
 		return (NULL);
 
-	if (asprintf(&ret, "%02u%02u%02u%02u%02u%02uZ",
+	if (my_asprintf(&ret, "%02u%02u%02u%02u%02u%02uZ",
 	    tm->tm_year % 100,  tm->tm_mon + 1, tm->tm_mday,
 	    tm->tm_hour, tm->tm_min, tm->tm_sec) == -1)
 		ret = NULL;
@@ -226,7 +234,7 @@ ASN1_TIME_set_string_internal(ASN1_TIME *s, const char *str, int mode)
 	if (s == NULL)
 		return (1);
 
-	if ((tmp = strdup(str)) == NULL)
+	if ((tmp = my_strdup(str)) == NULL)
 		return (0);
 	free(s->data);
 	s->data = tmp;

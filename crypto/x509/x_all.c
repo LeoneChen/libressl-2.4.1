@@ -496,6 +496,10 @@ NETSCAPE_SPKI_verify(NETSCAPE_SPKI *a, EVP_PKEY *r)
 }
 
 int
+ecall_X509_sign(X509 *x, EVP_PKEY *pkey, const EVP_MD *md) {
+	return X509_sign(x, pkey, md);
+}
+int
 X509_sign(X509 *x, EVP_PKEY *pkey, const EVP_MD *md)
 {
 	x->cert_info->enc.modified = 1;
@@ -551,6 +555,11 @@ NETSCAPE_SPKI_sign(NETSCAPE_SPKI *x, EVP_PKEY *pkey, const EVP_MD *md)
 }
 
 int
+ecall_X509_pubkey_digest(const X509 *data, const EVP_MD *type, unsigned char *md,
+    unsigned int *len) {
+	return X509_pubkey_digest(data, type, md, len);
+}
+int
 X509_pubkey_digest(const X509 *data, const EVP_MD *type, unsigned char *md,
     unsigned int *len)
 {
@@ -559,6 +568,13 @@ X509_pubkey_digest(const X509 *data, const EVP_MD *type, unsigned char *md,
 	if (!key)
 		return 0;
 	return EVP_Digest(key->data, key->length, md, len, type, NULL);
+}
+
+int
+ecall_X509_digest(const X509 *data, const EVP_MD *type, unsigned char *md,
+    unsigned int *len)
+{
+	return X509_digest(data, type, md, len);
 }
 
 int

@@ -276,6 +276,12 @@ EVP_MD_block_size(const EVP_MD *md)
 }
 
 int
+ecall_EVP_MD_type(const EVP_MD *md)
+{
+	return EVP_MD_type(md);
+}
+
+int
 EVP_MD_type(const EVP_MD *md)
 {
 	return md->type;

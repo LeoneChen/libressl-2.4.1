@@ -62,6 +62,11 @@
 #include "eng_int.h"
 
 void
+ecall_ENGINE_load_builtin_engines(void)
+{
+	ENGINE_load_builtin_engines();
+}
+void
 ENGINE_load_builtin_engines(void)
 {
 	/* Some ENGINEs need this */

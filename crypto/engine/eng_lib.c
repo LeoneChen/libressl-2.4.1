@@ -63,6 +63,12 @@
 
 #include "eng_int.h"
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+
+sgx_status_t ocall_malloc(void** retval, size_t size);
+#endif
+
 /* The "new"/"free" stuff first */
 
 ENGINE *
@@ -307,10 +313,55 @@ ENGINE_set_cmd_defns(ENGINE *e, const ENGINE_CMD_DEFN *defns)
 	return 1;
 }
 
+#ifdef COMPILE_WITH_INTEL_SGX
+static char* engine_name = NULL;
+static char* engine_id = NULL;
+#endif
+
+const char *
+ecall_ENGINE_get_id(const ENGINE *e) {
+	const char* eid = ENGINE_get_id(e);
+
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (!engine_id) {
+		ocall_malloc((void**)&engine_id, 256*sizeof(*engine_id));
+	}
+
+	size_t s = strlen(eid);
+	if (s>255) s = 255;
+	memcpy(engine_id, eid, s);
+	engine_id[s] = '\0';
+
+	return engine_id;
+#else
+	return eid;
+#endif
+}
+
 const char *
 ENGINE_get_id(const ENGINE *e)
 {
 	return e->id;
+}
+
+const char *
+ecall_ENGINE_get_name(const ENGINE *e) {
+	const char* ename = ENGINE_get_name(e);
+
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (!engine_name) {
+		ocall_malloc((void**)&engine_name, 256*sizeof(*engine_name));
+	}
+
+	size_t s = strlen(ename);
+	if (s>255) s = 255;
+	memcpy(engine_name, ename, s);
+	engine_name[s] = '\0';
+
+	return engine_name;
+#else
+	return ename;
+#endif
 }
 
 const char *

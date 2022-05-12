@@ -267,7 +267,9 @@ GENERAL_NAME_new(void)
 {
 	return (GENERAL_NAME *)ASN1_item_new(&GENERAL_NAME_it);
 }
-
+void ecall_GENERAL_NAME_free(GENERAL_NAME *a) {
+	GENERAL_NAME_free(a);
+}
 void
 GENERAL_NAME_free(GENERAL_NAME *a)
 {

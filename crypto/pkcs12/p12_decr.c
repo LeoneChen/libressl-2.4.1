@@ -138,7 +138,7 @@ PKCS12_item_decrypt_d2i(X509_ALGOR *algor, const ASN1_ITEM *it,
 	p = out;
 	ret = ASN1_item_d2i(NULL, &p, outlen, it);
 	if (zbuf)
-		explicit_bzero(out, outlen);
+		bzero(out, outlen);
 	if (!ret)
 		PKCS12err(PKCS12_F_PKCS12_ITEM_DECRYPT_D2I,
 		    PKCS12_R_DECODE_ERROR);
@@ -177,7 +177,7 @@ PKCS12_item_i2d_encrypt(X509_ALGOR *algor, const ASN1_ITEM *it,
 		goto err;
 	}
 	if (zbuf)
-		explicit_bzero(in, inlen);
+		bzero(in, inlen);
 	free(in);
 	return oct;
 

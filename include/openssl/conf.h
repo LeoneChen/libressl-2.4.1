@@ -134,6 +134,7 @@ void CONF_free(LHASH_OF(CONF_VALUE) *conf);
 int CONF_dump_fp(LHASH_OF(CONF_VALUE) *conf, FILE *out);
 int CONF_dump_bio(LHASH_OF(CONF_VALUE) *conf, BIO *out);
 
+void ecall_OPENSSL_config(const char *config_name);
 void OPENSSL_config(const char *config_name);
 void OPENSSL_no_config(void);
 
@@ -170,6 +171,7 @@ int CONF_modules_load(const CONF *cnf, const char *appname,
     unsigned long flags);
 int CONF_modules_load_file(const char *filename, const char *appname,
     unsigned long flags);
+void ecall_CONF_modules_unload(int all);
 void CONF_modules_unload(int all);
 void CONF_modules_finish(void);
 void CONF_modules_free(void);
@@ -191,6 +193,7 @@ char *CONF_get1_default_config_file(void);
 int CONF_parse_list(const char *list, int sep, int nospc,
     int (*list_cb)(const char *elem, int len, void *usr), void *arg);
 
+void ecall_OPENSSL_load_builtin_modules(void);
 void OPENSSL_load_builtin_modules(void);
 
 /* BEGIN ERROR CODES */

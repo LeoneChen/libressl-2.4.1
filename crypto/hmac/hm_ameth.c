@@ -83,7 +83,7 @@ hmac_key_free(EVP_PKEY *pkey)
 
 	if (os) {
 		if (os->data)
-			explicit_bzero(os->data, os->length);
+			bzero(os->data, os->length);
 		ASN1_OCTET_STRING_free(os);
 	}
 }

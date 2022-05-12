@@ -235,7 +235,7 @@ i2a_ASN1_OBJECT(BIO *bp, ASN1_OBJECT *a)
 		return -1;
 	i = i2t_ASN1_OBJECT(tmp, tlen, a);
 	if (i > (int)(tlen - 1)) {
-		explicit_bzero(tmp, tlen);
+		bzero(tmp, tlen);
 		free(tmp);
 		if ((tmp = malloc(i + 1)) == NULL)
 			return -1;
@@ -246,7 +246,7 @@ i2a_ASN1_OBJECT(BIO *bp, ASN1_OBJECT *a)
 		i = BIO_write(bp, "<INVALID>", 9);
 	else
 		i = BIO_write(bp, tmp, i);
-	explicit_bzero(tmp, tlen);
+	bzero(tmp, tlen);
 	free(tmp);
 	return (i);
 }
@@ -324,7 +324,7 @@ c2i_ASN1_OBJECT(ASN1_OBJECT **a, const unsigned char **pp, long len)
 	/* detach data from object */
 	data = (unsigned char *)ret->data;
 	if (data != NULL)
-		explicit_bzero(data, ret->length);
+		bzero(data, ret->length);
 	free(data);
 	data = malloc(length);
 	if (data == NULL) {
@@ -384,7 +384,7 @@ ASN1_OBJECT_free(ASN1_OBJECT *a)
 	}
 	if (a->flags & ASN1_OBJECT_FLAG_DYNAMIC_DATA) {
 		if (a->data != NULL)
-			explicit_bzero((void *)a->data, a->length);
+			bzero((void *)a->data, a->length);
 		free((void *)a->data);
 		a->data = NULL;
 		a->length = 0;

@@ -121,6 +121,10 @@ EVP_get_cipherbyname(const char *name)
 	return (cp);
 }
 
+EVP_MD *ecall_EVP_get_digestbyname(const char *name) {
+	EVP_MD* md = (EVP_MD*)EVP_get_digestbyname(name);
+	return md;
+}
 const EVP_MD *
 EVP_get_digestbyname(const char *name)
 {
@@ -130,6 +134,11 @@ EVP_get_digestbyname(const char *name)
 	return (cp);
 }
 
+void
+ecall_EVP_cleanup(void)
+{
+	EVP_cleanup();
+}
 void
 EVP_cleanup(void)
 {

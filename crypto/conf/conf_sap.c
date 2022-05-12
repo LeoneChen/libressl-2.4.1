@@ -78,6 +78,10 @@
 static int openssl_configured = 0;
 
 void
+ecall_OPENSSL_config(const char *config_name) {
+	OPENSSL_config(config_name);
+}
+void
 OPENSSL_config(const char *config_name)
 {
 	if (openssl_configured)

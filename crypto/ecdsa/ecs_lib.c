@@ -170,7 +170,7 @@ ecdsa_data_free(void *data)
 #endif
 	CRYPTO_free_ex_data(CRYPTO_EX_INDEX_ECDSA, r, &r->ex_data);
 
-	explicit_bzero((void *)r, sizeof(ECDSA_DATA));
+	bzero((void *)r, sizeof(ECDSA_DATA));
 
 	free(r);
 }

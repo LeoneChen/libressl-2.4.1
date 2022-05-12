@@ -193,6 +193,7 @@ EC_GROUP *EC_GROUP_new(const EC_METHOD *meth);
 /** Frees a EC_GROUP object
  *  \param  group  EC_GROUP object to be freed.
  */
+void ecall_EC_GROUP_free(EC_GROUP *group);
 void EC_GROUP_free(EC_GROUP *group);
 
 /** Clears and frees a EC_GROUP object
@@ -730,11 +731,13 @@ void EC_KEY_clear_flags(EC_KEY *key, int flags);
  *  \param  nid  NID of the named curve.
  *  \return EC_KEY object or NULL if an error occurred. 
  */
+EC_KEY *ecall_EC_KEY_new_by_curve_name(int nid);
 EC_KEY *EC_KEY_new_by_curve_name(int nid);
 
 /** Frees a EC_KEY object.
  *  \param  key  EC_KEY object to be freed.
  */
+void ecall_EC_KEY_free(EC_KEY *key);
 void EC_KEY_free(EC_KEY *key);
 
 /** Copies a EC_KEY object.

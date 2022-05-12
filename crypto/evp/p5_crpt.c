@@ -147,9 +147,9 @@ PKCS5_PBE_keyivgen(EVP_CIPHER_CTX *cctx, const char *pass, int passlen,
 	    EVP_CIPHER_iv_length(cipher));
 	if (!EVP_CipherInit_ex(cctx, cipher, NULL, key, iv, en_de))
 		goto err;
-	explicit_bzero(md_tmp, EVP_MAX_MD_SIZE);
-	explicit_bzero(key, EVP_MAX_KEY_LENGTH);
-	explicit_bzero(iv, EVP_MAX_IV_LENGTH);
+	bzero(md_tmp, EVP_MAX_MD_SIZE);
+	bzero(key, EVP_MAX_KEY_LENGTH);
+	bzero(iv, EVP_MAX_IV_LENGTH);
 	rv = 1;
 err:
 	EVP_MD_CTX_cleanup(&ctx);

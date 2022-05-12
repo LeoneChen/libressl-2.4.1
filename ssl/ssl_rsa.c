@@ -70,6 +70,18 @@ static int ssl_set_cert(CERT *c, X509 *x509);
 static int ssl_set_pkey(CERT *c, EVP_PKEY *pkey);
 static int ssl_ctx_use_certificate_chain_bio(SSL_CTX *, BIO *);
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern SSL* SSL_get_in_pointer(SSL* out_s);
+#endif
+
+int
+ecall_SSL_use_certificate(SSL *ssl, X509 *x)
+{
+#ifdef COMPILE_WITH_INTEL_SGX
+	ssl = SSL_get_in_pointer(ssl);
+#endif
+	return SSL_use_certificate(ssl, x);
+}
 int
 SSL_use_certificate(SSL *ssl, X509 *x)
 {
@@ -272,6 +284,15 @@ SSL_use_RSAPrivateKey_ASN1(SSL *ssl, unsigned char *d, long len)
 }
 
 int
+ecall_SSL_use_PrivateKey(SSL *ssl, EVP_PKEY *pkey)
+{
+#ifdef COMPILE_WITH_INTEL_SGX
+	ssl = SSL_get_in_pointer(ssl);
+#endif
+	return SSL_use_PrivateKey(ssl, pkey);
+}
+
+int
 SSL_use_PrivateKey(SSL *ssl, EVP_PKEY *pkey)
 {
 	int ret;
@@ -360,6 +381,10 @@ SSL_CTX_use_certificate(SSL_CTX *ctx, X509 *x)
 	return (ssl_set_cert(ctx->cert, x));
 }
 
+int ecall_SSL_CTX_use_certificate(SSL_CTX *ctx, X509 *x) {
+	return SSL_CTX_use_certificate(ctx, x);
+}
+
 static int
 ssl_set_cert(CERT *c, X509 *x)
 {
@@ -415,6 +440,11 @@ ssl_set_cert(CERT *c, X509 *x)
 
 	c->valid = 0;
 	return (1);
+}
+
+int
+ecall_SSL_CTX_use_certificate_file(SSL_CTX *ctx, const char *file, int type) {
+	return SSL_CTX_use_certificate_file(ctx, file, type);
 }
 
 int
@@ -562,6 +592,10 @@ SSL_CTX_use_RSAPrivateKey_ASN1(SSL_CTX *ctx, const unsigned char *d, long len)
 }
 
 int
+ecall_SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey) {
+	return SSL_CTX_use_PrivateKey(ctx, pkey);
+}
+int
 SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey)
 {
 	if (pkey == NULL) {
@@ -574,6 +608,11 @@ SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey)
 		return (0);
 	}
 	return (ssl_set_pkey(ctx->cert, pkey));
+}
+
+int
+ecall_SSL_CTX_use_PrivateKey_file(SSL_CTX *ctx, const char *file, int type) {
+	return SSL_CTX_use_PrivateKey_file(ctx, file, type);
 }
 
 int
@@ -707,6 +746,10 @@ end:
 	return (ret);
 }
 
+int
+ecall_SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file) {
+	return SSL_CTX_use_certificate_chain_file(ctx, file);
+}
 int
 SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file)
 {

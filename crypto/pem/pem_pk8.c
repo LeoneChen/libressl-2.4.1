@@ -136,7 +136,7 @@ do_pk8pkey(BIO *bp, EVP_PKEY *x, int isder, int nid, const EVP_CIPHER *enc,
 		}
 		p8 = PKCS8_encrypt(nid, enc, kstr, klen, NULL, 0, 0, p8inf);
 		if (kstr == buf)
-			explicit_bzero(buf, klen);
+			bzero(buf, klen);
 		PKCS8_PRIV_KEY_INFO_free(p8inf);
 		if (isder)
 			ret = i2d_PKCS8_bio(bp, p8);

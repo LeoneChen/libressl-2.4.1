@@ -74,7 +74,6 @@
 
 #ifndef OPENSSL_NO_DGRAM
 
-
 static int dgram_write(BIO *h, const char *buf, int num);
 static int dgram_read(BIO *h, char *buf, int size);
 static int dgram_puts(BIO *h, const char *str);
@@ -307,7 +306,6 @@ dgram_write(BIO *b, const char *in, int inl)
 	if (ret <= 0) {
 		if (BIO_dgram_should_retry(ret)) {
 			BIO_set_retry_write(b);
-
 			data->_errno = errno;
 			/*
 			 * higher layers are responsible for querying MTU,

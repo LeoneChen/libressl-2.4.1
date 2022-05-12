@@ -267,7 +267,7 @@ GOSTR341194(const unsigned char *d, size_t n, unsigned char *md, int nid)
 		return 0;
 	GOSTR341194_Update(&c, d, n);
 	GOSTR341194_Final(md, &c);
-	explicit_bzero(&c, sizeof(c));
+	bzero(&c, sizeof(c));
 	return (md);
 }
 #endif

@@ -100,6 +100,8 @@ static DSO_METHOD dso_meth_dlfcn = {
 	.globallookup = dlfcn_globallookup
 };
 
+extern int my_asprintf(char **strp, const char *fmt, ...);
+
 DSO_METHOD *
 DSO_METHOD_dlfcn(void)
 {
@@ -295,9 +297,9 @@ dlfcn_name_converter(DSO *dso, const char *filename)
 	if (strchr(filename, '/') == NULL) {
 		/* Bare name, so convert to "%s.so" or "lib%s.so" */
 		if ((DSO_flags(dso) & DSO_FLAG_NAME_TRANSLATION_EXT_ONLY) == 0)
-			ret = asprintf(&translated, "lib%s" DSO_ext, filename);
+			ret = my_asprintf(&translated, "lib%s" DSO_ext, filename);
 		else
-			ret = asprintf(&translated, "%s" DSO_ext, filename);
+			ret = my_asprintf(&translated, "%s" DSO_ext, filename);
 		if (ret == -1)
 			translated = NULL;
 	} else {

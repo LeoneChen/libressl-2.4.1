@@ -65,6 +65,29 @@
 #include <openssl/objects.h>
 #include <openssl/x509.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+
+extern sgx_status_t ocall_malloc(void** retval, size_t size);
+
+char* X509_name_online_buffer = NULL;
+#endif
+char *
+ecall_X509_NAME_oneline(X509_NAME *a, char *buf, int len)
+{
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (!buf) {
+		if (!X509_name_online_buffer) {
+			ocall_malloc((void**)&X509_name_online_buffer, 8192);
+		}
+		return X509_NAME_oneline(a, X509_name_online_buffer, len);
+	} else {
+#endif
+		return X509_NAME_oneline(a, buf, len);
+#ifdef COMPILE_WITH_INTEL_SGX
+	}
+#endif
+}
 char *
 X509_NAME_oneline(X509_NAME *a, char *buf, int len)
 {
@@ -176,4 +199,11 @@ err:
 	if (b != NULL)
 		BUF_MEM_free(b);
 	return (NULL);
+}
+
+ASN1_OBJECT* ecall_X509_get_algorithm(X509* ptr) {
+	return X509_get_algorithm(ptr);
+}
+ASN1_OBJECT* X509_get_algorithm(X509* ptr) {
+	return ptr->cert_info->key->algor->algorithm;
 }

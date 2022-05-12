@@ -64,6 +64,12 @@
 #include <openssl/lhash.h>
 #include <openssl/objects.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 ASN1_OBJECT *
 OBJ_dup(const ASN1_OBJECT *o)
 {
@@ -93,14 +99,14 @@ OBJ_dup(const ASN1_OBJECT *o)
 	r->nid = o->nid;
 	r->ln = r->sn = NULL;
 	if (o->ln != NULL) {
-		ln = strdup(o->ln);
+		ln = my_strdup(o->ln);
 		if (ln == NULL)
 			goto err;
 		r->ln = ln;
 	}
 
 	if (o->sn != NULL) {
-		sn = strdup(o->sn);
+		sn = my_strdup(o->sn);
 		if (sn == NULL)
 			goto err;
 		r->sn = sn;

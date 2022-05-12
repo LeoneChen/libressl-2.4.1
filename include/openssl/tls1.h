@@ -301,6 +301,8 @@ extern "C" {
 
 #define TLSEXT_MAXLEN_host_name 255
 
+void ecall_SSL_get_servername(const SSL *s, int type, char* servername, int* len);
+const char *SSL_get_servername(const SSL *s, const int type);
 const char *SSL_get_servername(const SSL *s, const int type);
 int SSL_get_servername_type(const SSL *s);
 /* SSL_export_keying_material exports a value derived from the master secret,

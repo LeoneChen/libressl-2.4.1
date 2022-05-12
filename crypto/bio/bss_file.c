@@ -111,6 +111,11 @@ static BIO_METHOD methods_filep = {
 };
 
 BIO *
+ecall_BIO_new_file(const char *filename, const char *mode) {
+	return BIO_new_file(filename, mode);
+}
+
+BIO *
 BIO_new_file(const char *filename, const char *mode)
 {
 	BIO  *ret;
@@ -148,6 +153,10 @@ BIO_new_fp(FILE *stream, int close_flag)
 	return (ret);
 }
 
+BIO_METHOD *
+ecall_BIO_s_file(void) {
+	return BIO_s_file();
+}
 BIO_METHOD *
 BIO_s_file(void)
 {

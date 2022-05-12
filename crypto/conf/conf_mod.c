@@ -120,6 +120,14 @@ static CONF_MODULE *module_load_dso(const CONF *cnf, char *name, char *value,
 
 /* Main function: load modules from a CONF structure */
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern int my_asprintf(char **strp, const char *fmt, ...);
+extern char *my_strdup(const char *s);
+#else
+#define my_asprintf(strp, fmt, ...) asprintf(strp, fmt, __VA_ARGS__)
+#define my_strdup(s) strdup(s)
+#endif
+
 int
 CONF_modules_load(const CONF *cnf, const char *appname, unsigned long flags)
 {
@@ -294,7 +302,7 @@ module_add(DSO *dso, const char *name, conf_init_func *ifunc,
 		return NULL;
 
 	tmod->dso = dso;
-	tmod->name = strdup(name);
+	tmod->name = my_strdup(name);
 	tmod->init = ifunc;
 	tmod->finish = ffunc;
 	tmod->links = 0;
@@ -349,8 +357,8 @@ module_init(CONF_MODULE *pmod, char *name, char *value, const CONF *cnf)
 		goto err;
 
 	imod->pmod = pmod;
-	imod->name = name ? strdup(name) : NULL;
-	imod->value = value ? strdup(value) : NULL;
+	imod->name = name ? my_strdup(name) : NULL;
+	imod->value = value ? my_strdup(value) : NULL;
 	imod->usr_data = NULL;
 
 	if (!imod->name || !imod->value)
@@ -402,6 +410,10 @@ memerr:
  * then all modules are unloaded including static ones.
  */
 
+void
+ecall_CONF_modules_unload(int all) {
+	CONF_modules_unload(all);
+}
 void
 CONF_modules_unload(int all)
 {
@@ -546,7 +558,7 @@ CONF_get1_default_config_file(void)
 {
 	char *file = NULL;
 
-	if (asprintf(&file, "%s/openssl.cnf",
+	if (my_asprintf(&file, "%s/openssl.cnf",
 	    X509_get_default_cert_area()) == -1)
 		return (NULL);
 	return file;

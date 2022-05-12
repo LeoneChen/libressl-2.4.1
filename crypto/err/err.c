@@ -282,6 +282,12 @@ static LHASH_OF(ERR_STATE) *int_thread_hash = NULL;
 static int int_thread_hash_references = 0;
 static int int_err_library_number = ERR_LIB_USER;
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern int my_vasprintf(char **strp, const char *fmt, va_list ap);
+#else
+#define my_vasprintf(strp, fmt, ap) vasprintf(strp, fmt, ap)
+#endif
+
 /* Internal function that checks whether "err_fns" is set and if not, sets it to
  * the defaults. */
 static void
@@ -692,6 +698,10 @@ ERR_unload_strings(int lib, ERR_STRING_DATA *str)
 }
 
 void
+ecall_ERR_free_strings(void) {
+	ERR_free_strings();
+}
+void
 ERR_free_strings(void)
 {
 	err_fns_check();
@@ -720,6 +730,11 @@ ERR_put_error(int lib, int func, int reason, const char *file, int line)
 }
 
 void
+ecall_ERR_clear_error(void) {
+	ERR_clear_error();
+}
+
+void
 ERR_clear_error(void)
 {
 	int i;
@@ -733,6 +748,11 @@ ERR_clear_error(void)
 	es->top = es->bottom = 0;
 }
 
+unsigned long
+ecall_ERR_get_error(void)
+{
+	return ERR_get_error();
+}
 
 unsigned long
 ERR_get_error(void)
@@ -753,6 +773,11 @@ ERR_get_error_line_data(const char **file, int *line,
 	return (get_error_values(1, 0, file, line, data, flags));
 }
 
+unsigned long
+ecall_ERR_peek_error(void)
+{
+	return ERR_peek_error();
+}
 
 unsigned long
 ERR_peek_error(void)
@@ -767,10 +792,22 @@ ERR_peek_error_line(const char **file, int *line)
 }
 
 unsigned long
+ecall_ERR_peek_error_line_data(const char **file, int *line,
+    const char **data, int *flags)
+{
+	return ERR_peek_error_line_data(file, line, data, flags);
+}
+
+unsigned long
 ERR_peek_error_line_data(const char **file, int *line,
     const char **data, int *flags)
 {
 	return (get_error_values(0, 0, file, line, data, flags));
+}
+
+unsigned long
+ecall_ERR_peek_last_error(void) {
+	return ERR_peek_last_error();
 }
 
 unsigned long
@@ -859,6 +896,11 @@ get_error_values(int inc, int top, const char **file, int *line,
 }
 
 void
+ecall_ERR_error_string_n(unsigned long e, char *buf, size_t len) 
+{
+	ERR_error_string_n(e, buf, len);
+}
+void
 ERR_error_string_n(unsigned long e, char *buf, size_t len)
 {
 	char lsbuf[30], fsbuf[30], rsbuf[30];
@@ -911,6 +953,36 @@ ERR_error_string_n(unsigned long e, char *buf, size_t len)
 			}
 		}
 	}
+}
+
+
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+
+extern sgx_status_t ocall_malloc(void** ptr, size_t size);
+
+static char* ERR_error_string_str = NULL;
+#endif
+
+char *
+ecall_ERR_error_string(unsigned long e, char *ret) {
+	char *encbuf = ERR_error_string(e, ret);
+
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (!ERR_error_string_str) {
+		ocall_malloc((void**)&ERR_error_string_str, 8192);
+	}
+
+	size_t len = strlen(encbuf);
+	if (len > 8191) { len = 8191; }
+	memcpy(ERR_error_string_str, encbuf, len);
+	ERR_error_string_str[len] = '\0';
+
+	if (ret == NULL) { ret = ERR_error_string_str; }
+	return ERR_error_string_str;
+#else
+	return encbuf;
+#endif
 }
 
 /* BAD for multi-threading: uses a local buffer if ret == NULL */
@@ -1009,6 +1081,10 @@ ERR_remove_thread_state(const CRYPTO_THREADID *id)
 
 #ifndef OPENSSL_NO_DEPRECATED
 void
+ecall_ERR_remove_state(unsigned long pid) {
+	ERR_remove_state(pid);
+}
+void
 ERR_remove_state(unsigned long pid)
 {
 	ERR_remove_thread_state(NULL);
@@ -1085,7 +1161,7 @@ ERR_asprintf_error_data(char * format, ...) {
 	int r;
 
 	va_start(ap, format);
-	r = vasprintf(&errbuf, format, ap);
+	r = my_vasprintf(&errbuf, format, ap);
 	va_end(ap);
 	if (r == -1)
 		ERR_set_error_data("malloc failed", ERR_TXT_STRING);
@@ -1115,7 +1191,7 @@ ERR_add_error_vdata(int num, va_list args)
 			return;
 		}
 	}
-	if (vasprintf(&errbuf, format, args) == -1)
+	if (my_vasprintf(&errbuf, format, args) == -1)
 		ERR_set_error_data("malloc failed", ERR_TXT_STRING);
 	else
 		ERR_set_error_data(errbuf, ERR_TXT_MALLOCED|ERR_TXT_STRING);
