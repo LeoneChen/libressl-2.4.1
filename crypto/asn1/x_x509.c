@@ -260,11 +260,20 @@ i2d_X509(X509 *a, unsigned char **out)
 }
 
 X509 *
+ecall_X509_new(void)
+{
+	return X509_new();
+}
+X509 *
 X509_new(void)
 {
 	return (X509 *)ASN1_item_new(&X509_it);
 }
 
+void
+ecall_X509_free(X509 *a) {
+	return X509_free(a);
+}
 void
 X509_free(X509 *a)
 {
@@ -278,6 +287,11 @@ X509_dup(X509 *x)
 }
 
 int
+ecall_X509_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
+    CRYPTO_EX_dup *dup_func, CRYPTO_EX_free *free_func) {
+	return X509_get_ex_new_index(argl, argp, new_func, dup_func, free_func);
+}
+int
 X509_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
     CRYPTO_EX_dup *dup_func, CRYPTO_EX_free *free_func)
 {
@@ -286,11 +300,19 @@ X509_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
 }
 
 int
+ecall_X509_set_ex_data(X509 *r, int idx, void *arg) {
+	return X509_set_ex_data(r, idx, arg);
+}
+int
 X509_set_ex_data(X509 *r, int idx, void *arg)
 {
 	return (CRYPTO_set_ex_data(&r->ex_data, idx, arg));
 }
 
+void *
+ecall_X509_get_ex_data(X509 *r, int idx) {
+	return X509_get_ex_data(r, idx);
+}
 void *
 X509_get_ex_data(X509 *r, int idx)
 {

@@ -595,6 +595,7 @@ STACK_OF(SSL_CIPHER) *ssl_get_ciphers_by_id(SSL *s);
 int ssl_verify_alarm_type(long type);
 void ssl_load_ciphers(void);
 
+SSL_CIPHER * ecall_ssl3_get_cipher_name_by_char(const unsigned char* p, char* cipher_name);
 const SSL_CIPHER *ssl3_get_cipher_by_char(const unsigned char *p);
 int ssl3_put_cipher_by_char(const SSL_CIPHER *c, unsigned char *p);
 int ssl3_send_server_certificate(SSL *s);
@@ -843,5 +844,10 @@ int ssl3_cbc_digest_record(const EVP_MD_CTX *ctx, unsigned char *md_out,
     const unsigned char *data, size_t data_plus_mac_size,
     size_t data_plus_mac_plus_padding_size, const unsigned char *mac_secret,
     unsigned mac_secret_length, char is_sslv3);
+
+/* ssl_lib.c */
+#ifdef COMPILE_WITH_INTEL_SGX
+void ssl_ctx_info_fake_cb(const SSL *ssl, int type, int val);
+#endif
 
 #endif

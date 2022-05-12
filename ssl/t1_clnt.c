@@ -206,6 +206,10 @@ tls1_get_client_method(int ver)
 	return (NULL);
 }
 
+SSL_METHOD *
+ecall_SSLv23_client_method(void) {
+	return (SSL_METHOD*)SSLv23_client_method();
+}
 const SSL_METHOD *
 SSLv23_client_method(void)
 {

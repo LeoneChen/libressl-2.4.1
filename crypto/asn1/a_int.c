@@ -406,6 +406,10 @@ ASN1_INTEGER_get(const ASN1_INTEGER *a)
 }
 
 ASN1_INTEGER *
+ecall_BN_to_ASN1_INTEGER(const BIGNUM *bn, ASN1_INTEGER *ai) {
+	return BN_to_ASN1_INTEGER(bn, ai);
+}
+ASN1_INTEGER *
 BN_to_ASN1_INTEGER(const BIGNUM *bn, ASN1_INTEGER *ai)
 {
 	ASN1_INTEGER *ret;
@@ -448,6 +452,10 @@ err:
 	return (NULL);
 }
 
+BIGNUM *
+ecall_ASN1_INTEGER_to_BN(const ASN1_INTEGER *ai, BIGNUM *bn) {
+	return ASN1_INTEGER_to_BN(ai, bn);
+}
 BIGNUM *
 ASN1_INTEGER_to_BN(const ASN1_INTEGER *ai, BIGNUM *bn)
 {

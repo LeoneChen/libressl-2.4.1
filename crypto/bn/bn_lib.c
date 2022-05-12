@@ -137,6 +137,12 @@ BN_get_params(int which)
 }
 #endif
 
+int ecall_BN_is_zero(const BIGNUM* a) {
+	return BN_is_zero(a);
+}
+int BN_is_zero(const BIGNUM* a) {
+	return (a->top == 0);
+}
 const BIGNUM *
 BN_value_one(void)
 {
@@ -201,6 +207,10 @@ BN_num_bits_word(BN_ULONG l)
 }
 
 int
+ecall_BN_num_bits(const BIGNUM *a) {
+	return BN_num_bits(a);
+}
+int
 BN_num_bits(const BIGNUM *a)
 {
 	int i = a->top - 1;
@@ -221,15 +231,19 @@ BN_clear_free(BIGNUM *a)
 		return;
 	bn_check_top(a);
 	if (a->d != NULL && !(BN_get_flags(a, BN_FLG_STATIC_DATA))) {
-		explicit_bzero(a->d, a->dmax * sizeof(a->d[0]));
+		bzero(a->d, a->dmax * sizeof(a->d[0]));
 		free(a->d);
 	}
 	i = BN_get_flags(a, BN_FLG_MALLOCED);
-	explicit_bzero(a, sizeof(BIGNUM));
+	bzero(a, sizeof(BIGNUM));
 	if (i)
 		free(a);
 }
 
+void
+ecall_BN_free(BIGNUM *a) {
+	BN_free(a);
+}
 void
 BN_free(BIGNUM *a)
 {
@@ -243,6 +257,10 @@ BN_init(BIGNUM *a)
 	bn_check_top(a);
 }
 
+BIGNUM *
+ecall_BN_new(void) {
+	return BN_new();
+}
 BIGNUM *
 BN_new(void)
 {
@@ -395,7 +413,7 @@ bn_expand2(BIGNUM *b, int words)
 		if (!a)
 			return NULL;
 		if (b->d) {
-			explicit_bzero(b->d, b->dmax * sizeof(b->d[0]));
+			bzero(b->d, b->dmax * sizeof(b->d[0]));
 			free(b->d);
 		}
 		b->d = a;
@@ -427,6 +445,10 @@ bn_expand2(BIGNUM *b, int words)
 	return b;
 }
 
+BIGNUM *
+ecall_BN_dup(const BIGNUM *a) {
+	return BN_dup(a);
+}
 BIGNUM *
 BN_dup(const BIGNUM *a)
 {
@@ -563,6 +585,10 @@ bn_expand(BIGNUM *a, int bits)
 }
 
 int
+ecall_BN_set_word(BIGNUM *a, BN_ULONG w) {
+	return BN_set_word(a, w);
+}
+int
 BN_set_word(BIGNUM *a, BN_ULONG w)
 {
 	bn_check_top(a);
@@ -575,6 +601,10 @@ BN_set_word(BIGNUM *a, BN_ULONG w)
 	return (1);
 }
 
+BIGNUM *
+ecall_BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret) {
+	return BN_bin2bn(s, len, ret);
+}
 BIGNUM *
 BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret)
 {
@@ -727,6 +757,11 @@ BN_set_bit(BIGNUM *a, int n)
 }
 
 int
+ecall_BN_clear_bit(BIGNUM *a, int n)
+{
+	return BN_clear_bit(a, n);
+}
+int
 BN_clear_bit(BIGNUM *a, int n)
 {
 	int i, j;
@@ -745,6 +780,10 @@ BN_clear_bit(BIGNUM *a, int n)
 	return (1);
 }
 
+int
+ecall_BN_is_bit_set(const BIGNUM *a, int n) {
+	return BN_is_bit_set(a, n);
+}
 int
 BN_is_bit_set(const BIGNUM *a, int n)
 {

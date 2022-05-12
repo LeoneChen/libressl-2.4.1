@@ -116,7 +116,7 @@ EVP_read_pw_string_min(char *buf, int min, int len, const char *prompt,
 	}
 	ret = UI_process(ui);
 	UI_free(ui);
-	explicit_bzero(buff, BUFSIZ);
+	bzero(buff, BUFSIZ);
 	return ret;
 }
 
@@ -201,6 +201,6 @@ EVP_BytesToKey(const EVP_CIPHER *type, const EVP_MD *md,
 
 err:
 	EVP_MD_CTX_cleanup(&c);
-	explicit_bzero(md_buf, sizeof md_buf);
+	bzero(md_buf, sizeof md_buf);
 	return rv;
 }

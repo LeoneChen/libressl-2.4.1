@@ -182,7 +182,7 @@ ecdh_data_free(void *data)
 
 	CRYPTO_free_ex_data(CRYPTO_EX_INDEX_ECDH, r, &r->ex_data);
 
-	explicit_bzero((void *)r, sizeof(ECDH_DATA));
+	bzero((void *)r, sizeof(ECDH_DATA));
 
 	free(r);
 }

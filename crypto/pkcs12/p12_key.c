@@ -89,7 +89,7 @@ PKCS12_key_gen_asc(const char *pass, int passlen, unsigned char *salt,
 	if (ret <= 0)
 		return 0;
 	if (unipass) {
-		explicit_bzero(unipass, uniplen);
+		bzero(unipass, uniplen);
 		free(unipass);
 	}
 	return ret;

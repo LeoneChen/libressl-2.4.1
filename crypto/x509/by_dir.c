@@ -72,6 +72,12 @@
 
 # include <sys/stat.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strndup(const char *s, size_t n);
+#else
+#define my_strndup(s, n) strndup(s, n)
+#endif
+
 typedef struct lookup_dir_hashes_st {
 	unsigned long hash;
 	int suffix;
@@ -241,7 +247,7 @@ add_cert_dir(BY_DIR *ctx, const char *dir, int type)
 			}
 			ent->dir_type = type;
 			ent->hashes = sk_BY_DIR_HASH_new(by_dir_hash_cmp);
-			ent->dir = strndup(ss, (size_t)len);
+			ent->dir = my_strndup(ss, (size_t)len);
 			if (!ent->dir || !ent->hashes) {
 				X509err(X509_F_ADD_CERT_DIR, ERR_R_MALLOC_FAILURE);
 				by_dir_entry_free(ent);

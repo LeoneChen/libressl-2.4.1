@@ -107,6 +107,10 @@
 #endif
 
 void
+ecall_ERR_load_crypto_strings(void) {
+	ERR_load_crypto_strings();
+}
+void
 ERR_load_crypto_strings(void)
 {
 #ifndef OPENSSL_NO_ERR

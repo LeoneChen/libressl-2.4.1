@@ -225,7 +225,6 @@ static inline uint32_t ROTATE(uint32_t a, uint32_t n)
 /*
  * Time for some action:-)
  */
-
 int
 HASH_UPDATE(HASH_CTX *c, const void *data_, size_t len)
 {
@@ -285,7 +284,6 @@ void HASH_TRANSFORM (HASH_CTX *c, const unsigned char *data)
 {
 	HASH_BLOCK_DATA_ORDER (c, data, 1);
 }
-
 
 #ifndef HASH_NO_FINAL
 int HASH_FINAL (unsigned char *md, HASH_CTX *c)

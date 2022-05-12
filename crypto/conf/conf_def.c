@@ -207,6 +207,12 @@ def_load(CONF *conf, const char *name, long *line)
 	return ret;
 }
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 static int
 def_load_bio(CONF *conf, BIO *in, long *line)
 {
@@ -228,7 +234,7 @@ def_load_bio(CONF *conf, BIO *in, long *line)
 		goto err;
 	}
 
-	section = strdup("default");
+	section = my_strdup("default");
 	if (section == NULL) {
 		CONFerr(CONF_F_DEF_LOAD_BIO, ERR_R_MALLOC_FAILURE);
 		goto err;
@@ -366,7 +372,7 @@ again:
 			}
 			if (psection == NULL)
 				psection = section;
-			v->name = strdup(pname);
+			v->name = my_strdup(pname);
 			v->value = NULL;
 			if (v->name == NULL) {
 				CONFerr(CONF_F_DEF_LOAD_BIO,

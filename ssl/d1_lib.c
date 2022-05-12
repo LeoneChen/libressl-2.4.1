@@ -199,7 +199,7 @@ dtls1_free(SSL *s)
 	pqueue_free(s->d1->sent_messages);
 	pqueue_free(s->d1->buffered_app_data.q);
 
-	explicit_bzero(s->d1, sizeof *s->d1);
+	bzero(s->d1, sizeof *s->d1);
 	free(s->d1);
 	s->d1 = NULL;
 }

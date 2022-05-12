@@ -165,11 +165,26 @@ X509_issuer_name_hash_old(X509 *x)
 #endif
 
 X509_NAME *
+ecall_X509_get_subject_name(X509 *a) {
+	return X509_get_subject_name(a);
+}
+X509_NAME *
 X509_get_subject_name(X509 *a)
 {
 	return (a->cert_info->subject);
 }
 
+ASN1_OBJECT* X509_get_cert_key_algor_algorithm(X509* x) {
+	return x->cert_info->key->algor->algorithm;
+}
+ASN1_OBJECT* ecall_X509_get_cert_key_algor_algorithm(X509* x) {
+	return X509_get_cert_key_algor_algorithm(x);
+}
+
+ASN1_INTEGER *
+ecall_X509_get_serialNumber(X509 *a) {
+	return X509_get_serialNumber(a);
+}
 ASN1_INTEGER *
 X509_get_serialNumber(X509 *a)
 {
@@ -334,6 +349,10 @@ X509_get0_pubkey_bitstr(const X509 *x)
 	return x->cert_info->key->public_key;
 }
 
+int
+ecall_X509_check_private_key(X509 *x, EVP_PKEY *k) {
+	return X509_check_private_key(x, k);
+}
 int
 X509_check_private_key(X509 *x, EVP_PKEY *k)
 {

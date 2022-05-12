@@ -64,6 +64,16 @@
 #include <openssl/objects.h>
 #include <openssl/x509.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+#include "sgx_trts.h"
+
+extern char *my_strndup(const char *, size_t);
+extern sgx_status_t ocall_free(void* ptr);
+#else
+#define my_strndup(s, n) strndup(s, n)
+#endif
+
 /* XXX - these are here to avoid including asn1_mac.h */
 int asn1_GetSequence(ASN1_const_CTX *c, long *length);
 void asn1_add_error(const unsigned char *address, int offset);
@@ -83,6 +93,10 @@ typedef struct ssl_session_asn1_st {
 	ASN1_OCTET_STRING tlsext_tick;
 } SSL_SESSION_ASN1;
 
+int
+ecall_i2d_SSL_SESSION(void* in, unsigned char **pp) {
+	return i2d_SSL_SESSION((SSL_SESSION*)in, pp);
+}
 int
 i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 {
@@ -258,6 +272,22 @@ i2d_SSL_SESSION(SSL_SESSION *in, unsigned char **pp)
 	return (ret);
 }
 
+static void smart_free(void* ptr) {
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (sgx_is_within_enclave(ptr, 1)) {
+#endif
+		free(ptr);
+#ifdef COMPILE_WITH_INTEL_SGX
+	} else {
+		ocall_free(ptr);
+	}
+#endif
+}
+
+void*
+ecall_d2i_SSL_SESSION(void **a, const unsigned char **pp, long length) {
+	return (void*)d2i_SSL_SESSION((SSL_SESSION**)a, pp, length);
+}
 SSL_SESSION *
 d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp, long length)
 {
@@ -480,7 +510,7 @@ d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp, long length)
 
 	/* 4 - Session ID (OCTET STRING). */
 	os.length = 0;
-	free(os.data);
+	smart_free(os.data);
 	os.data = NULL;
 	if (c.slen != 0L &&
 	    *c.p == (V_ASN1_CONSTRUCTED | V_ASN1_CONTEXT_SPECIFIC | 4)) {
@@ -515,7 +545,7 @@ d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp, long length)
 			ret->sid_ctx_length = os.length;
 			memcpy(ret->sid_ctx, os.data, os.length);
 		}
-		free(os.data);
+		smart_free(os.data);
 		os.data = NULL;
 		os.length = 0;
 	} else
@@ -585,8 +615,8 @@ d2i_SSL_SESSION(SSL_SESSION **a, const unsigned char **pp, long length)
 		c.slen -= (c.p - c.q);
 	}
 	if (os.data) {
-		ret->tlsext_hostname = strndup((char *)os.data, os.length);
-		free(os.data);
+		ret->tlsext_hostname = my_strndup((char *)os.data, os.length);
+		smart_free(os.data);
 		os.data = NULL;
 		os.length = 0;
 	} else

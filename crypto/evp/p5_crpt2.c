@@ -300,7 +300,7 @@ PKCS5_v2_PBKDF2_keyivgen(EVP_CIPHER_CTX *ctx, const char *pass, int passlen,
 	rv = EVP_CipherInit_ex(ctx, NULL, NULL, key, NULL, en_de);
 
 err:
-	explicit_bzero(key, keylen);
+	bzero(key, keylen);
 	PBKDF2PARAM_free(kdf);
 	return rv;
 }

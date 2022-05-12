@@ -989,7 +989,7 @@ enter:
 	}
 	memcpy(rp, tp, num * sizeof(BN_ULONG));
 out:
-	explicit_bzero(tp, (num + 2) * sizeof(BN_ULONG));
+	bzero(tp, (num + 2) * sizeof(BN_ULONG));
 	free(tp);
 	return 1;
 }
@@ -1081,7 +1081,7 @@ bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp,
 	}
 	memcpy(rp, tp, num * sizeof(BN_ULONG));
 out:
-	explicit_bzero(tp, (num + 2) * sizeof(BN_ULONG));
+	bzero(tp, (num + 2) * sizeof(BN_ULONG));
 	free(tp);
 	return 1;
 }

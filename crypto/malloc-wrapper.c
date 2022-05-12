@@ -18,6 +18,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char* my_strdup(const char*);
+#endif
+
 int
 CRYPTO_set_mem_functions(void *(*m)(size_t), void *(*r)(void *, size_t),
     void (*f)(void *))
@@ -140,7 +144,11 @@ CRYPTO_malloc(int num, const char *file, int line)
 char *
 CRYPTO_strdup(const char *str, const char *file, int line)
 {
+#ifdef COMPILE_WITH_INTEL_SGX
+	return my_strdup(str);
+#else
 	return strdup(str);
+#endif
 }
 
 void *
@@ -165,7 +173,7 @@ CRYPTO_realloc_clean(void *ptr, int old_len, int num, const char *file,
 	ret = malloc(num);
 	if (ret && ptr && old_len > 0) {
 		memcpy(ret, ptr, old_len);
-		explicit_bzero(ptr, old_len);
+		bzero(ptr, old_len);
 		free(ptr);
 	}
 	return ret;

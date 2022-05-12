@@ -153,7 +153,7 @@ ASN1_item_verify(const ASN1_ITEM *it, X509_ALGOR *a,
 		goto err;
 	}
 
-	explicit_bzero(buf_in, (unsigned int)inl);
+	bzero(buf_in, (unsigned int)inl);
 	free(buf_in);
 
 	if (EVP_DigestVerifyFinal(&ctx, signature->data,

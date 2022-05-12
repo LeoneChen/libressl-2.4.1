@@ -283,6 +283,11 @@ OpenSSL_add_all_digests(void)
 }
 
 void
+ecall_OPENSSL_add_all_algorithms_noconf(void)
+{
+	OPENSSL_add_all_algorithms_noconf();
+}
+void
 OPENSSL_add_all_algorithms_noconf(void)
 {
 	OPENSSL_cpuid_setup();

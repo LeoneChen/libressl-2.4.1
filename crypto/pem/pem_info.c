@@ -400,7 +400,7 @@ PEM_X509_INFO_write_bio(BIO *bp, X509_INFO *xi, EVP_CIPHER *enc,
 	ret = 1;
 
 err:
-	explicit_bzero((char *)&ctx, sizeof(ctx));
-	explicit_bzero(buf, PEM_BUFSIZE);
+	bzero((char *)&ctx, sizeof(ctx));
+	bzero(buf, PEM_BUFSIZE);
 	return (ret);
 }

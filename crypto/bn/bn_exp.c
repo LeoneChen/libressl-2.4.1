@@ -825,7 +825,7 @@ err:
 	if ((in_mont == NULL) && (mont != NULL))
 		BN_MONT_CTX_free(mont);
 	if (powerbuf != NULL) {
-		explicit_bzero(powerbuf, powerbufLen);
+		bzero(powerbuf, powerbufLen);
 		free(powerbufFree);
 	}
 	BN_CTX_end(ctx);

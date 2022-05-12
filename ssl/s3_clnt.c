@@ -1899,7 +1899,7 @@ ssl3_send_client_kex_rsa(SSL *s, SESS_CERT *sess_cert, unsigned char *p,
 	ret = 1;
 
 err:
-	explicit_bzero(tmp_buf, sizeof(tmp_buf));
+	bzero(tmp_buf, sizeof(tmp_buf));
 	EVP_PKEY_free(pkey);
 
 	return (ret);
@@ -1961,7 +1961,7 @@ ssl3_send_client_kex_dhe(SSL *s, SESS_CERT *sess_cert, unsigned char *p,
 err:
 	DH_free(dh_clnt);
 	if (key != NULL)
-		explicit_bzero(key, key_size);
+		bzero(key, key_size);
 	free(key);
 
 	return (ret);
@@ -2087,7 +2087,7 @@ ssl3_send_client_kex_ecdh(SSL *s, SESS_CERT *sess_cert, unsigned char *p,
 
 err:
 	if (key != NULL)
-		explicit_bzero(key, key_size);
+		bzero(key, key_size);
 	free(key);
 
 	BN_CTX_free(bn_ctx);
@@ -2209,7 +2209,7 @@ ssl3_send_client_kex_gost(SSL *s, SESS_CERT *sess_cert, unsigned char *p,
 	ret = 1;
 
 err:
-	explicit_bzero(premaster_secret, sizeof(premaster_secret));
+	bzero(premaster_secret, sizeof(premaster_secret));
 	EVP_PKEY_free(pub_key);
 
 	return (ret);

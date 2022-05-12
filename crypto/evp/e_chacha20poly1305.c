@@ -83,7 +83,7 @@ aead_chacha20_poly1305_cleanup(EVP_AEAD_CTX *ctx)
 {
 	struct aead_chacha20_poly1305_ctx *c20_ctx = ctx->aead_state;
 
-	explicit_bzero(c20_ctx->key, sizeof(c20_ctx->key));
+	bzero(c20_ctx->key, sizeof(c20_ctx->key));
 	free(c20_ctx);
 }
 

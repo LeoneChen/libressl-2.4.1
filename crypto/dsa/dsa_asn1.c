@@ -431,7 +431,7 @@ DSA_verify(int type, const unsigned char *dgst, int dgst_len,
 	ret = DSA_do_verify(dgst, dgst_len, s, dsa);
 err:
 	if (derlen > 0) {
-		explicit_bzero(der, derlen);
+		bzero(der, derlen);
 		free(der);
 	}
 	DSA_SIG_free(s);

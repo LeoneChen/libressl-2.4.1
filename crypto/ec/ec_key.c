@@ -91,6 +91,11 @@ EC_KEY_new(void)
 }
 
 EC_KEY *
+ecall_EC_KEY_new_by_curve_name(int nid) {
+	return EC_KEY_new_by_curve_name(nid);
+}
+
+EC_KEY *
 EC_KEY_new_by_curve_name(int nid)
 {
 	EC_KEY *ret = EC_KEY_new();
@@ -102,6 +107,11 @@ EC_KEY_new_by_curve_name(int nid)
 		return NULL;
 	}
 	return ret;
+}
+
+void 
+ecall_EC_KEY_free(EC_KEY * r) {
+	EC_KEY_free(r);
 }
 
 void 
@@ -122,7 +132,7 @@ EC_KEY_free(EC_KEY * r)
 
 	EC_EX_DATA_free_all_data(&r->method_data);
 
-	explicit_bzero((void *) r, sizeof(EC_KEY));
+	bzero((void *) r, sizeof(EC_KEY));
 
 	free(r);
 }

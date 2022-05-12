@@ -65,6 +65,12 @@
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 /* X509_VERIFY_PARAM functions */
 
 static void
@@ -216,7 +222,7 @@ X509_VERIFY_PARAM_set1_name(X509_VERIFY_PARAM *param, const char *name)
 	param->name = NULL;
 	if (name == NULL)
 		return 1;
-	param->name = strdup(name);
+	param->name = my_strdup(name);
 	if (param->name)
 		return 1;
 	return 0;

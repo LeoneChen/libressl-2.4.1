@@ -63,6 +63,12 @@
 #include <openssl/dso.h>
 #include <openssl/err.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 static DSO_METHOD *default_DSO_meth = NULL;
 
 DSO *
@@ -355,7 +361,7 @@ DSO_set_filename(DSO *dso, const char *filename)
 		return (0);
 	}
 	/* We'll duplicate filename */
-	copied = strdup(filename);
+	copied = my_strdup(filename);
 	if (copied == NULL) {
 		DSOerr(DSO_F_DSO_SET_FILENAME, ERR_R_MALLOC_FAILURE);
 		return (0);
@@ -406,7 +412,7 @@ DSO_convert_filename(DSO *dso, const char *filename)
 			result = dso->meth->dso_name_converter(dso, filename);
 	}
 	if (result == NULL) {
-		result = strdup(filename);
+		result = my_strdup(filename);
 		if (result == NULL) {
 			DSOerr(DSO_F_DSO_CONVERT_FILENAME,
 			    ERR_R_MALLOC_FAILURE);

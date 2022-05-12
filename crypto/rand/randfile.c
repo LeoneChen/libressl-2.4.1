@@ -130,7 +130,7 @@ RAND_write_file(const char *file)
 	}
 
 	fclose(out);
-	explicit_bzero(buf, BUFSIZE);
+	bzero(buf, BUFSIZE);
 	return ret;
 }
 

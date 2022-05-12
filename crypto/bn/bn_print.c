@@ -260,6 +260,11 @@ err:
 }
 
 int
+ecall_BN_dec2bn(BIGNUM **bn, const char *a)
+{
+	return BN_dec2bn(bn, a);
+}
+int
 BN_dec2bn(BIGNUM **bn, const char *a)
 {
 	BIGNUM *ret = NULL;

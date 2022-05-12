@@ -71,7 +71,7 @@ unsigned char *MD5(const unsigned char *d, size_t n, unsigned char *md)
 		return NULL;
 	MD5_Update(&c,d,n);
 	MD5_Final(md,&c);
-	explicit_bzero(&c,sizeof(c));
+	bzero(&c,sizeof(c));
 	return(md);
 	}
 

@@ -344,6 +344,31 @@ OBJ_nid2obj(int n)
 	}
 }
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+
+extern sgx_status_t ocall_malloc(void** retval, size_t size);
+
+char* OBJ_nid2sn_buffer = NULL;
+#endif
+
+char *
+ecall_OBJ_nid2sn(int n) {
+	char* str = (char*)OBJ_nid2sn(n);
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (!OBJ_nid2sn_buffer) {
+		ocall_malloc((void**)&OBJ_nid2sn_buffer, 8192);
+	}
+	size_t s = strlen(str);
+	//XXX PL: we might have a concurrency problem here...
+	memcpy(OBJ_nid2sn_buffer, str, s);
+	OBJ_nid2sn_buffer[s] = '\0';
+
+	str = OBJ_nid2sn_buffer;
+#endif
+	return str;
+}
+
 const char *
 OBJ_nid2sn(int n)
 {
@@ -415,6 +440,10 @@ obj_cmp(const ASN1_OBJECT * const *ap, const unsigned int *bp)
 
 IMPLEMENT_OBJ_BSEARCH_CMP_FN(const ASN1_OBJECT *, unsigned int, obj);
 
+int
+ecall_OBJ_obj2nid(const ASN1_OBJECT *a) {
+	return OBJ_obj2nid(a);
+}
 int
 OBJ_obj2nid(const ASN1_OBJECT *a)
 {
@@ -611,6 +640,10 @@ err:
 }
 
 int
+ecall_OBJ_txt2nid(const char *s) {
+	return OBJ_txt2nid(s);
+}
+int
 OBJ_txt2nid(const char *s)
 {
 	ASN1_OBJECT *obj;
@@ -642,6 +675,11 @@ OBJ_ln2nid(const char *s)
 	if (op == NULL)
 		return (NID_undef);
 	return (nid_objs[*op].nid);
+}
+
+int
+ecall_OBJ_sn2nid(const char *s) {
+	return OBJ_sn2nid(s);
 }
 
 int
@@ -755,6 +793,10 @@ OBJ_create_objects(BIO *in)
 	/* return(num); */
 }
 
+int
+ecall_OBJ_create(const char *oid, const char *sn, const char *ln) {
+	return OBJ_create(oid, sn, ln);
+}
 int
 OBJ_create(const char *oid, const char *sn, const char *ln)
 {

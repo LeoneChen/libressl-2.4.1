@@ -108,6 +108,12 @@ static MIME_HEADER *mime_hdr_find(STACK_OF(MIME_HEADER) *hdrs, char *name);
 static MIME_PARAM *mime_param_find(MIME_HEADER *hdr, char *name);
 static void mime_hdr_free(MIME_HEADER *hdr);
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 #define MAX_SMLEN 1024
 #define mime_debug(x) /* x */
 
@@ -853,13 +859,13 @@ mime_hdr_new(char *name, char *value)
 	char *tmpname = NULL, *tmpval = NULL, *p;
 
 	if (name) {
-		if (!(tmpname = strdup(name)))
+		if (!(tmpname = my_strdup(name)))
 			goto err;
 		for (p = tmpname; *p; p++)
 			*p = tolower((unsigned char)*p);
 	}
 	if (value) {
-		if (!(tmpval = strdup(value)))
+		if (!(tmpval = my_strdup(value)))
 			goto err;
 		for (p = tmpval; *p; p++)
 			*p = tolower((unsigned char)*p);
@@ -887,14 +893,14 @@ mime_hdr_addparam(MIME_HEADER *mhdr, char *name, char *value)
 	MIME_PARAM *mparam;
 
 	if (name) {
-		tmpname = strdup(name);
+		tmpname = my_strdup(name);
 		if (!tmpname)
 			goto err;
 		for (p = tmpname; *p; p++)
 			*p = tolower((unsigned char)*p);
 	}
 	if (value) {
-		tmpval = strdup(value);
+		tmpval = my_strdup(value);
 		if (!tmpval)
 			goto err;
 	}

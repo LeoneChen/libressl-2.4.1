@@ -464,7 +464,7 @@ GOST2814789IMIT(const unsigned char *d, size_t n, unsigned char *md, int nid,
 	Gost2814789_set_key(&c.cipher, key, 256);
 	GOST2814789IMIT_Update(&c, d, n);
 	GOST2814789IMIT_Final(md, &c);
-	explicit_bzero(&c, sizeof(c));
+	bzero(&c, sizeof(c));
 	return (md);
 }
 

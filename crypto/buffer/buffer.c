@@ -91,7 +91,7 @@ BUF_MEM_free(BUF_MEM *a)
 		return;
 
 	if (a->data != NULL) {
-		explicit_bzero(a->data, a->max);
+		bzero(a->data, a->max);
 		free(a->data);
 	}
 	free(a);
@@ -157,7 +157,7 @@ BUF_MEM_grow_clean(BUF_MEM *str, size_t len)
 	/* we're not shrinking - that case returns above */
 	if ((ret != NULL)  && (str->data != NULL)) {
 		memcpy(ret, str->data, str->max);
-		explicit_bzero(str->data, str->max);
+		bzero(str->data, str->max);
 		free(str->data);
 	}
 	if (ret == NULL) {

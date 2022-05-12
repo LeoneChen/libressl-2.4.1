@@ -105,7 +105,7 @@ GOST_KEY_free(GOST_KEY *r)
 	EC_POINT_free(r->pub_key);
 	BN_clear_free(r->priv_key);
 
-	explicit_bzero((void *)r, sizeof(GOST_KEY));
+	bzero((void *)r, sizeof(GOST_KEY));
 	free(r);
 }
 

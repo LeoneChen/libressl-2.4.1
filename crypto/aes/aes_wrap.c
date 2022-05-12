@@ -126,7 +126,7 @@ AES_unwrap_key(AES_KEY *key, const unsigned char *iv, unsigned char *out,
 	if (!iv)
 		iv = default_iv;
 	if (memcmp(A, iv, 8)) {
-		explicit_bzero(out, inlen);
+		bzero(out, inlen);
 		return 0;
 	}
 	return inlen;

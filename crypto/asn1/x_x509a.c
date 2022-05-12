@@ -57,10 +57,15 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
 #include <openssl/asn1t.h>
 #include <openssl/evp.h>
 #include <openssl/x509.h>
+
+#ifdef COMPILE_WITH_INTEL_SGX
+extern void* ocall_realloc(void**, void*, size_t);
+#endif
 
 /* X509_CERT_AUX routines. These are used to encode additional
  * user modifiable data about a certificate. This data is
@@ -189,6 +194,25 @@ X509_keyid_set1(X509 *x, unsigned char *id, int len)
 	return ASN1_STRING_set(aux->keyid, id, len);
 }
 
+static unsigned char* ecall_alias_buffer = NULL;
+static int ecall_alias_buffer_len = 0;
+unsigned char *
+ecall_X509_alias_get0(X509 *x, int *len) {
+	unsigned char* p = X509_alias_get0(x, len);
+	if (!p) {
+		return NULL;
+	}
+	if (*len > ecall_alias_buffer_len) {
+#ifdef COMPILE_WITH_INTEL_SGX
+		ocall_realloc((void**)&ecall_alias_buffer, (void*)ecall_alias_buffer, *len);
+#else
+		ecall_alias_buffer = (unsigned char*) realloc(ecall_alias_buffer, *len);
+#endif
+		ecall_alias_buffer_len = *len;
+	}
+	memcpy(ecall_alias_buffer, p, *len);
+	return ecall_alias_buffer;
+}
 unsigned char *
 X509_alias_get0(X509 *x, int *len)
 {

@@ -65,6 +65,12 @@
 #include <openssl/x509v3.h>
 #include <openssl/x509_vfy.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 static void x509v3_cache_extensions(X509 *x);
 
 static int check_ssl_ca(const X509 *x);
@@ -228,9 +234,9 @@ X509_PURPOSE_add(int id, int trust, int flags,
 	} else
 		ptmp = X509_PURPOSE_get0(idx);
 
-	if ((name_dup = strdup(name)) == NULL)
+	if ((name_dup = my_strdup(name)) == NULL)
 		goto err;
-	if ((sname_dup = strdup(sname)) == NULL)
+	if ((sname_dup = my_strdup(sname)) == NULL)
 		goto err;
 
 	/* free existing name if dynamic */
@@ -798,6 +804,10 @@ no_check(const X509_PURPOSE *xp, const X509 *x, int ca)
  * codes for X509_verify_cert()
  */
 
+int
+ecall_X509_check_issued(X509 *issuer, X509 *subject) {
+	return X509_check_issued(issuer, subject);
+}
 int
 X509_check_issued(X509 *issuer, X509 *subject)
 {

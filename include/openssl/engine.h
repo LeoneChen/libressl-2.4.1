@@ -322,6 +322,7 @@ void ENGINE_load_dynamic(void);
 #ifndef OPENSSL_NO_STATIC_ENGINE
 void ENGINE_load_padlock(void);
 #endif
+void ecall_ENGINE_load_builtin_engines(void);
 void ENGINE_load_builtin_engines(void);
 
 /* Get and set global flags (ENGINE_TABLE_FLAG_***) for the implementation
@@ -480,7 +481,9 @@ void ENGINE_cleanup(void);
  * with functional references as well as structural references - it depends
  * which you obtained. Using the result for functional purposes if you only
  * obtained a structural reference may be problematic! */
+const char *ecall_ENGINE_get_id(const ENGINE *e);
 const char *ENGINE_get_id(const ENGINE *e);
+const char *ecall_ENGINE_get_name(const ENGINE *e);
 const char *ENGINE_get_name(const ENGINE *e);
 const RSA_METHOD *ENGINE_get_RSA(const ENGINE *e);
 const DSA_METHOD *ENGINE_get_DSA(const ENGINE *e);

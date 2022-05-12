@@ -66,7 +66,16 @@
 
 #include "ui_locl.h"
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+extern int my_asprintf(char **strp, const char *fmt, ...);
+#else
+#define my_strdup(s) strdup(s)
+#define my_asprintf(strp, fmt, ...) asprintf(strp, fmt, __VA_ARGS__)
+#endif
+
 static const UI_METHOD *default_UI_meth = NULL;
+
 
 UI *
 UI_new(void)
@@ -245,7 +254,7 @@ UI_dup_input_string(UI *ui, const char *prompt, int flags, char *result_buf,
 	char *prompt_copy = NULL;
 
 	if (prompt) {
-		prompt_copy = strdup(prompt);
+		prompt_copy = my_strdup(prompt);
 		if (prompt_copy == NULL) {
 			UIerr(UI_F_UI_DUP_INPUT_STRING, ERR_R_MALLOC_FAILURE);
 			return 0;
@@ -270,7 +279,7 @@ UI_dup_verify_string(UI *ui, const char *prompt, int flags,
 	char *prompt_copy = NULL;
 
 	if (prompt) {
-		prompt_copy = strdup(prompt);
+		prompt_copy = my_strdup(prompt);
 		if (prompt_copy == NULL) {
 			UIerr(UI_F_UI_DUP_VERIFY_STRING, ERR_R_MALLOC_FAILURE);
 			return -1;
@@ -298,28 +307,28 @@ UI_dup_input_boolean(UI *ui, const char *prompt, const char *action_desc,
 	char *cancel_chars_copy = NULL;
 
 	if (prompt) {
-		prompt_copy = strdup(prompt);
+		prompt_copy = my_strdup(prompt);
 		if (prompt_copy == NULL) {
 			UIerr(UI_F_UI_DUP_INPUT_BOOLEAN, ERR_R_MALLOC_FAILURE);
 			goto err;
 		}
 	}
 	if (action_desc) {
-		action_desc_copy = strdup(action_desc);
+		action_desc_copy = my_strdup(action_desc);
 		if (action_desc_copy == NULL) {
 			UIerr(UI_F_UI_DUP_INPUT_BOOLEAN, ERR_R_MALLOC_FAILURE);
 			goto err;
 		}
 	}
 	if (ok_chars) {
-		ok_chars_copy = strdup(ok_chars);
+		ok_chars_copy = my_strdup(ok_chars);
 		if (ok_chars_copy == NULL) {
 			UIerr(UI_F_UI_DUP_INPUT_BOOLEAN, ERR_R_MALLOC_FAILURE);
 			goto err;
 		}
 	}
 	if (cancel_chars) {
-		cancel_chars_copy = strdup(cancel_chars);
+		cancel_chars_copy = my_strdup(cancel_chars);
 		if (cancel_chars_copy == NULL) {
 			UIerr(UI_F_UI_DUP_INPUT_BOOLEAN, ERR_R_MALLOC_FAILURE);
 			goto err;
@@ -350,7 +359,7 @@ UI_dup_info_string(UI *ui, const char *text)
 	char *text_copy = NULL;
 
 	if (text) {
-		text_copy = strdup(text);
+		text_copy = my_strdup(text);
 		if (text_copy == NULL) {
 			UIerr(UI_F_UI_DUP_INFO_STRING, ERR_R_MALLOC_FAILURE);
 			return -1;
@@ -373,7 +382,7 @@ UI_dup_error_string(UI *ui, const char *text)
 	char *text_copy = NULL;
 
 	if (text) {
-		text_copy = strdup(text);
+		text_copy = my_strdup(text);
 		if (text_copy == NULL) {
 			UIerr(UI_F_UI_DUP_ERROR_STRING, ERR_R_MALLOC_FAILURE);
 			return -1;
@@ -396,10 +405,10 @@ UI_construct_prompt(UI *ui, const char *object_desc, const char *object_name)
 		return NULL;
 
 	if (object_name == NULL) {
-		if (asprintf(&prompt, "Enter %s:", object_desc) == -1)
+		if (my_asprintf(&prompt, "Enter %s:", object_desc) == -1)
 			return (NULL);
 	} else {
-		if (asprintf(&prompt, "Enter %s for %s:", object_desc,
+		if (my_asprintf(&prompt, "Enter %s for %s:", object_desc,
 		    object_name) == -1)
 			return (NULL);
 	}
@@ -591,7 +600,7 @@ UI_create_method(char *name)
 	UI_METHOD *ui_method = calloc(1, sizeof(UI_METHOD));
 
 	if (ui_method && name)
-		ui_method->name = strdup(name);
+		ui_method->name = my_strdup(name);
 
 	return ui_method;
 }

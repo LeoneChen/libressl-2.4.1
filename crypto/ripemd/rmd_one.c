@@ -72,7 +72,7 @@ unsigned char *RIPEMD160(const unsigned char *d, size_t n,
 		return NULL;
 	RIPEMD160_Update(&c,d,n);
 	RIPEMD160_Final(md,&c);
-	explicit_bzero(&c,sizeof(c));
+	bzero(&c,sizeof(c));
 	return(md);
 	}
 

@@ -49,7 +49,7 @@ unsigned char *SHA224(const unsigned char *d, size_t n, unsigned char *md)
 	SHA224_Init(&c);
 	SHA256_Update(&c,d,n);
 	SHA256_Final(md,&c);
-	explicit_bzero(&c,sizeof(c));
+	bzero(&c,sizeof(c));
 	return(md);
 	}
 
@@ -62,7 +62,7 @@ unsigned char *SHA256(const unsigned char *d, size_t n, unsigned char *md)
 	SHA256_Init(&c);
 	SHA256_Update(&c,d,n);
 	SHA256_Final(md,&c);
-	explicit_bzero(&c,sizeof(c));
+	bzero(&c,sizeof(c));
 	return(md);
 	}
 

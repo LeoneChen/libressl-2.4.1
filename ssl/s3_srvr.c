@@ -1707,7 +1707,7 @@ ssl3_get_client_key_exchange(SSL *s)
 		    s->method->ssl3_enc->generate_master_secret(s,
 		    s->session->master_key,
 		    p, i);
-		explicit_bzero(p, i);
+		bzero(p, i);
 	} else if (alg_k & SSL_kDHE) {
 		if (2 > n)
 			goto truncated;
@@ -1758,7 +1758,7 @@ ssl3_get_client_key_exchange(SSL *s)
 		s->session->master_key_length =
 		    s->method->ssl3_enc->generate_master_secret(
 		        s, s->session->master_key, p, i);
-		explicit_bzero(p, i);
+		bzero(p, i);
 	} else
 
 	if (alg_k & (SSL_kECDHE|SSL_kECDHr|SSL_kECDHe)) {
@@ -1902,7 +1902,7 @@ ssl3_get_client_key_exchange(SSL *s)
 		s->session->master_key_length = s->method->ssl3_enc-> \
 		    generate_master_secret(s, s->session->master_key, p, i);
 
-		explicit_bzero(p, i);
+		bzero(p, i);
 		return (ret);
 	} else
 	if (alg_k & SSL_kGOST) {

@@ -117,7 +117,7 @@ PEM_SealInit(PEM_ENCODE_SEAL_CTX *ctx, EVP_CIPHER *type, EVP_MD *md_type,
 
 err:
 	free(s);
-	explicit_bzero(key, EVP_MAX_KEY_LENGTH);
+	bzero(key, EVP_MAX_KEY_LENGTH);
 	return (ret);
 }
 

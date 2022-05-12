@@ -130,6 +130,10 @@ X509_NAME_ENTRY_new(void)
 }
 
 void
+ecall_X509_NAME_ENTRY_free(X509_NAME_ENTRY *a) {
+	X509_NAME_ENTRY_free(a);
+}
+void
 X509_NAME_ENTRY_free(X509_NAME_ENTRY *a)
 {
 	ASN1_item_free((ASN1_VALUE *)a, &X509_NAME_ENTRY_it);

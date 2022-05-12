@@ -62,6 +62,15 @@
 #include <openssl/asn1t.h>
 #include <openssl/objects.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "sgx_error.h"
+#include "sgx_trts.h"
+
+#include "enclaveshim_config.h"
+
+extern sgx_status_t ocall_free(void* ptr);
+#endif
+
 static void asn1_item_combine_free(ASN1_VALUE **pval, const ASN1_ITEM *it,
     int combine);
 
@@ -77,6 +86,21 @@ void
 ASN1_item_ex_free(ASN1_VALUE **pval, const ASN1_ITEM *it)
 {
 	asn1_item_combine_free(pval, it, 0);
+}
+
+static void smart_free(void* ptr) {
+#ifdef COMPILE_WITH_INTEL_SGX
+	if (sgx_is_within_enclave(ptr, 1)) {
+#endif
+#ifndef SQUID_WORKAROUND
+		//Squid frees the same pointer twice with SGX...
+		free(ptr);
+#endif
+#ifdef COMPILE_WITH_INTEL_SGX
+	} else {
+		ocall_free(ptr);
+	}
+#endif
 }
 
 static void
@@ -122,7 +146,7 @@ asn1_item_combine_free(ASN1_VALUE **pval, const ASN1_ITEM *it, int combine)
 		if (asn1_cb)
 			asn1_cb(ASN1_OP_FREE_POST, pval, it, NULL);
 		if (!combine) {
-			free(*pval);
+			smart_free(*pval);
 			*pval = NULL;
 		}
 		break;
@@ -160,7 +184,7 @@ asn1_item_combine_free(ASN1_VALUE **pval, const ASN1_ITEM *it, int combine)
 		if (asn1_cb)
 			asn1_cb(ASN1_OP_FREE_POST, pval, it, NULL);
 		if (!combine) {
-			free(*pval);
+			smart_free(*pval);
 			*pval = NULL;
 		}
 		break;

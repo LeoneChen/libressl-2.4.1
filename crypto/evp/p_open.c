@@ -110,7 +110,7 @@ EVP_OpenInit(EVP_CIPHER_CTX *ctx, const EVP_CIPHER *type,
 
 err:
 	if (key != NULL)
-		explicit_bzero(key, size);
+		bzero(key, size);
 	free(key);
 	return (ret);
 }

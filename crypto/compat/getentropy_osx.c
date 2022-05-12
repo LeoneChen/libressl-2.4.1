@@ -418,8 +418,8 @@ getentropy_fallback(void *buf, size_t len)
 		memcpy((char *)buf + i, results, min(sizeof(results), len - i));
 		i += min(sizeof(results), len - i);
 	}
-	explicit_bzero(&ctx, sizeof ctx);
-	explicit_bzero(results, sizeof results);
+	bzero(&ctx, sizeof ctx);
+	bzero(results, sizeof results);
 	if (gotdata(buf, len) == 0) {
 		errno = save_errno;
 		return (0);		/* satisfied */

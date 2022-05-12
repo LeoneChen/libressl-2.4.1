@@ -75,7 +75,32 @@
 
 #include "asn1_locl.h"
 
+#ifdef COMPILE_WITH_INTEL_SGX
+#include "enclaveshim_ocalls.h"
+#endif
+
 int pem_check_suffix(const char *pem_str, const char *suffix);
+
+#ifdef COMPILE_WITH_INTEL_SGX
+pem_password_cb* pem_read_bio_privatekey_cb_address = NULL;
+
+int pem_read_bio_privatekey_fake_cb(char *buf, int size, int rwflag, void *userdata) {
+	if (pem_read_bio_privatekey_cb_address) {
+		my_fprintf(0, "need to call pem_read_bio_privatekey_cb_address\n");
+	}
+	return 0;
+}
+#endif
+
+EVP_PKEY* ecall_PEM_read_bio_PrivateKey(BIO *bp, EVP_PKEY **x, void* cb, void *u) {
+#ifdef COMPILE_WITH_INTEL_SGX
+	pem_read_bio_privatekey_cb_address = (pem_password_cb*)cb;
+	pem_password_cb* callback = pem_read_bio_privatekey_fake_cb;
+#else
+	pem_password_cb* callback = (pem_password_cb*)cb;
+#endif
+	return PEM_read_bio_PrivateKey(bp, x, callback, u);
+}
 
 EVP_PKEY *
 PEM_read_bio_PrivateKey(BIO *bp, EVP_PKEY **x, pem_password_cb *cb, void *u)
@@ -144,7 +169,7 @@ p8err:
 		PEMerr(PEM_F_PEM_READ_BIO_PRIVATEKEY, ERR_R_ASN1_LIB);
 err:
 	free(nm);
-	explicit_bzero(data, len);
+	bzero(data, len);
 	free(data);
 	return (ret);
 }

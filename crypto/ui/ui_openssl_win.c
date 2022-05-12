@@ -286,7 +286,7 @@ error:
 	if (ps >= 1)
 		popsig();
 
-	explicit_bzero(result, BUFSIZ);
+	bzero(result, BUFSIZ);
 	return ok;
 }
 

@@ -66,6 +66,12 @@
 #include <openssl/err.h>
 #include <openssl/x509v3.h>
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 static char *strip_spaces(char *name);
 static int sk_strcmp(const char * const *a, const char * const *b);
 static STACK_OF(OPENSSL_STRING) *get_email(X509_NAME *name,
@@ -87,9 +93,9 @@ X509V3_add_value(const char *name, const char *value,
 	CONF_VALUE *vtmp = NULL;
 	char *tname = NULL, *tvalue = NULL;
 
-	if (name && !(tname = strdup(name)))
+	if (name && !(tname = my_strdup(name)))
 		goto err;
-	if (value && !(tvalue = strdup(value)))
+	if (value && !(tvalue = my_strdup(value)))
 		goto err;
 	if (!(vtmp = malloc(sizeof(CONF_VALUE))))
 		goto err;
@@ -301,7 +307,7 @@ X509V3_parse_list(const char *line)
 	int state;
 
 	/* We are going to modify the line so copy it first */
-	if ((linebuf = strdup(line)) == NULL) {
+	if ((linebuf = my_strdup(line)) == NULL) {
 		X509V3err(X509V3_F_X509V3_PARSE_LIST, ERR_R_MALLOC_FAILURE);
 		goto err;
 	}
@@ -623,7 +629,7 @@ append_ia5(STACK_OF(OPENSSL_STRING) **sk, ASN1_IA5STRING *email)
 	/* Don't add duplicates */
 	if (sk_OPENSSL_STRING_find(*sk, (char *)email->data) != -1)
 		return 1;
-	emtmp = strdup((char *)email->data);
+	emtmp = my_strdup((char *)email->data);
 	if (!emtmp || !sk_OPENSSL_STRING_push(*sk, emtmp)) {
 		X509_email_free(*sk);
 		*sk = NULL;
@@ -677,7 +683,7 @@ a2i_IPADDRESS_NC(const char *ipasc)
 	p = strchr(ipasc, '/');
 	if (!p)
 		return NULL;
-	iptmp = strdup(ipasc);
+	iptmp = my_strdup(ipasc);
 	if (!iptmp)
 		return NULL;
 	p = iptmp + (p - ipasc);

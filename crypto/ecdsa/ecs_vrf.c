@@ -108,7 +108,7 @@ ECDSA_verify(int type, const unsigned char *dgst, int dgst_len,
 
 err:
 	if (derlen > 0) {
-		explicit_bzero(der, derlen);
+		bzero(der, derlen);
 		free(der);
 	}
 	ECDSA_SIG_free(s);

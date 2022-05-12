@@ -773,7 +773,7 @@ do_PVK_body(const unsigned char **in, unsigned int saltlen,
 			if (!EVP_DecryptInit_ex(&cctx, EVP_rc4(), NULL, keybuf,
 			    NULL))
 				goto err;
-			explicit_bzero(keybuf, 20);
+			bzero(keybuf, 20);
 			if (!EVP_DecryptUpdate(&cctx, q, &enctmplen, p, inlen))
 				goto err;
 			if (!EVP_DecryptFinal_ex(&cctx, q + enctmplen,
@@ -785,7 +785,7 @@ do_PVK_body(const unsigned char **in, unsigned int saltlen,
 				goto err;
 			}
 		} else
-			explicit_bzero(keybuf, 20);
+			bzero(keybuf, 20);
 		p = enctmp;
 	}
 
@@ -831,7 +831,7 @@ b2i_PVK_bio(BIO *in, pem_password_cb *cb, void *u)
 
 err:
 	if (buf) {
-		explicit_bzero(buf, buflen);
+		bzero(buf, buflen);
 		free(buf);
 	}
 	return ret;
@@ -902,7 +902,7 @@ i2b_PVK(unsigned char **out, EVP_PKEY*pk, int enclevel, pem_password_cb *cb,
 		p = salt + PVK_SALTLEN + 8;
 		if (!EVP_EncryptInit_ex(&cctx, EVP_rc4(), NULL, keybuf, NULL))
 			goto error;
-		explicit_bzero(keybuf, 20);
+		bzero(keybuf, 20);
 		if (!EVP_DecryptUpdate(&cctx, p, &enctmplen, p, pklen - 8))
 			goto error;
 		if (!EVP_DecryptFinal_ex(&cctx, p + enctmplen, &enctmplen))

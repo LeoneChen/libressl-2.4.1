@@ -72,6 +72,10 @@
 /* Load all OpenSSL builtin modules */
 
 void
+ecall_OPENSSL_load_builtin_modules(void) {
+	OPENSSL_load_builtin_modules();
+}
+void
 OPENSSL_load_builtin_modules(void)
 {
 	/* Add builtin modules here */

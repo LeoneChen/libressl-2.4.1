@@ -1624,6 +1624,20 @@ end:
 	return ok;
 }
 
+ASN1_TIME* ecall_X509_get_notBefore(X509* x) {
+	return X509_get_notBefore(x);
+}
+ASN1_TIME* X509_get_notBefore(X509* x) {
+	return x->cert_info->validity->notBefore;
+}
+
+ASN1_TIME* ecall_X509_get_notAfter(X509* x) {
+	return X509_get_notAfter(x);
+}
+ASN1_TIME* X509_get_notAfter(X509* x) {
+	return x->cert_info->validity->notAfter;
+}
+
 int
 X509_cmp_current_time(const ASN1_TIME *ctm)
 {

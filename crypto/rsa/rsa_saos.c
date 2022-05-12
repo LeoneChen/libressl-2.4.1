@@ -97,7 +97,7 @@ RSA_sign_ASN1_OCTET_STRING(int type, const unsigned char *m, unsigned int m_len,
 	else
 		*siglen = i;
 
-	explicit_bzero(s, (unsigned int)j + 1);
+	bzero(s, (unsigned int)j + 1);
 	free(s);
 	return ret;
 }
@@ -142,7 +142,7 @@ RSA_verify_ASN1_OCTET_STRING(int dtype, const unsigned char *m,
 err:
 	ASN1_OCTET_STRING_free(sig);
 	if (s != NULL) {
-		explicit_bzero(s, (unsigned int)siglen);
+		bzero(s, (unsigned int)siglen);
 		free(s);
 	}
 	return ret;

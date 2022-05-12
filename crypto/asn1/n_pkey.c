@@ -281,7 +281,7 @@ i2d_RSA_NET(const RSA *a, unsigned char **pp,
 	i2d_NETSCAPE_PKEY(pkey, &zz);
 
 	/* Wipe the private key encoding */
-	explicit_bzero(pkey->private_key->data, rsalen);
+	bzero(pkey->private_key->data, rsalen);
 
 	if (cb == NULL)
 		cb = EVP_read_pw_string;
@@ -301,7 +301,7 @@ i2d_RSA_NET(const RSA *a, unsigned char **pp,
 
 	if (!EVP_BytesToKey(EVP_rc4(), EVP_md5(), NULL, buf, i,1, key, NULL))
 		goto err;
-	explicit_bzero(buf, sizeof(buf));
+	bzero(buf, sizeof(buf));
 
 	/* Encrypt private key in place */
 	zz = enckey->enckey->digest->data;
@@ -398,7 +398,7 @@ d2i_RSA_NET_2(RSA **a, ASN1_OCTET_STRING *os,
 
 	if (!EVP_BytesToKey(EVP_rc4(), EVP_md5(), NULL, buf, i,1, key, NULL))
 		goto err;
-	explicit_bzero(buf, sizeof(buf));
+	bzero(buf, sizeof(buf));
 
 	if (!EVP_DecryptInit_ex(&ctx, EVP_rc4(), NULL, key, NULL))
 		goto err;

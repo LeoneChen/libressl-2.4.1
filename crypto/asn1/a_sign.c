@@ -230,11 +230,11 @@ ASN1_item_sign_ctx(const ASN1_ITEM *it, X509_ALGOR *algor1, X509_ALGOR *algor2,
 err:
 	EVP_MD_CTX_cleanup(ctx);
 	if (buf_in != NULL) {
-		explicit_bzero((char *)buf_in, inl);
+		bzero((char *)buf_in, inl);
 		free(buf_in);
 	}
 	if (buf_out != NULL) {
-		explicit_bzero((char *)buf_out, outll);
+		bzero((char *)buf_out, outll);
 		free(buf_out);
 	}
 	return (outl);

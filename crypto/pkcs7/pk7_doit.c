@@ -233,7 +233,7 @@ pkcs7_decrypt_rinfo(unsigned char **pek, int *peklen, PKCS7_RECIP_INFO *ri,
 	ret = 1;
 
 	if (*pek) {
-		explicit_bzero(*pek, *peklen);
+		bzero(*pek, *peklen);
 		free(*pek);
 	}
 
@@ -371,7 +371,7 @@ PKCS7_dataInit(PKCS7 *p7, BIO *bio)
 			if (pkcs7_encode_rinfo(ri, key, keylen) <= 0)
 				goto err;
 		}
-		explicit_bzero(key, keylen);
+		bzero(key, keylen);
 
 		if (out == NULL)
 			out = btmp;
@@ -588,7 +588,7 @@ PKCS7_dataDecode(PKCS7 *p7, EVP_PKEY *pkey, BIO *in_bio, X509 *pcert)
 			 */
 			if (!EVP_CIPHER_CTX_set_key_length(evp_ctx, eklen)) {
 				/* Use random key as MMA defence */
-				explicit_bzero(ek, eklen);
+				bzero(ek, eklen);
 				free(ek);
 				ek = tkey;
 				eklen = tkeylen;
@@ -601,12 +601,12 @@ PKCS7_dataDecode(PKCS7 *p7, EVP_PKEY *pkey, BIO *in_bio, X509 *pcert)
 			goto err;
 
 		if (ek) {
-			explicit_bzero(ek, eklen);
+			bzero(ek, eklen);
 			free(ek);
 			ek = NULL;
 		}
 		if (tkey) {
-			explicit_bzero(tkey, tkeylen);
+			bzero(tkey, tkeylen);
 			free(tkey);
 			tkey = NULL;
 		}
@@ -635,11 +635,11 @@ PKCS7_dataDecode(PKCS7 *p7, EVP_PKEY *pkey, BIO *in_bio, X509 *pcert)
 	if (0) {
 err:
 		if (ek) {
-			explicit_bzero(ek, eklen);
+			bzero(ek, eklen);
 			free(ek);
 		}
 		if (tkey) {
-			explicit_bzero(tkey, tkeylen);
+			bzero(tkey, tkeylen);
 			free(tkey);
 		}
 		if (out != NULL)

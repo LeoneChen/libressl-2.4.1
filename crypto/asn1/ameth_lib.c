@@ -117,6 +117,12 @@ static STACK_OF(EVP_PKEY_ASN1_METHOD) *app_methods = NULL;
 DECLARE_OBJ_BSEARCH_CMP_FN(const EVP_PKEY_ASN1_METHOD *,
     const EVP_PKEY_ASN1_METHOD *, ameth);
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+#else
+#define my_strdup(s) strdup(s)
+#endif
+
 static int
 ameth_cmp(const EVP_PKEY_ASN1_METHOD * const *a,
     const EVP_PKEY_ASN1_METHOD * const *b)
@@ -304,14 +310,14 @@ EVP_PKEY_asn1_new(int id, int flags, const char *pem_str, const char *info)
 	ameth->pkey_flags = flags | ASN1_PKEY_DYNAMIC;
 
 	if (info) {
-		ameth->info = strdup(info);
+		ameth->info = my_strdup(info);
 		if (!ameth->info)
 			goto err;
 	} else
 		ameth->info = NULL;
 
 	if (pem_str) {
-		ameth->pem_str = strdup(pem_str);
+		ameth->pem_str = my_strdup(pem_str);
 		if (!ameth->pem_str)
 			goto err;
 	} else

@@ -137,7 +137,7 @@ RSA_sign(int type, const unsigned char *m, unsigned int m_len,
 		*siglen = i;
 
 	if (type != NID_md5_sha1) {
-		explicit_bzero(tmps, (unsigned int)j + 1);
+		bzero(tmps, (unsigned int)j + 1);
 		free(tmps);
 	}
 	return (ret);
@@ -237,7 +237,7 @@ err:
 	if (sig != NULL)
 		X509_SIG_free(sig);
 	if (s != NULL) {
-		explicit_bzero(s, (unsigned int)siglen);
+		bzero(s, (unsigned int)siglen);
 		free(s);
 	}
 	return ret;

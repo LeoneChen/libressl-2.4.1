@@ -62,6 +62,10 @@
 #include <openssl/ssl.h>
 
 void
+ecall_SSL_load_error_strings(void) {
+	SSL_load_error_strings();
+}
+void
 SSL_load_error_strings(void)
 {
 #ifndef OPENSSL_NO_ERR

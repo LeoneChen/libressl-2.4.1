@@ -65,3 +65,7 @@
 #include <openssl/x509.h>
 
 IMPLEMENT_PEM_rw(X509, X509, PEM_STRING_X509, X509)
+
+X509 *ecall_PEM_read_bio_X509(BIO *bp, X509 **x, void *cb, void *u) {
+	return PEM_read_bio_X509(bp, x, (pem_password_cb*)cb, u);
+}

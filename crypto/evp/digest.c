@@ -129,6 +129,11 @@ EVP_MD_CTX_init(EVP_MD_CTX *ctx)
 }
 
 EVP_MD_CTX *
+ecall_EVP_MD_CTX_create(void) {
+	return EVP_MD_CTX_create();
+}
+
+EVP_MD_CTX *
 EVP_MD_CTX_create(void)
 {
 	return calloc(1, sizeof(EVP_MD_CTX));
@@ -139,6 +144,11 @@ EVP_DigestInit(EVP_MD_CTX *ctx, const EVP_MD *type)
 {
 	EVP_MD_CTX_init(ctx);
 	return EVP_DigestInit_ex(ctx, type, NULL);
+}
+
+int
+ecall_EVP_DigestInit_ex(EVP_MD_CTX *ctx, const EVP_MD *type, ENGINE *impl) {
+	return EVP_DigestInit_ex(ctx, type, impl);
 }
 
 int
@@ -195,7 +205,7 @@ EVP_DigestInit_ex(EVP_MD_CTX *ctx, const EVP_MD *type, ENGINE *impl)
 	if (ctx->digest != type) {
 		if (ctx->digest && ctx->digest->ctx_size && ctx->md_data &&
 		    !EVP_MD_CTX_test_flags(ctx, EVP_MD_CTX_FLAG_REUSE)) {
-			explicit_bzero(ctx->md_data, ctx->digest->ctx_size);
+			bzero(ctx->md_data, ctx->digest->ctx_size);
 			free(ctx->md_data);
 			ctx->md_data = NULL;
 		}
@@ -228,6 +238,12 @@ skip_to_init:
 }
 
 int
+ecall_EVP_DigestUpdate(EVP_MD_CTX *ctx, const void *data, size_t count)
+{
+	return EVP_DigestUpdate(ctx, data, count);
+}
+
+int
 EVP_DigestUpdate(EVP_MD_CTX *ctx, const void *data, size_t count)
 {
 	return ctx->update(ctx, data, count);
@@ -245,6 +261,11 @@ EVP_DigestFinal(EVP_MD_CTX *ctx, unsigned char *md, unsigned int *size)
 }
 
 /* The caller can assume that this removes any secret data from the context */
+int
+ecall_EVP_DigestFinal_ex(EVP_MD_CTX *ctx, unsigned char *md, unsigned int *size)
+{
+	return EVP_DigestFinal_ex(ctx, md, size);
+}
 int
 EVP_DigestFinal_ex(EVP_MD_CTX *ctx, unsigned char *md, unsigned int *size)
 {
@@ -345,6 +366,11 @@ EVP_Digest(const void *data, size_t count,
 }
 
 void
+ecall_EVP_MD_CTX_destroy(EVP_MD_CTX *ctx)
+{
+	return EVP_MD_CTX_destroy(ctx);
+}
+void
 EVP_MD_CTX_destroy(EVP_MD_CTX *ctx)
 {
 	if (ctx) {
@@ -365,7 +391,7 @@ EVP_MD_CTX_cleanup(EVP_MD_CTX *ctx)
 		ctx->digest->cleanup(ctx);
 	if (ctx->digest && ctx->digest->ctx_size && ctx->md_data &&
 	    !EVP_MD_CTX_test_flags(ctx, EVP_MD_CTX_FLAG_REUSE)) {
-		explicit_bzero(ctx->md_data, ctx->digest->ctx_size);
+		bzero(ctx->md_data, ctx->digest->ctx_size);
 		free(ctx->md_data);
 	}
 	EVP_PKEY_CTX_free(ctx->pctx);

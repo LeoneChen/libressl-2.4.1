@@ -64,6 +64,10 @@
 #include "ssl_locl.h"
 
 int
+ecall_SSL_library_init(void) {
+	return SSL_library_init();
+}
+int
 SSL_library_init(void)
 {
 

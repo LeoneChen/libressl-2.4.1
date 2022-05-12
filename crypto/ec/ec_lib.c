@@ -112,8 +112,11 @@ EC_GROUP_new(const EC_METHOD * meth)
 	return ret;
 }
 
-
 void 
+ecall_EC_GROUP_free(EC_GROUP * group) {
+	return EC_GROUP_free(group);
+}
+void
 EC_GROUP_free(EC_GROUP * group)
 {
 	if (!group)
@@ -152,10 +155,10 @@ EC_GROUP_clear_free(EC_GROUP * group)
 	BN_clear_free(&group->cofactor);
 
 	if (group->seed) {
-		explicit_bzero(group->seed, group->seed_len);
+		bzero(group->seed, group->seed_len);
 		free(group->seed);
 	}
-	explicit_bzero(group, sizeof *group);
+	bzero(group, sizeof *group);
 	free(group);
 }
 
@@ -754,7 +757,7 @@ EC_POINT_clear_free(EC_POINT * point)
 		point->meth->point_clear_finish(point);
 	else if (point->meth->point_finish != 0)
 		point->meth->point_finish(point);
-	explicit_bzero(point, sizeof *point);
+	bzero(point, sizeof *point);
 	free(point);
 }
 

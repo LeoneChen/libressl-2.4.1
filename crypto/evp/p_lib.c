@@ -85,6 +85,10 @@
 static void EVP_PKEY_free_it(EVP_PKEY *x);
 
 int
+ecall_EVP_PKEY_bits(EVP_PKEY *pkey) {
+	return EVP_PKEY_bits(pkey);
+}
+int
 EVP_PKEY_bits(EVP_PKEY *pkey)
 {
 	if (pkey && pkey->ameth && pkey->ameth->pkey_bits)
@@ -371,6 +375,12 @@ EVP_PKEY_get1_DH(EVP_PKEY *pkey)
 }
 #endif
 
+
+int
+ecall_EVP_PKEY_type(int type)
+{
+return EVP_PKEY_type(type);
+}
 int
 EVP_PKEY_type(int type)
 {
@@ -401,6 +411,10 @@ EVP_PKEY_base_id(const EVP_PKEY *pkey)
 	return EVP_PKEY_type(pkey->type);
 }
 
+void
+ecall_EVP_PKEY_free(EVP_PKEY *x) {
+	EVP_PKEY_free(x);
+}
 void
 EVP_PKEY_free(EVP_PKEY *x)
 {

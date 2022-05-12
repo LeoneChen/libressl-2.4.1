@@ -28,13 +28,21 @@
  * time change these to find the bad callers
  */
 
+#ifdef COMPILE_WITH_INTEL_SGX
+extern char *my_strdup(const char *s);
+extern char *my_strndup(const char *s, size_t n);
+#else
+#define my_strdup(s) strdup(s)
+#define my_strndup(s, n) strndup(s, n)
+#endif
+
 char *
 BUF_strdup(const char *str)
 {
 	char *ret = NULL;
 
 	if (str != NULL) {
-		if (!(ret = strdup(str)))
+		if (!(ret = my_strdup(str)))
 			BUFerr(BUF_F_BUF_STRDUP, ERR_R_MALLOC_FAILURE);
 	}
 	return ret;
@@ -46,7 +54,7 @@ BUF_strndup(const char *str, size_t siz)
 	char *ret = NULL;
 
 	if (str != NULL) {
-		if (!(ret = strndup(str, siz)))
+		if (!(ret = my_strndup(str, siz)))
 			BUFerr(BUF_F_BUF_STRNDUP, ERR_R_MALLOC_FAILURE);
 	}
 	return ret;

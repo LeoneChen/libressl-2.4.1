@@ -243,7 +243,7 @@ err:
 		BN_CTX_free(ctx);
 	}
 	if (buf != NULL) {
-		explicit_bzero(buf, num);
+		bzero(buf, num);
 		free(buf);
 	}
 	return r;
@@ -473,7 +473,7 @@ err:
 		BN_CTX_free(ctx);
 	}
 	if (buf != NULL) {
-		explicit_bzero(buf, num);
+		bzero(buf, num);
 		free(buf);
 	}
 	return r;
@@ -608,7 +608,7 @@ err:
 		BN_CTX_free(ctx);
 	}
 	if (buf != NULL) {
-		explicit_bzero(buf, num);
+		bzero(buf, num);
 		free(buf);
 	}
 	return r;
@@ -713,7 +713,7 @@ err:
 		BN_CTX_free(ctx);
 	}
 	if (buf != NULL) {
-		explicit_bzero(buf, num);
+		bzero(buf, num);
 		free(buf);
 	}
 	return r;

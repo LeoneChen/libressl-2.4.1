@@ -1533,7 +1533,7 @@ GCM128_CONTEXT *CRYPTO_gcm128_new(void *key, block128_f block)
 void CRYPTO_gcm128_release(GCM128_CONTEXT *ctx)
 {
 	if (ctx) {
-		explicit_bzero(ctx,sizeof(*ctx));
+		bzero(ctx,sizeof(*ctx));
 		free(ctx);
 	}
 }

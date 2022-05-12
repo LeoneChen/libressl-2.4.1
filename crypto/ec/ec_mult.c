@@ -173,11 +173,11 @@ ec_pre_comp_clear_free(void *pre_)
 
 		for (p = pre->points; *p != NULL; p++) {
 			EC_POINT_clear_free(*p);
-			explicit_bzero(p, sizeof *p);
+			bzero(p, sizeof *p);
 		}
 		free(pre->points);
 	}
-	explicit_bzero(pre, sizeof *pre);
+	bzero(pre, sizeof *pre);
 	free(pre);
 }
 

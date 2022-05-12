@@ -72,7 +72,7 @@ pkey_cb(int operation, ASN1_VALUE **pval, const ASN1_ITEM *it, void *exarg)
 		if (key->pkey != NULL &&
 		    key->pkey->type == V_ASN1_OCTET_STRING &&
 		    key->pkey->value.octet_string != NULL)
-			explicit_bzero(key->pkey->value.octet_string->data,
+			bzero(key->pkey->value.octet_string->data,
 			    key->pkey->value.octet_string->length);
 	}
 	return 1;

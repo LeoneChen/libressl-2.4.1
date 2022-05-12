@@ -7,5 +7,5 @@
 void
 OPENSSL_cleanse(void *ptr, size_t len)
 {
-	explicit_bzero(ptr, len);
+	bzero(ptr, len);
 }
