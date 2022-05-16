@@ -1116,11 +1116,11 @@ int my_stat(const char *path, struct stat *buf) {
 	}
 	return retval;
 }
-
+int stat(const char *path, struct stat *buf) __attribute__((alias("my_stat")));
 
 /******************** TIME ********************/
 
-int gettimeofday(struct timeval *tv, struct timezone *tz) {
+int gettimeofday(struct timeval *tv, void *tz) {
 	return 0;
 	int ret = 0;
 	sgx_status_t s = ocall_gettimeofday(&ret, tv, tz);
@@ -1440,6 +1440,12 @@ void exit(int status) {
 	do { } while (1);
 }
 
+uint32_t htonl(uint32_t __hostlong) { return __builtin_bswap32(__hostlong); }
+uint32_t ntohl(uint32_t __netlong) { return __builtin_bswap32(__netlong); }
+uint16_t ntohs(uint16_t __netshort) { return __builtin_bswap16(__netshort); }
+uint16_t htons(uint16_t __hostshort) { return __builtin_bswap16(__hostshort); }
+
+void __assert_fail (const char *__assertion, const char *__file, unsigned int __line, const char *__function) __attribute__((weak));
 void __assert_fail (const char *__assertion, const char *__file, unsigned int __line, const char *__function) {
 	printf("assert file %s line %d function %s: [%s]\n", __file, __line, __function, __assertion);
 	ocall_exit(1);

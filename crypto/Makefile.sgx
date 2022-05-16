@@ -12,9 +12,11 @@
 #limitations under the License.
 
 top_srcdir=..
-CC=gcc
-CCASFLAGS=-g -O2 -Wall -Werror -std=gnu99 -fno-strict-aliasing -fno-strict-overflow -D_FORTIFY_SOURCE=2 -fstack-protector-all -DHAVE_GNU_STACK -Wno-implicit-function-declaration
-CFLAGS=-g -O2 -Wall -Werror -std=gnu99 -fno-strict-aliasing -fno-strict-overflow -D_FORTIFY_SOURCE=2 -fstack-protector-all -DHAVE_GNU_STACK -Wno-pointer-sign
+CC=clang
+# Customized. Set by user.
+SGXSanPath := $(abspath ../../../../../linux-sgx/SGXSan)
+CCASFLAGS=-g -O0 -Wall -Werror -std=gnu99 -fno-strict-aliasing -fno-strict-overflow -D_FORTIFY_SOURCE=2 -fstack-protector-all -DHAVE_GNU_STACK -Wno-implicit-function-declaration -Wno-unused-command-line-argument -Xclang -load -Xclang $(SGXSanPath)/output/libSymbolSaverForLTOPass.so -flto
+CFLAGS=-g -O0 -Wall -std=gnu99 -fno-strict-aliasing -fno-strict-overflow -fstack-protector-all -DHAVE_GNU_STACK -Wno-pointer-sign -Wno-unused-command-line-argument -Wno-typedef-redefinition -Wno-unused-function -Wno-non-literal-null-conversion -Xclang -load -Xclang $(SGXSanPath)/output/libSymbolSaverForLTOPass.so -flto
 CPPFLAGS=-DLIBRESSL_INTERNAL -DOPENSSL_NO_HW_PADLOCK -DOPENSSLDIR=\"/etc/ssl\" -DAES_ASM -DBSAES_ASM -DVPAES_ASM -DOPENSSL_IA32_SSE2 -DOPENSSL_BN_ASM_MONT -DOPENSSL_BN_ASM_MONT5 -DOPENSSL_BN_ASM_GF2m -DMD5_ASM -DGHASH_ASM -DRSA_ASM -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DWHIRLPOOL_ASM -DOPENSSL_CPUID_OBJ -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_SOURCE -D_GNU_SOURCE -DNO_SYSLOG -DOPENSSL_NO_TLSEXT -DCOMPILE_WITH_INTEL_SGX -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_THREADSAFE=0 
 #DEFS=-DPACKAGE_NAME=\"libressl\" -DPACKAGE_TARNAME=\"libressl\" -DPACKAGE_VERSION=\"2.4.1\" -DPACKAGE_STRING=\"libressl2.4.1\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"libressl\" -DVERSION=\"2.4.1\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_DLFCN_H=1 -DLT_OBJDIR=\".libs/\" -DHAVE_SYMLINK=1 -DHAVE_ERR_H=1 -DHAVE_ASPRINTF=1 -DHAVE_INET_PTON=1 -DHAVE_MEMMEM=1 -DHAVE_STRNDUP=1 -DHAVE_STRNLEN=1 -DHAVE_STRSEP=1 -DHAVE_TIMEGM=1 -DHAVE_ACCEPT4=1 -DHAVE_POLL=1 -DHAVE_GETAUXVAL=1 -DHAVE_VA_COPY=1 -DHAVE___VA_COPY=1 -DHAS_GNU_WARNING_LONG=1 -DSIZEOF_TIME_T=8
 DEFS=-DPACKAGE_NAME=\"libressl\" -DPACKAGE_TARNAME=\"libressl\" -DPACKAGE_VERSION=\"2.4.1\" -DPACKAGE_STRING=\"libressl2.4.1\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"libressl\" -DVERSION=\"2.4.1\" -DSTDC_HEADERS=0 -DHAVE_SYS_TYPES_H=0 -DHAVE_SYS_STAT_H=0 -DHAVE_STDLIB_H=0 -DHAVE_STRING_H=0 -DHAVE_MEMORY_H=0 -DHAVE_STRINGS_H=0 -DHAVE_INTTYPES_H=0 -DHAVE_STDINT_H=0 -DHAVE_UNISTD_H=0 -DHAVE_DLFCN_H=0 -DLT_OBJDIR=\".libs/\" -DHAVE_SYMLINK=0 -DHAVE_ERR_H=0 -DHAVE_ASPRINTF=0 -DHAVE_INET_PTON=0 -DHAVE_MEMMEM=0 -DHAVE_STRNDUP=0 -DHAVE_STRNLEN=0 -DHAVE_STRSEP=0 -DHAVE_TIMEGM=0 -DHAVE_ACCEPT4=0 -DHAVE_POLL=0 -DHAVE_GETAUXVAL=0 -DHAVE_VA_COPY=0 -DHAVE___VA_COPY=0 -DHAS_GNU_WARNING_LONG=1 -DSIZEOF_TIME_T=8
@@ -27,13 +29,14 @@ LDFLAGS=-Wl,-z,relro -Wl,-z,now
 ##### Parameters #####
 
 SGX_SDK ?= /opt/intel/sgxsdk
-SGX_MODE ?= SIM
+SGX_MODE ?= HW
+SGX_PRERELEASE ?= 1
 SGX_COMMON_CFLAGS := -m64
 SGX_LIBRARY_PATH := $(SGX_SDK)/lib64
 SGX_ENCLAVE_SIGNER := $(SGX_SDK)/bin/x64/sgx_sign
 SGX_EDGER8R := $(SGX_SDK)/bin/x64/sgx_edger8r
 
-SGX_COMMON_CFLAGS += -g -O2
+SGX_COMMON_CFLAGS += -g -O0
 
 ifeq ($(SGX_MODE), HW)
 	Urts_Library_Name := sgx_urts
@@ -92,7 +95,7 @@ else
 endif
 
 enclave_u.c: $(SGX_EDGER8R) enclave.edl
-	@$(SGX_EDGER8R) --untrusted enclave.edl --search-path . --search-path $(SGX_SDK)/include
+	@$(SGX_EDGER8R) --untrusted enclave.edl --search-path . --search-path $(SGX_SDK)/include --search-path $(SGXSanPath)/output
 	@echo "GEN  =>  $@"
 
 enclave_u.o: enclave_u.c
@@ -112,7 +115,7 @@ enclaveshim_ecalls.o: enclaveshim_ecalls.c
 	@echo "CC   <=  $<"
 
 ocalls.o: ocalls.c
-	@$(CC) -g -O2 -I../include -fPIC -DPIC -Werror -c $< -o $@
+	@$(CC) -g -O0 -I../include -fPIC -DPIC -Werror -c $< -o $@
 	@echo "CC   <=  $<"
 
 ##### Enclave Objects #####
@@ -121,20 +124,22 @@ Enclave_Include_Paths := -I. -I../include -I$(SGX_SDK)/include -I$(SGX_SDK)/incl
 
 Enclave_C_Flags := $(SGX_COMMON_CFLAGS) -nostdinc -fvisibility=hidden -fpie -fstack-protector $(Enclave_Include_Paths)
 Enclave_Cpp_Flags := $(Enclave_C_Flags) -nostdinc -nostdinc++
-Enclave_Link_Flags := $(SGX_COMMON_CFLAGS) -Wl,--no-undefined -nostdlib -nodefaultlibs -nostartfiles -L$(SGX_LIBRARY_PATH) \
-	-Wl,--whole-archive -l$(Trts_Library_Name) -Wl,--no-whole-archive \
-	-Wl,--start-group -lsgx_tstdc -lsgx_tcxx -lsgx_tcmalloc -l$(Crypto_Library_Name) -l$(Service_Library_Name) -Wl,--end-group \
+Enclave_Link_Flags := $(SGX_COMMON_CFLAGS) -Wl,--no-undefined -nostdlib -nodefaultlibs -nostartfiles -L$(SGXSanPath)/output -L$(SGX_LIBRARY_PATH) \
+	-Wl,--whole-archive -lSGXSanRTEnclave -l$(Trts_Library_Name) -Wl,--no-whole-archive \
+	-Wl,--start-group -lsgx_tstdc -lsgx_tcxx -lsgx_pthread -lsgx_tcmalloc -l$(Crypto_Library_Name) -l$(Service_Library_Name) -Wl,--end-group \
 	-Wl,-Bstatic -Wl,-Bsymbolic -Wl,--no-undefined \
 	-Wl,-pie,-eenclave_entry -Wl,--export-dynamic  \
 	-Wl,--defsym,__ImageBase=0 \
-	-Wl,--version-script=enclave.lds
+	-Wl,--version-script=enclave.lds \
+	-fuse-ld=lld \
+	-Wl,-mllvm=-load=$(SGXSanPath)/output/libSGXSanPass.so
 
 enclave_t.c: $(SGX_EDGER8R) enclave.edl
-	@$(SGX_EDGER8R) --trusted ./enclave.edl --search-path . --search-path $(SGX_SDK)/include
+	@$(SGX_EDGER8R) --trusted ./enclave.edl --search-path . --search-path $(SGX_SDK)/include --search-path $(SGXSanPath)/output
 	@echo "GEN  =>  $@"
 
 enclave_t.o: enclave_t.c
-	@$(CC) $(Enclave_C_Flags) -DDEFINE_TIME_STRUCT -c $< -o $@
+	@$(CC) $(CFLAGS) $(Enclave_C_Flags) -DDEFINE_TIME_STRUCT -c $< -o $@
 	@echo "CC   <=  $<"
 
 #################################
