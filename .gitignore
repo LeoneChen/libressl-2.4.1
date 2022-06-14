@@ -1,0 +1,8 @@
+*.i
+*.o
+*.a
+*.so
+*_t.*
+*_u.*
+*.bc
+*.resolution.txt

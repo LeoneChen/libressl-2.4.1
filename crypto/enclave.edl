@@ -15,6 +15,7 @@
 
 enclave {
 	from "sgx_tstdc.edl" import *;
+	from "SGXSanRTEnclave.edl" import *;
 	include "openssl/ossl_typ.h"
 	include "openssl_types.h"
 
