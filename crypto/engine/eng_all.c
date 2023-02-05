@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: eng_all.c,v 1.28 2015/06/19 06:05:11 bcook Exp $ */
 /* Written by Richard Levitte <richard@levitte.org> for the OpenSSL
  * project 2000.
@@ -64,6 +65,7 @@
 void
 ecall_ENGINE_load_builtin_engines(void)
 {
+    LogEnter(__func__);
 	ENGINE_load_builtin_engines();
 }
 void

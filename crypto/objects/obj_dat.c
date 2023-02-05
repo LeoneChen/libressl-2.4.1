@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: obj_dat.c,v 1.34 2015/10/14 21:25:16 beck Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -354,6 +355,7 @@ char* OBJ_nid2sn_buffer = NULL;
 
 char *
 ecall_OBJ_nid2sn(int n) {
+    LogEnter(__func__);
 	char* str = (char*)OBJ_nid2sn(n);
 #ifdef COMPILE_WITH_INTEL_SGX
 	if (!OBJ_nid2sn_buffer) {
@@ -442,6 +444,7 @@ IMPLEMENT_OBJ_BSEARCH_CMP_FN(const ASN1_OBJECT *, unsigned int, obj);
 
 int
 ecall_OBJ_obj2nid(const ASN1_OBJECT *a) {
+    LogEnter(__func__);
 	return OBJ_obj2nid(a);
 }
 int
@@ -641,6 +644,7 @@ err:
 
 int
 ecall_OBJ_txt2nid(const char *s) {
+    LogEnter(__func__);
 	return OBJ_txt2nid(s);
 }
 int
@@ -679,6 +683,7 @@ OBJ_ln2nid(const char *s)
 
 int
 ecall_OBJ_sn2nid(const char *s) {
+    LogEnter(__func__);
 	return OBJ_sn2nid(s);
 }
 
@@ -795,6 +800,7 @@ OBJ_create_objects(BIO *in)
 
 int
 ecall_OBJ_create(const char *oid, const char *sn, const char *ln) {
+    LogEnter(__func__);
 	return OBJ_create(oid, sn, ln);
 }
 int

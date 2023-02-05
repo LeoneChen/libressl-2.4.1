@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /*
  * Copyright 2017 Imperial College London
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,6 +59,7 @@ void tls_processing_register_free_connection_cb(void (*cb)(const SSL*)) {
 // Called by TaLoS to initialize your TLS processing module.  It calls
 // tls_processing_module_init(), which must be defined in your module.
 void ecall_tls_processing_module_init(void) {
+    LogEnter(__func__);
 	tls_processing_module_init();
 }
 

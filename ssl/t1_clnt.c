@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: t1_clnt.c,v 1.17 2015/02/06 08:30:23 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -208,6 +209,7 @@ tls1_get_client_method(int ver)
 
 SSL_METHOD *
 ecall_SSLv23_client_method(void) {
+    LogEnter(__func__);
 	return (SSL_METHOD*)SSLv23_client_method();
 }
 const SSL_METHOD *

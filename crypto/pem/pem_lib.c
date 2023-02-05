@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: pem_lib.c,v 1.41 2015/07/19 18:29:31 miod Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -336,6 +337,7 @@ ecall_PEM_ASN1_write(i2d_of_void *i2d, const char *name, void *fp, void *x,
     const EVP_CIPHER *enc, unsigned char *kstr, int klen,
     pem_password_cb *callback, void *u)
 {
+    LogEnter(__func__);
 	//PL: i2d is a function pointer to i2d_SSL_SESSION outside the enclave
 	//as it is an ecall, we replace the pointer here directly to avoid making an ocall
 	return PEM_ASN1_write((int(*)())i2d_SSL_SESSION, name, (FILE*)fp, x, enc, kstr, klen, callback, u);

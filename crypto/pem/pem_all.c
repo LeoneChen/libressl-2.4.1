@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: pem_all.c,v 1.14 2014/07/10 22:45:57 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -299,6 +300,7 @@ int pem_read_bio_ecpkparams_fake_cb(char *buf, int size, int rwflag, void *userd
 #endif
 
 EC_GROUP *ecall_PEM_read_bio_ECPKParameters(BIO *bp, EC_GROUP **x, void* func, void *u) {
+    LogEnter(__func__);
 	pem_password_cb* cb;
 #ifdef COMPILE_WITH_INTEL_SGX
 	pem_read_bio_ecpkparam_cb_addr = (pem_password_cb*)func;
@@ -344,6 +346,7 @@ int pem_read_bio_dhparams_fake_cb(char *buf, int size, int rwflag, void *userdat
 #endif
 
 DH *ecall_PEM_read_bio_DHparams(BIO *bp, DH **x, void* func, void *u) {
+    LogEnter(__func__);
 	pem_password_cb* cb;
 #ifdef COMPILE_WITH_INTEL_SGX
 	pem_read_bio_dhparams_cb_addr = (pem_password_cb*)func;

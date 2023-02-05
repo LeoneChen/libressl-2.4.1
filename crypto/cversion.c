@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: cversion.c,v 1.14 2014/07/11 08:44:47 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -75,6 +76,7 @@ static char* SSLeay_version_buffer = NULL;
 
 char *
 ecall_SSLeay_version(int t) {
+    LogEnter(__func__);
 	const char* v = SSLeay_version(t);
 #ifdef COMPILE_WITH_INTEL_SGX
 	size_t len = strlen(v);

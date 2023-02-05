@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: v3_purp.c,v 1.25 2015/02/10 11:22:22 jsing Exp $ */
 /* Written by Dr Stephen N Henson (steve@openssl.org) for the OpenSSL
  * project 2001.
@@ -806,6 +807,7 @@ no_check(const X509_PURPOSE *xp, const X509 *x, int ca)
 
 int
 ecall_X509_check_issued(X509 *issuer, X509 *subject) {
+    LogEnter(__func__);
 	return X509_check_issued(issuer, subject);
 }
 int

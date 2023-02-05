@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: bn_print.c,v 1.28 2015/09/28 18:58:33 deraadt Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -262,6 +263,7 @@ err:
 int
 ecall_BN_dec2bn(BIGNUM **bn, const char *a)
 {
+    LogEnter(__func__);
 	return BN_dec2bn(bn, a);
 }
 int

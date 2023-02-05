@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: stack.c,v 1.18 2014/07/11 08:44:49 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -108,6 +109,7 @@ err:
 
 void*
 ecall_sk_new_null(void) {
+    LogEnter(__func__);
 	return (void*)sk_new_null();
 }
 _STACK *
@@ -287,6 +289,7 @@ void sk_pop_free_fake_cb(void* data) {
 void
 ecall_sk_pop_free(void *st, void* cb)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	sk_pop_free_cb_addr = cb;
 	sk_pop_free((_STACK*)st, (void (*)(void *))sk_pop_free_fake_cb);
@@ -318,6 +321,7 @@ sk_free(_STACK *st)
 
 int
 ecall_sk_num(const void *st) {
+    LogEnter(__func__);
 	return sk_num((const _STACK*)st);
 }
 
@@ -332,6 +336,7 @@ sk_num(const _STACK *st)
 void *
 ecall_sk_value(const void *st, int i)
 {
+    LogEnter(__func__);
 	return sk_value(st, i);
 }
 void *

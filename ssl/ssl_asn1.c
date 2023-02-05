@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: ssl_asn1.c,v 1.40 2014/12/14 15:30:50 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -95,6 +96,7 @@ typedef struct ssl_session_asn1_st {
 
 int
 ecall_i2d_SSL_SESSION(void* in, unsigned char **pp) {
+    LogEnter(__func__);
 	return i2d_SSL_SESSION((SSL_SESSION*)in, pp);
 }
 int
@@ -286,6 +288,7 @@ static void smart_free(void* ptr) {
 
 void*
 ecall_d2i_SSL_SESSION(void **a, const unsigned char **pp, long length) {
+    LogEnter(__func__);
 	return (void*)d2i_SSL_SESSION((SSL_SESSION**)a, pp, length);
 }
 SSL_SESSION *

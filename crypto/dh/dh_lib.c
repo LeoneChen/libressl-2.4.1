@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: dh_lib.c,v 1.20 2014/07/12 16:03:37 miod Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -116,6 +117,7 @@ DH_set_method(DH *dh, const DH_METHOD *meth)
 
 DH *
 ecall_DH_new(void) {
+    LogEnter(__func__);
 	return DH_new();
 }
 DH *
@@ -196,6 +198,7 @@ DH_new_method(ENGINE *engine)
 void
 ecall_DH_free(DH *r)
 {
+    LogEnter(__func__);
 	DH_free(r);
 }
 void

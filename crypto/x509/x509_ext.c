@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: x509_ext.c,v 1.8 2014/07/11 08:44:49 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -128,6 +129,7 @@ X509_get_ext_count(X509 *x)
 
 int
 ecall_X509_get_ext_by_NID(X509 *x, int nid, int lastpos) {
+    LogEnter(__func__);
 	return X509_get_ext_by_NID(x, nid, lastpos);
 }
 int
@@ -151,6 +153,7 @@ X509_get_ext_by_critical(X509 *x, int crit, int lastpos)
 
 X509_EXTENSION *
 ecall_X509_get_ext(X509 *x, int loc) {
+    LogEnter(__func__);
 	return X509_get_ext(x, loc);
 }
 X509_EXTENSION *
@@ -168,6 +171,7 @@ X509_delete_ext(X509 *x, int loc)
 int
 ecall_X509_add_ext(X509 *x, X509_EXTENSION *ex, int loc)
 {
+    LogEnter(__func__);
 	return X509_add_ext(x, ex, loc);
 }
 
@@ -188,6 +192,7 @@ BASIC_CONSTRAINTS *in_bc = NULL; // need to free the objet later, so save the po
 
 void *
 ecall_X509_get_ext_d2i(X509 *x, int nid, int *crit, int *idx) {
+    LogEnter(__func__);
 	void* ret = X509_get_ext_d2i(x, nid, crit, idx);
 
 #ifdef COMPILE_WITH_INTEL_SGX

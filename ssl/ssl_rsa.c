@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: ssl_rsa.c,v 1.20 2015/02/06 01:37:11 reyk Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -77,6 +78,7 @@ extern SSL* SSL_get_in_pointer(SSL* out_s);
 int
 ecall_SSL_use_certificate(SSL *ssl, X509 *x)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl = SSL_get_in_pointer(ssl);
 #endif
@@ -286,6 +288,7 @@ SSL_use_RSAPrivateKey_ASN1(SSL *ssl, unsigned char *d, long len)
 int
 ecall_SSL_use_PrivateKey(SSL *ssl, EVP_PKEY *pkey)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl = SSL_get_in_pointer(ssl);
 #endif
@@ -382,6 +385,7 @@ SSL_CTX_use_certificate(SSL_CTX *ctx, X509 *x)
 }
 
 int ecall_SSL_CTX_use_certificate(SSL_CTX *ctx, X509 *x) {
+    LogEnter(__func__);
 	return SSL_CTX_use_certificate(ctx, x);
 }
 
@@ -444,6 +448,7 @@ ssl_set_cert(CERT *c, X509 *x)
 
 int
 ecall_SSL_CTX_use_certificate_file(SSL_CTX *ctx, const char *file, int type) {
+    LogEnter(__func__);
 	return SSL_CTX_use_certificate_file(ctx, file, type);
 }
 
@@ -593,6 +598,7 @@ SSL_CTX_use_RSAPrivateKey_ASN1(SSL_CTX *ctx, const unsigned char *d, long len)
 
 int
 ecall_SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey) {
+    LogEnter(__func__);
 	return SSL_CTX_use_PrivateKey(ctx, pkey);
 }
 int
@@ -612,6 +618,7 @@ SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey)
 
 int
 ecall_SSL_CTX_use_PrivateKey_file(SSL_CTX *ctx, const char *file, int type) {
+    LogEnter(__func__);
 	return SSL_CTX_use_PrivateKey_file(ctx, file, type);
 }
 
@@ -748,6 +755,7 @@ end:
 
 int
 ecall_SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file) {
+    LogEnter(__func__);
 	return SSL_CTX_use_certificate_chain_file(ctx, file);
 }
 int

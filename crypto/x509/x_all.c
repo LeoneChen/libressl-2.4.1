@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: x_all.c,v 1.20 2015/09/13 15:59:30 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -497,6 +498,7 @@ NETSCAPE_SPKI_verify(NETSCAPE_SPKI *a, EVP_PKEY *r)
 
 int
 ecall_X509_sign(X509 *x, EVP_PKEY *pkey, const EVP_MD *md) {
+    LogEnter(__func__);
 	return X509_sign(x, pkey, md);
 }
 int
@@ -557,6 +559,7 @@ NETSCAPE_SPKI_sign(NETSCAPE_SPKI *x, EVP_PKEY *pkey, const EVP_MD *md)
 int
 ecall_X509_pubkey_digest(const X509 *data, const EVP_MD *type, unsigned char *md,
     unsigned int *len) {
+    LogEnter(__func__);
 	return X509_pubkey_digest(data, type, md, len);
 }
 int
@@ -574,6 +577,7 @@ int
 ecall_X509_digest(const X509 *data, const EVP_MD *type, unsigned char *md,
     unsigned int *len)
 {
+    LogEnter(__func__);
 	return X509_digest(data, type, md, len);
 }
 

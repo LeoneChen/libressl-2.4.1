@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: eng_lib.c,v 1.10 2014/10/22 13:02:04 jsing Exp $ */
 /* Written by Geoff Thorpe (geoff@geoffthorpe.net) for the OpenSSL
  * project 2000.
@@ -320,6 +321,7 @@ static char* engine_id = NULL;
 
 const char *
 ecall_ENGINE_get_id(const ENGINE *e) {
+    LogEnter(__func__);
 	const char* eid = ENGINE_get_id(e);
 
 #ifdef COMPILE_WITH_INTEL_SGX
@@ -346,6 +348,7 @@ ENGINE_get_id(const ENGINE *e)
 
 const char *
 ecall_ENGINE_get_name(const ENGINE *e) {
+    LogEnter(__func__);
 	const char* ename = ENGINE_get_name(e);
 
 #ifdef COMPILE_WITH_INTEL_SGX

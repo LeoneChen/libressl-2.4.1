@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: ssl_lib.c,v 1.115 2015/10/19 17:59:39 beck Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -406,6 +407,7 @@ void ocall_sk_pop_free_cb_wrapper(void* data, void* cb) {
 
 SSL *
 ecall_SSL_new(SSL_CTX *ctx, SSL* out_s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* s = SSL_new(ctx);
 	SSL_copy_fields_to_out_struct(s, out_s);
@@ -531,6 +533,7 @@ err:
 int
 ecall_SSL_CTX_set_session_id_context(SSL_CTX *ctx, const unsigned char *sid_ctx,
     unsigned int sid_ctx_len) {
+    LogEnter(__func__);
 	return SSL_CTX_set_session_id_context(ctx, sid_ctx, sid_ctx_len);
 }
 int
@@ -552,6 +555,7 @@ int
 ecall_SSL_set_session_id_context(SSL *ssl, const unsigned char *sid_ctx,
 	unsigned int sid_ctx_len)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = ssl;
 
@@ -664,6 +668,7 @@ SSL_set1_param(SSL *ssl, X509_VERIFY_PARAM *vpm)
 
 void
 ecall_SSL_free(SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -771,6 +776,7 @@ SSL_free(SSL *s)
 void
 ecall_SSL_set_bio(SSL *s, BIO *rbio, BIO *wbio)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -806,6 +812,7 @@ SSL_set_bio(SSL *s, BIO *rbio, BIO *wbio)
 BIO *
 ecall_SSL_get_rbio(const SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
 
@@ -829,6 +836,7 @@ SSL_get_rbio(const SSL *s)
 BIO *
 ecall_SSL_get_wbio(const SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
 
@@ -883,6 +891,7 @@ SSL_get_wfd(const SSL *s)
 
 int
 ecall_SSL_set_fd(SSL *s, int fd) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -998,6 +1007,7 @@ SSL_get_peer_finished(const SSL *s, void *buf, size_t count)
 int
 ecall_SSL_get_verify_mode(const SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
 
@@ -1033,6 +1043,7 @@ int
 int
 ecall_SSL_CTX_get_verify_mode(const SSL_CTX *ctx)
 {
+    LogEnter(__func__);
 	return SSL_CTX_get_verify_mode(ctx);
 }
 int
@@ -1049,6 +1060,7 @@ SSL_CTX_get_verify_depth(const SSL_CTX *ctx)
 
 void* ecall_SSL_CTX_get_verify_callback(const SSL_CTX *ctx)
 {
+    LogEnter(__func__);
 	return (void*)SSL_CTX_get_verify_callback(ctx);
 }
 int (*SSL_CTX_get_verify_callback(const SSL_CTX *ctx))(int, X509_STORE_CTX *)
@@ -1070,6 +1082,7 @@ int ssl_set_verify_fake_cb(int ok, X509_STORE_CTX *ctx) {
 void
 ecall_SSL_set_verify(SSL *s, int mode, void* cb)
 {
+    LogEnter(__func__);
 	int (*callback)(int, X509_STORE_CTX*);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl_set_verify_cb_address = (int (*)(int, X509_STORE_CTX*))cb;
@@ -1125,6 +1138,7 @@ SSL_get_read_ahead(const SSL *s)
 int
 ecall_SSL_pending(const SSL *s)
 {
+    LogEnter(__func__);
 	int ret = 0;
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
@@ -1157,6 +1171,7 @@ SSL_pending(const SSL *s)
 X509 *
 ecall_SSL_get_peer_certificate(const SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
 
@@ -1244,6 +1259,7 @@ SSL_copy_session_id(SSL *t, const SSL *f)
 /* Fix this so it checks all the valid key/cert options */
 int
 ecall_SSL_CTX_check_private_key(const SSL_CTX *ctx) {
+    LogEnter(__func__);
 	return SSL_CTX_check_private_key(ctx);
 }
 int
@@ -1384,6 +1400,7 @@ void lthread_main_handler(void* arg) {
 }
 
 void ecall_start_sgx_thread(void* eq, void* oq, int tid, int appthreads, int sgxthreads, int lthread_tasks, int ncycles, uint64_t* rdtsc_value) {
+    LogEnter(__func__);
 	int i;
 
 	ocall_init_async_ocalls(oq, tid, appthreads, sgxthreads, lthread_tasks, ncycles);
@@ -1407,6 +1424,7 @@ void ecall_start_sgx_thread(void* eq, void* oq, int tid, int appthreads, int sgx
 int
 ecall_SSL_accept(SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -1433,6 +1451,7 @@ SSL_accept(SSL *s)
 
 int
 ecall_SSL_connect(SSL *s) {
+    LogEnter(__func__);
 	int ret;
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
@@ -1465,6 +1484,7 @@ SSL_get_default_timeout(const SSL *s)
 
 int
 ecall_SSL_read(SSL *s, void *buf, int num) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
  
@@ -1516,6 +1536,7 @@ SSL_peek(SSL *s, void *buf, int num)
 
 int
 ecall_SSL_write(SSL *s, const void *buf, int num) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -1555,6 +1576,7 @@ SSL_write(SSL *s, const void *buf, int num)
 
 int
 ecall_SSL_shutdown(SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -1625,6 +1647,7 @@ SSL_renegotiate_pending(SSL *s)
 long
 ecall_SSL_ctrl(SSL *s, int cmd, long larg, void *parg)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -1716,6 +1739,7 @@ SSL_CTX_sessions(SSL_CTX *ctx)
 }
 
 long ecall_SSL_CTX_ctrl(SSL_CTX *ctx, int cmd, long larg, void *parg) {
+    LogEnter(__func__);
 	return SSL_CTX_ctrl(ctx, cmd, larg, parg);
 }
 
@@ -1846,6 +1870,7 @@ static int callback_trampoline(SSL* ssl, int* ad, void* arg) {
 
 long
 ecall_SSL_CTX_callback_ctrl(SSL_CTX *ctx, int cmd, void *cb) {
+    LogEnter(__func__);
 	if (cmd != SSL_CTRL_SET_TLSEXT_SERVERNAME_CB) {
 		// we don't handle other cases
 		return 0;
@@ -1857,6 +1882,7 @@ ecall_SSL_CTX_callback_ctrl(SSL_CTX *ctx, int cmd, void *cb) {
 #else
 long
 ecall_SSL_CTX_callback_ctrl(SSL_CTX *ctx, int cmd, void *cb) {
+    LogEnter(__func__);
 	return SSL_CTX_callback_ctrl(ctx, cmd, (void (*)(void))cb);
 }
 #endif
@@ -1908,6 +1934,7 @@ ssl_cipher_ptr_id_cmp(const SSL_CIPHER * const *ap,
 STACK_OF(SSL_CIPHER) *
 ecall_SSL_get_ciphers(const SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -1973,6 +2000,7 @@ SSL_get_cipher_list(const SSL *s, int n)
 /* Specify the ciphers to be used by default by the SSL_CTX. */
 int
 ecall_SSL_CTX_set_cipher_list(SSL_CTX *ctx, const char *str) {
+    LogEnter(__func__);
 	return SSL_CTX_set_cipher_list(ctx, str);
 }
 int
@@ -2004,6 +2032,7 @@ SSL_CTX_set_cipher_list(SSL_CTX *ctx, const char *str)
 int
 ecall_SSL_set_cipher_list(SSL *s, const char *str)
 {
+    LogEnter(__func__);
 	int ret;
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
@@ -2196,6 +2225,7 @@ err:
  * So far, only host_name types are defined (RFC 3546).
  */
 void ecall_SSL_get_servername(const SSL *s, int type, char* servername, int* len) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
 
@@ -2273,6 +2303,7 @@ ecall_SSL_select_next_proto(unsigned char **out, unsigned char *outlen,
     const unsigned char *server, unsigned int server_len,
     const unsigned char *client, unsigned int client_len)
 {
+    LogEnter(__func__);
 	return SSL_select_next_proto(out, outlen, server, server_len, client, client_len);
 }
 int
@@ -2348,6 +2379,7 @@ SSL_get0_next_proto_negotiated(const SSL *s, const unsigned char **data,
  * Otherwise, no such extension will be included in the ServerHello.
  */
 void ecall_SSL_CTX_set_next_protos_advertised_cb(SSL_CTX *s, void *cb, void *arg) {
+    LogEnter(__func__);
 	int (*callback) (SSL *ssl,  const unsigned char **out, unsigned int *outlen, void *arg) = (int (*) (SSL *ssl, const unsigned char **out, unsigned int *outlen, void *arg))cb;
 	SSL_CTX_set_next_protos_advertised_cb(s, callback, arg);
 }
@@ -2390,6 +2422,7 @@ int ssl_ctx_set_next_proto_select_fake_cb(SSL *s, unsigned char **out, unsigned 
 #endif
 
 void ecall_SSL_CTX_set_next_proto_select_cb(SSL_CTX *s, void* cb, void *arg) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl_ctx_set_next_proto_select_cb_address = (int (*)(SSL *s, unsigned char **out, unsigned char *outlen, const unsigned char *in, unsigned int inlen, void *arg))cb;
 	int (*callback)(SSL *s, unsigned char **out, unsigned char *outlen, const unsigned char *in, unsigned int inlen, void *arg) = ssl_ctx_set_next_proto_select_fake_cb;
@@ -2433,6 +2466,7 @@ SSL_CTX_set_alpn_protos(SSL_CTX *ctx, const unsigned char *protos,
  */
 int
 ecall_SSL_set_alpn_protos(SSL *ssl, const unsigned char* protos, unsigned int protos_len) {
+    LogEnter(__func__);
     int retval = -1;
 #ifdef COMPILE_WITH_INTEL_SGX
     SSL* out_s = (SSL*)ssl;
@@ -2469,6 +2503,7 @@ SSL_set_alpn_protos(SSL *ssl, const unsigned char* protos,
 void
 ecall_SSL_CTX_set_alpn_select_cb(SSL_CTX* ctx, void *cb, void *arg)
 {
+    LogEnter(__func__);
 	int (*callback) (SSL *ssl, const unsigned char **out, unsigned char *outlen,
 	    const unsigned char *in, unsigned int inlen, void *arg) = (int (*) (SSL *ssl, const unsigned char **out, unsigned char *outlen,
 	    	    const unsigned char *in, unsigned int inlen, void *arg))cb;
@@ -2556,6 +2591,7 @@ IMPLEMENT_LHASH_COMP_FN(ssl_session, SSL_SESSION)
 
 SSL_CTX *
 ecall_SSL_CTX_new(const SSL_METHOD *meth) {
+    LogEnter(__func__);
 	return SSL_CTX_new(meth);
 }
 SSL_CTX *
@@ -2707,6 +2743,7 @@ err2:
 
 void
 ecall_SSL_CTX_free(SSL_CTX *a) {
+    LogEnter(__func__);
 	SSL_CTX_free(a);
 }
 void
@@ -2783,11 +2820,13 @@ int pem_password_cb_for_ocall(char *buf, int size, int rwflag, void *userdata) {
 }
 
 void ecall_SSL_CTX_set_default_passwd_cb(SSL_CTX *ctx, void *cb) {
+    LogEnter(__func__);
 	default_passwd_callback_ocall = cb;
 	SSL_CTX_set_default_passwd_cb(ctx, pem_password_cb_for_ocall);
 }
 #else
 void ecall_SSL_CTX_set_default_passwd_cb(SSL_CTX *ctx, void *cb) {
+    LogEnter(__func__);
 	SSL_CTX_set_default_passwd_cb(ctx, (pem_password_cb*)cb);
 }
 #endif
@@ -2815,6 +2854,7 @@ int ssl_ctx_set_cert_verify_fake_cb(X509_STORE_CTX * ctx, void *arg) {
 #endif
 
 void ecall_SSL_CTX_set_cert_verify_callback(SSL_CTX *ctx, void* cb, void *arg) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl_ctx_set_cert_verify_cb_address = (int(*)(X509_STORE_CTX *, void *))cb;
 	int (*callback)(X509_STORE_CTX *, void *) = ssl_ctx_set_cert_verify_fake_cb;
@@ -2844,6 +2884,7 @@ int ssl_ctx_set_verify_fake_callback(int mode, X509_STORE_CTX *ctx) {
 #endif
 
 void ecall_SSL_CTX_set_verify(SSL_CTX *ctx, int mode, void* callback) {
+    LogEnter(__func__);
 	int (*cb)(int, X509_STORE_CTX *);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl_ctx_set_verify_callback_address = (int (*)(int, X509_STORE_CTX *))callback;
@@ -2863,6 +2904,7 @@ SSL_CTX_set_verify(SSL_CTX *ctx, int mode, int (*cb)(int, X509_STORE_CTX *))
 
 void
 ecall_SSL_CTX_set_verify_depth(SSL_CTX *ctx, int depth) {
+    LogEnter(__func__);
 	SSL_CTX_set_verify_depth(ctx, depth);
 }
 void
@@ -3266,6 +3308,7 @@ SSL_set_ssl_method(SSL *s, const SSL_METHOD *meth)
 
 int
 ecall_SSL_get_error(const SSL *s, int i) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -3356,6 +3399,7 @@ SSL_get_error(const SSL *s, int i)
 
 int
 ecall_SSL_do_handshake(SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -3391,6 +3435,7 @@ SSL_do_handshake(SSL *s)
 void
 ecall_SSL_set_accept_state(SSL *s)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -3416,6 +3461,7 @@ SSL_set_accept_state(SSL *s)
 
 void
 ecall_SSL_set_connect_state(SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -3483,6 +3529,7 @@ ssl_version_string(int ver)
 int
 ecall_SSL_get_version_as_int(const SSL *s)
 {
+    LogEnter(__func__);
 	return s->version;
 }
 const char *
@@ -3532,6 +3579,7 @@ void SSL_set_info_fake_callback(const SSL* ssl, int type, int val) {
 #endif
 
 void ecall_SSL_set_info_callback(SSL *ssl, void* cb) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* in_s = ssl;
 
@@ -3713,6 +3761,7 @@ ssl_clear_cipher_ctx(SSL *s)
 /* Fix this function so that it takes an optional type parameter */
 X509 *
 ecall_SSL_get_certificate(const SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -3736,6 +3785,7 @@ SSL_get_certificate(const SSL *s)
 /* Fix this function so that it takes an optional type parameter */
 void
 ecall_SSL_get_privatekey(EVP_PKEY* pkey, SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	const SSL* out_s = s;
 
@@ -3761,6 +3811,7 @@ SSL_get_privatekey(SSL *s)
 SSL_CIPHER *
 ecall_SSL_get_current_cipher(const SSL *s)
 {
+    LogEnter(__func__);
 	return (SSL_CIPHER*)SSL_get_current_cipher(s);
 }
 const SSL_CIPHER *
@@ -3844,6 +3895,7 @@ SSL_CTX_get_quiet_shutdown(const SSL_CTX *ctx)
 
 void
 ecall_SSL_set_quiet_shutdown(SSL *s, int mode) {
+    LogEnter(__func__);
 	return SSL_set_quiet_shutdown(s, mode);
 }
 void
@@ -3860,6 +3912,7 @@ SSL_get_quiet_shutdown(const SSL *s)
 
 void
 ecall_SSL_set_shutdown(SSL *s, int mode) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = s;
 
@@ -3881,6 +3934,7 @@ SSL_set_shutdown(SSL *s, int mode)
 
 int
 ecall_SSL_get_shutdown(const SSL *s) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)s;
 
@@ -3910,6 +3964,7 @@ SSL_version(const SSL *s)
 SSL_CTX *
 ecall_SSL_get_SSL_CTX(const SSL *ssl)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)ssl;
 
@@ -3933,6 +3988,7 @@ SSL_get_SSL_CTX(const SSL *ssl)
 SSL_CTX *
 ecall_SSL_set_SSL_CTX(SSL *ssl, SSL_CTX* ctx)
 {
+    LogEnter(__func__);
 	return SSL_set_SSL_CTX(ssl, ctx);
 }
 SSL_CTX *
@@ -3953,6 +4009,7 @@ SSL_set_SSL_CTX(SSL *ssl, SSL_CTX* ctx)
 
 int
 ecall_SSL_CTX_set_default_verify_paths(SSL_CTX *ctx) {
+    LogEnter(__func__);
 	return SSL_CTX_set_default_verify_paths(ctx);
 }
 int
@@ -3977,6 +4034,7 @@ SSL_CTX_load_verify_mem(SSL_CTX *ctx, void *buf, int len)
 int
 ecall_SSL_state(const SSL *ssl)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)ssl;
 
@@ -4006,6 +4064,7 @@ SSL_set_state(SSL *ssl, int state)
 void
 ecall_SSL_set_verify_result(SSL *ssl, long arg)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = ssl;
 
@@ -4028,6 +4087,7 @@ SSL_set_verify_result(SSL *ssl, long arg)
 long
 ecall_SSL_get_verify_result(const SSL *ssl)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL* out_s = (SSL*)ssl;
 
@@ -4080,6 +4140,7 @@ void fake_crypto_ex_free_cb(void *parent, void *ptr, CRYPTO_EX_DATA *ad, int idx
 int
 ecall_SSL_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
     CRYPTO_EX_dup *dup_func, CRYPTO_EX_free *free_func) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	crypto_ex_new_cb_address = new_func;
 	new_func = fake_crypto_ex_new_cb;
@@ -4113,6 +4174,7 @@ SSL_get_ex_data(const SSL *s, int idx)
 int
 ecall_SSL_CTX_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
     CRYPTO_EX_dup *dup_func, CRYPTO_EX_free *free_func) {
+    LogEnter(__func__);
 	return SSL_CTX_get_ex_new_index(argl, argp, new_func, dup_func, free_func);
 }
 int
@@ -4125,6 +4187,7 @@ SSL_CTX_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
 
 int
 ecall_SSL_CTX_set_ex_data(SSL_CTX *s, int idx, void *arg) {
+    LogEnter(__func__);
 	return SSL_CTX_set_ex_data(s, idx, arg);
 }
 int
@@ -4135,6 +4198,7 @@ SSL_CTX_set_ex_data(SSL_CTX *s, int idx, void *arg)
 
 void *
 ecall_SSL_CTX_get_ex_data(const SSL_CTX *s, int idx) {
+    LogEnter(__func__);
 	return SSL_CTX_get_ex_data(s, idx);
 }
 void *
@@ -4151,6 +4215,7 @@ ssl_ok(SSL *s)
 
 X509_STORE *
 ecall_SSL_CTX_get_cert_store(const SSL_CTX *ctx) {
+    LogEnter(__func__);
 	return SSL_CTX_get_cert_store(ctx);
 }
 X509_STORE *
@@ -4201,6 +4266,7 @@ RSA *ssl_ctx_set_tmp_rsa_fake_callback(SSL *ssl, int is_export, int keylength) {
 #endif
 
 void ecall_SSL_CTX_set_tmp_rsa_callback(SSL_CTX *ctx, void* cb) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl_ctx_set_tmp_rsa_callback_address = (RSA *(*)(SSL *ssl, int is_export, int keylength))cb;
 	cb = ssl_ctx_set_tmp_rsa_fake_callback;
@@ -4244,6 +4310,7 @@ DH* SSL_CTX_set_tmp_dh_fake_cb(SSL *ssl, int is_export, int keylength) {
 void
 ecall_SSL_CTX_set_tmp_dh_callback(SSL_CTX *ctx, void* func)
 {
+    LogEnter(__func__);
 	DH* (*cb)(SSL *, int, int);
 #ifdef COMPILE_WITH_INTEL_SGX
 	SSL_CTX_set_tmp_dh_cb_address = (DH* (*)(SSL *, int, int))func;

@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: pem_pkey.c,v 1.20 2015/02/11 03:19:37 doug Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -93,6 +94,7 @@ int pem_read_bio_privatekey_fake_cb(char *buf, int size, int rwflag, void *userd
 #endif
 
 EVP_PKEY* ecall_PEM_read_bio_PrivateKey(BIO *bp, EVP_PKEY **x, void* cb, void *u) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	pem_read_bio_privatekey_cb_address = (pem_password_cb*)cb;
 	pem_password_cb* callback = pem_read_bio_privatekey_fake_cb;

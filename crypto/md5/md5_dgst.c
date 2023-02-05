@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: md5_dgst.c,v 1.13 2014/07/09 11:10:51 bcook Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -70,6 +71,7 @@
 #define INIT_DATA_D (unsigned long)0x10325476L
 
 int ecall_MD5_Init(MD5_CTX *c) {
+    LogEnter(__func__);
 	return MD5_Init(c);
 }
 int MD5_Init(MD5_CTX *c)
@@ -83,10 +85,12 @@ int MD5_Init(MD5_CTX *c)
 }
 
 int ecall_MD5_Update(MD5_CTX *c, const void *data, size_t len) {
+    LogEnter(__func__);
 		 return MD5_Update(c, data, len);
 }
 
 int ecall_MD5_Final(unsigned char *md, MD5_CTX *c) {
+    LogEnter(__func__);
 		 return MD5_Final(md, c);
 }
 

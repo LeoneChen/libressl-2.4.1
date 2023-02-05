@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: ssl_err2.c,v 1.6 2014/11/16 14:12:47 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -63,6 +64,7 @@
 
 void
 ecall_SSL_load_error_strings(void) {
+    LogEnter(__func__);
 	SSL_load_error_strings();
 }
 void

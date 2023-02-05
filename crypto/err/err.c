@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: err.c,v 1.40 2014/10/05 15:21:48 deraadt Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -699,6 +700,7 @@ ERR_unload_strings(int lib, ERR_STRING_DATA *str)
 
 void
 ecall_ERR_free_strings(void) {
+    LogEnter(__func__);
 	ERR_free_strings();
 }
 void
@@ -731,6 +733,7 @@ ERR_put_error(int lib, int func, int reason, const char *file, int line)
 
 void
 ecall_ERR_clear_error(void) {
+    LogEnter(__func__);
 	ERR_clear_error();
 }
 
@@ -751,6 +754,7 @@ ERR_clear_error(void)
 unsigned long
 ecall_ERR_get_error(void)
 {
+    LogEnter(__func__);
 	return ERR_get_error();
 }
 
@@ -776,6 +780,7 @@ ERR_get_error_line_data(const char **file, int *line,
 unsigned long
 ecall_ERR_peek_error(void)
 {
+    LogEnter(__func__);
 	return ERR_peek_error();
 }
 
@@ -795,6 +800,7 @@ unsigned long
 ecall_ERR_peek_error_line_data(const char **file, int *line,
     const char **data, int *flags)
 {
+    LogEnter(__func__);
 	return ERR_peek_error_line_data(file, line, data, flags);
 }
 
@@ -807,6 +813,7 @@ ERR_peek_error_line_data(const char **file, int *line,
 
 unsigned long
 ecall_ERR_peek_last_error(void) {
+    LogEnter(__func__);
 	return ERR_peek_last_error();
 }
 
@@ -898,6 +905,7 @@ get_error_values(int inc, int top, const char **file, int *line,
 void
 ecall_ERR_error_string_n(unsigned long e, char *buf, size_t len) 
 {
+    LogEnter(__func__);
 	ERR_error_string_n(e, buf, len);
 }
 void
@@ -966,6 +974,7 @@ static char* ERR_error_string_str = NULL;
 
 char *
 ecall_ERR_error_string(unsigned long e, char *ret) {
+    LogEnter(__func__);
 	char *encbuf = ERR_error_string(e, ret);
 
 #ifdef COMPILE_WITH_INTEL_SGX
@@ -1082,6 +1091,7 @@ ERR_remove_thread_state(const CRYPTO_THREADID *id)
 #ifndef OPENSSL_NO_DEPRECATED
 void
 ecall_ERR_remove_state(unsigned long pid) {
+    LogEnter(__func__);
 	ERR_remove_state(pid);
 }
 void

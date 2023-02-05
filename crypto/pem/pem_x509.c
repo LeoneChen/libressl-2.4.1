@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: pem_x509.c,v 1.5 2014/06/12 15:49:30 deraadt Exp $ */
 /* Written by Dr Stephen N Henson (steve@openssl.org) for the OpenSSL
  * project 2001.
@@ -67,5 +68,6 @@
 IMPLEMENT_PEM_rw(X509, X509, PEM_STRING_X509, X509)
 
 X509 *ecall_PEM_read_bio_X509(BIO *bp, X509 **x, void *cb, void *u) {
+    LogEnter(__func__);
 	return PEM_read_bio_X509(bp, x, (pem_password_cb*)cb, u);
 }

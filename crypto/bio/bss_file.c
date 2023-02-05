@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: bss_file.c,v 1.30 2014/07/11 08:44:47 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -112,6 +113,7 @@ static BIO_METHOD methods_filep = {
 
 BIO *
 ecall_BIO_new_file(const char *filename, const char *mode) {
+    LogEnter(__func__);
 	return BIO_new_file(filename, mode);
 }
 
@@ -155,6 +157,7 @@ BIO_new_fp(FILE *stream, int close_flag)
 
 BIO_METHOD *
 ecall_BIO_s_file(void) {
+    LogEnter(__func__);
 	return BIO_s_file();
 }
 BIO_METHOD *

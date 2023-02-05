@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: digest.c,v 1.25 2015/02/10 09:52:35 miod Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -130,6 +131,7 @@ EVP_MD_CTX_init(EVP_MD_CTX *ctx)
 
 EVP_MD_CTX *
 ecall_EVP_MD_CTX_create(void) {
+    LogEnter(__func__);
 	return EVP_MD_CTX_create();
 }
 
@@ -148,6 +150,7 @@ EVP_DigestInit(EVP_MD_CTX *ctx, const EVP_MD *type)
 
 int
 ecall_EVP_DigestInit_ex(EVP_MD_CTX *ctx, const EVP_MD *type, ENGINE *impl) {
+    LogEnter(__func__);
 	return EVP_DigestInit_ex(ctx, type, impl);
 }
 
@@ -240,6 +243,7 @@ skip_to_init:
 int
 ecall_EVP_DigestUpdate(EVP_MD_CTX *ctx, const void *data, size_t count)
 {
+    LogEnter(__func__);
 	return EVP_DigestUpdate(ctx, data, count);
 }
 
@@ -264,6 +268,7 @@ EVP_DigestFinal(EVP_MD_CTX *ctx, unsigned char *md, unsigned int *size)
 int
 ecall_EVP_DigestFinal_ex(EVP_MD_CTX *ctx, unsigned char *md, unsigned int *size)
 {
+    LogEnter(__func__);
 	return EVP_DigestFinal_ex(ctx, md, size);
 }
 int
@@ -368,6 +373,7 @@ EVP_Digest(const void *data, size_t count,
 void
 ecall_EVP_MD_CTX_destroy(EVP_MD_CTX *ctx)
 {
+    LogEnter(__func__);
 	return EVP_MD_CTX_destroy(ctx);
 }
 void

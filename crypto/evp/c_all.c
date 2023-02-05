@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: c_all.c,v 1.19 2015/09/13 23:36:21 doug Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -285,6 +286,7 @@ OpenSSL_add_all_digests(void)
 void
 ecall_OPENSSL_add_all_algorithms_noconf(void)
 {
+    LogEnter(__func__);
 	OPENSSL_add_all_algorithms_noconf();
 }
 void

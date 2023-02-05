@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: ssl_sess.c,v 1.48 2015/09/10 17:57:50 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -237,6 +238,7 @@ SSL_SESSION_new(void)
 }
 
 void ecall_SSL_SESSION_get_id(void* s, unsigned char* buf, unsigned int *len) {
+    LogEnter(__func__);
 	const unsigned char* sid = SSL_SESSION_get_id((const SSL_SESSION*)s, len);
 	memcpy((void*)buf, (const void*)sid, (size_t)*len);
 }
@@ -786,6 +788,7 @@ SSL_set_session(SSL *s, SSL_SESSION *session)
 
 long
 ecall_SSL_SESSION_set_timeout(SSL_SESSION *s, long t) {
+    LogEnter(__func__);
 	return SSL_SESSION_set_timeout(s, t);
 }
 
@@ -848,6 +851,7 @@ SSL_SESSION_set1_id_context(SSL_SESSION *s, const unsigned char *sid_ctx,
 
 long
 ecall_SSL_CTX_set_timeout(SSL_CTX *s, long t) {
+    LogEnter(__func__);
 	return SSL_CTX_set_timeout(s, t);
 }
 long
@@ -865,6 +869,7 @@ SSL_CTX_set_timeout(SSL_CTX *s, long t)
 
 long
 ecall_SSL_CTX_get_timeout(const SSL_CTX *s) {
+    LogEnter(__func__);
 	return SSL_CTX_get_timeout(s);
 }
 long
@@ -1046,6 +1051,7 @@ SSL_SESSION_list_add(SSL_CTX *ctx, SSL_SESSION *s)
 void
 ecall_SSL_CTX_sess_set_new_cb(SSL_CTX *ctx,
     void* cb) {
+    LogEnter(__func__);
 	int (*callback)(struct ssl_st *ssl, SSL_SESSION *sess) = (int (*)(struct ssl_st *ssl, SSL_SESSION *sess))cb;
 	SSL_CTX_sess_set_new_cb(ctx, callback);
 }
@@ -1065,6 +1071,7 @@ int
 void
 ecall_SSL_CTX_sess_set_remove_cb(SSL_CTX *ctx, void *cb)
 {
+    LogEnter(__func__);
 	void (*callback)(SSL_CTX *ctx, SSL_SESSION *sess) = (void (*)(SSL_CTX *ctx, SSL_SESSION *sess))cb;
 	SSL_CTX_sess_set_remove_cb(ctx, callback);
 }
@@ -1085,6 +1092,7 @@ void
 void
 ecall_SSL_CTX_sess_set_get_cb(SSL_CTX *ctx, void* cb)
 {
+    LogEnter(__func__);
 	SSL_SESSION *(*callback)(struct ssl_st *ssl, unsigned char *data, int len, int *copy) = (SSL_SESSION *(*)(struct ssl_st *ssl, unsigned char *data, int len, int *copy))cb;
 	SSL_CTX_sess_set_get_cb(ctx, callback);
 }
@@ -1110,6 +1118,7 @@ extern void* ssl_ctx_info_cb_address;
 void
 ecall_SSL_CTX_set_info_callback(SSL_CTX *ctx, void *cb)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	ssl_ctx_info_cb_address = cb;
 	cb = ssl_ctx_info_fake_cb;

@@ -1,0 +1,6283 @@
+{
+  "FileName": "../Enclave.edl.json",
+  "trusted": {
+    "ecall_SSL_read": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": { "name": "num", "type": "int" }
+      }
+    },
+    "ecall_OPENSSL_config": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "config_name",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_library_init": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_load_error_strings": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_OPENSSL_add_all_algorithms_noconf": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_get_ex_new_index": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": { "name": "argl", "type": "long int" },
+        "1": {
+          "name": "argp",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "new_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_new*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "dup_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_dup*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "free_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_free*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_get_ex_new_index": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": { "name": "argl", "type": "long int" },
+        "1": {
+          "name": "argp",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "new_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_new*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "dup_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_dup*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "free_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_free*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_get_ex_new_index": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": { "name": "argl", "type": "long int" },
+        "1": {
+          "name": "argp",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "new_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_new*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "dup_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_dup*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "free_func",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_free*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSLv23_method": {
+      "return": { "type": "SSL_METHOD*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_CTX_new": {
+      "return": { "type": "SSL_CTX*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "meth",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_METHOD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_ex_data": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "idx", "type": "int" },
+        "2": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_ctrl": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "cmd", "type": "int" },
+        "2": { "name": "larg", "type": "long int" },
+        "3": {
+          "name": "parg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_info_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_callback_ctrl": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "i", "type": "int" },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_alpn_select_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_next_protos_advertised_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BIO_new_file": {
+      "return": { "type": "BIO*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "filename",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "mode",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": {
+          "name": "method_in_enclave",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_PEM_read_bio_X509_AUX": {
+      "return": { "type": "X509*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "u",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_use_certificate": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_get_ex_data": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "idx", "type": "int" }
+      }
+    },
+    "ecall_X509_set_ex_data": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "r",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "idx", "type": "int" },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_PEM_read_bio_X509": {
+      "return": { "type": "X509*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "u",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_ERR_peek_last_error": {
+      "return": { "type": "unsigned long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_ERR_peek_error": {
+      "return": { "type": "unsigned long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_ERR_peek_error_line_data": {
+      "return": { "type": "unsigned long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "file",
+          "field": { "0": { "field": {} } },
+          "type": "char**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "line",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "char**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "3": {
+          "name": "flags",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_ERR_get_error": {
+      "return": { "type": "unsigned long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_ERR_clear_error": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_ERR_error_string_n": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": { "name": "e", "type": "unsigned long int" },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": { "name": "len", "type": "size_t" }
+      }
+    },
+    "ecall_BIO_free": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_use_PrivateKey_file": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "file",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "type", "type": "int" }
+      }
+    },
+    "ecall_SSL_CTX_set_default_passwd_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_cipher_list": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "str",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_verify_depth": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "depth", "type": "int" }
+      }
+    },
+    "ecall_OBJ_sn2nid": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_EC_KEY_new_by_curve_name": {
+      "return": { "type": "EC_KEY*" },
+      "switchless": false,
+      "public": true,
+      "parameter": { "0": { "name": "nid", "type": "int" } }
+    },
+    "ecall_EC_KEY_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "key",
+          "field": { "0": { "field": {} } },
+          "type": "EC_KEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_timeout": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "t", "type": "long int" }
+      }
+    },
+    "ecall_EVP_MD_CTX_create": {
+      "return": { "type": "EVP_MD_CTX*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_EVP_sha1": {
+      "return": { "type": "EVP_MD*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_EVP_DigestInit_ex": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "type",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": {
+          "name": "impl",
+          "field": { "0": { "field": {} } },
+          "type": "ENGINE*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_EVP_DigestUpdate": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "d",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "cnt", "type": "size_t" }
+      }
+    },
+    "ecall_X509_digest": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "type",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": {
+          "name": "md",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "len",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_get_ex_data": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "r",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "idx", "type": "int" }
+      }
+    },
+    "ecall_SSL_CTX_get_client_CA_list": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_sk_num": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_EVP_DigestFinal_ex": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "md",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_EVP_MD_CTX_destroy": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_session_id_context": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "sid_ctx",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "sid_ctx_len", "type": "unsigned int" }
+      }
+    },
+    "ecall_SSL_CTX_sess_set_new_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "new_session_cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_sess_set_get_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "get_session_cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_sess_set_remove_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "remove_session_cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_new": {
+      "return": { "type": "SSL*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "out_s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_set_fd": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "fd", "type": "int" }
+      }
+    },
+    "ecall_SSL_set_accept_state": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_do_handshake": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_get_error": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "ret_code", "type": "int" }
+      }
+    },
+    "ecall_SSL_get_rbio": {
+      "return": { "type": "BIO*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_get_wbio": {
+      "return": { "type": "BIO*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_BIO_int_ctrl": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "cmd", "type": "int" },
+        "2": { "name": "larg", "type": "long int" },
+        "3": { "name": "iarg", "type": "int" }
+      }
+    },
+    "ecall_SSL_state": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_get_current_cipher": {
+      "return": { "type": "SSL_CIPHER*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CIPHER_description": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CIPHER*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": { "name": "size", "type": "int" }
+      }
+    },
+    "ecall_SSL_get_version_as_int": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_ctrl": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "cmd", "type": "int" },
+        "2": { "name": "larg", "type": "long int" },
+        "3": {
+          "name": "parg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_write": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "num", "type": "int" }
+      }
+    },
+    "ecall_SSL_get_shutdown": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_set_quiet_shutdown": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "mode", "type": "int" }
+      }
+    },
+    "ecall_SSL_set_shutdown": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "mode", "type": "int" }
+      }
+    },
+    "ecall_SSL_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_shutdown": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_get_servername": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "type", "type": "int" },
+        "2": {
+          "name": "servername",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "len",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_i2d_SSL_SESSION": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "in",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "pp",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_d2i_SSL_SESSION": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "void**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "pp",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "length", "type": "long int" }
+      }
+    },
+    "ecall_SSL_SESSION_get_id": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "len",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_get_timeout": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_MD5_Init": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "MD5_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_MD5_Update": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "MD5_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "len", "type": "size_t" }
+      }
+    },
+    "ecall_MD5_Final": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "md",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "MD5_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_EVP_get_digestbyname": {
+      "return": { "type": "EVP_MD*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSLv23_client_method": {
+      "return": { "type": "SSL_METHOD*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_sk_new_null": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_BIO_s_file": {
+      "return": { "type": "BIO_METHOD*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_BIO_new": {
+      "return": { "type": "BIO*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "type",
+          "field": { "0": { "field": {} } },
+          "type": "BIO_METHOD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "ret",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BIO_ctrl": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "cmd", "type": "int" },
+        "2": { "name": "larg", "type": "long int" },
+        "3": {
+          "name": "parg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_tmp_rsa_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_verify": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "mode", "type": "int" },
+        "2": {
+          "name": "callback",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_check_issued": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "issuer",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "subject",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_default_verify_paths": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_next_proto_select_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_cert_verify_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_PEM_read_bio_PrivateKey": {
+      "return": { "type": "EVP_PKEY*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "u",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_check_private_key": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "k",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_EVP_PKEY_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_new": {
+      "return": { "type": "X509*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_X509_get_subject_name": {
+      "return": { "type": "X509_NAME*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_pubkey_digest": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "type",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": {
+          "name": "md",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "len",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_NAME_get_text_by_NID": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "nid", "type": "int" },
+        "2": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": { "name": "len", "type": "int" }
+      }
+    },
+    "ecall_CRYPTO_add_lock": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "pointer",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "amount", "type": "int" },
+        "2": { "name": "type", "type": "int" },
+        "3": {
+          "name": "file",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "4": { "name": "line", "type": "int" }
+      }
+    },
+    "ecall_BN_new": {
+      "return": { "type": "BIGNUM*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_BN_set_word": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "w", "type": "BN_ULONG" }
+      }
+    },
+    "ecall_X509_set_pubkey": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BN_is_zero": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BN_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_get_serialNumber": {
+      "return": { "type": "ASN1_INTEGER*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BN_dup": {
+      "return": { "type": "BIGNUM*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_BN_to_ASN1_INTEGER": {
+      "return": { "type": "ASN1_INTEGER*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bn",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "ai",
+          "field": { "0": { "field": {} } },
+          "type": "ASN1_INTEGER*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_set_subject_name": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_NAME_get_index_by_NID": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "nid", "type": "int" },
+        "2": { "name": "lastpos", "type": "int" }
+      }
+    },
+    "ecall_X509_NAME_get_entry": {
+      "return": { "type": "X509_NAME_ENTRY*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "loc", "type": "int" }
+      }
+    },
+    "ecall_X509_NAME_delete_entry": {
+      "return": { "type": "X509_NAME_ENTRY*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "loc", "type": "int" }
+      }
+    },
+    "ecall_X509_NAME_ENTRY_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME_ENTRY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_NAME_add_entry_by_NID": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "nid", "type": "int" },
+        "2": { "name": "type", "type": "int" },
+        "3": {
+          "name": "bytes",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": { "name": "len", "type": "int" },
+        "5": { "name": "loc", "type": "int" },
+        "6": { "name": "set", "type": "int" }
+      }
+    },
+    "ecall_X509_get_notBefore": {
+      "return": { "type": "ASN1_TIME*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_get_notAfter": {
+      "return": { "type": "ASN1_TIME*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_set_notBefore": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "tm",
+          "field": { "0": { "field": {} } },
+          "type": "ASN1_TIME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_X509_set_notAfter": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "tm",
+          "field": { "0": { "field": {} } },
+          "type": "ASN1_TIME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_X509_get_cert_key_algor_algorithm": {
+      "return": { "type": "ASN1_OBJECT*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_alias_get0": {
+      "return": { "type": "unsigned char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "len",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_OBJ_obj2nid": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "ASN1_OBJECT*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_X509_get_ext_by_NID": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "nid", "type": "int" },
+        "2": { "name": "lastpos", "type": "int" }
+      }
+    },
+    "ecall_X509_get_ext": {
+      "return": { "type": "X509_EXTENSION*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "loc", "type": "int" }
+      }
+    },
+    "ecall_X509_set_issuer_name": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_sign": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "md",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_BN_bin2bn": {
+      "return": { "type": "BIGNUM*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "len", "type": "int" },
+        "2": {
+          "name": "ret",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BN_num_bits": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_BN_is_bit_set": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "n", "type": "int" }
+      }
+    },
+    "ecall_SSLv23_server_method": {
+      "return": { "type": "SSL_METHOD*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_CTX_use_PrivateKey": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_ERR_error_string": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": { "name": "e", "type": "unsigned long int" },
+        "1": {
+          "name": "ret",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_set_info_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_get_algorithm": {
+      "return": { "type": "ASN1_OBJECT*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ptr",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_ssl3_get_cipher_name_by_char": {
+      "return": { "type": "SSL_CIPHER*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "p",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "cipher_name",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_set_cipher_list": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "str",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_connect": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_NAME_oneline": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": { "name": "size", "type": "int" }
+      }
+    },
+    "ecall_EVP_MD_type": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "md",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_MD*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_OBJ_nid2sn": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": { "0": { "name": "n", "type": "int" } }
+    },
+    "ecall_PEM_ASN1_write": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "i2d",
+          "field": { "0": { "field": {} } },
+          "type": "i2d_of_void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "name",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": {
+          "name": "fp",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "enc",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_CIPHER*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "5": {
+          "name": "kstr",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "6": { "name": "klen", "type": "int" },
+        "7": {
+          "name": "callback",
+          "field": { "0": { "field": {} } },
+          "type": "pem_password_cb*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "8": {
+          "name": "u",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_NAME_ENTRY_get_data": {
+      "return": { "type": "ASN1_STRING*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ne",
+          "field": { "0": { "field": {} } },
+          "type": "X509_NAME_ENTRY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_sk_value": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "v", "type": "int" }
+      }
+    },
+    "ecall_SSL_pending": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_X509_add_ext": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "ex",
+          "field": { "0": { "field": {} } },
+          "type": "X509_EXTENSION*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": { "name": "loc", "type": "int" }
+      }
+    },
+    "ecall_X509_set_version": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "version", "type": "long int" }
+      }
+    },
+    "ecall_SSL_get_ciphers": {
+      "return": { "type": "struct stack_st_SSL_CIPHER*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CIPHER_get_name": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CIPHER*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_state_string_long": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_use_certificate": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_use_PrivateKey": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_sk_pop_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "st",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_GENERAL_NAME_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "GENERAL_NAME*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_SESSION_set_timeout": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "session",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_SESSION*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "t", "type": "long int" }
+      }
+    },
+    "ecall_BN_clear_bit": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "n", "type": "int" }
+      }
+    },
+    "ecall_SSL_select_next_proto": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "out",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "outlen",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "in",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "3": { "name": "inlen", "type": "unsigned int" },
+        "4": {
+          "name": "client",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "5": { "name": "client_len", "type": "unsigned int" }
+      }
+    },
+    "ecall_SSL_set_alpn_protos": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "protos",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "protos_len", "type": "unsigned int" }
+      }
+    },
+    "ecall_SSLeay_version": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": { "0": { "name": "type", "type": "int" } }
+    },
+    "ecall_ERR_load_crypto_strings": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_OPENSSL_load_builtin_modules": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_OBJ_txt2nid": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_OBJ_create": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "oid",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "sn",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": {
+          "name": "ln",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CTX_get_cert_store": {
+      "return": { "type": "X509_STORE*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "c",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CTX_use_certificate_chain_file": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "file",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CTX_check_private_key": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_set_connect_state": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_get_certificate": {
+      "return": { "type": "X509*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_X509_get_ext_d2i": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "X509*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "nid", "type": "int" },
+        "2": {
+          "name": "crit",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "idx",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_EC_GROUP_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "group",
+          "field": { "0": { "field": {} } },
+          "type": "EC_GROUP*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_DH_new": {
+      "return": { "type": "DH*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_set_session_id_context": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "sid_ctx",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "2": { "name": "sid_ctx_len", "type": "unsigned int" }
+      }
+    },
+    "ecall_ASN1_INTEGER_to_BN": {
+      "return": { "type": "BIGNUM*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ai",
+          "field": { "0": { "field": {} } },
+          "type": "ASN1_INTEGER*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "bn",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_BASIC_CONSTRAINTS_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "BASIC_CONSTRAINTS*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_DH_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "dh",
+          "field": { "0": { "field": {} } },
+          "type": "DH*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_set_verify_result": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "arg", "type": "long int" }
+      }
+    },
+    "ecall_SSL_set_bio": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "rbio",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "wbio",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_accept": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_CRYPTO_set_id_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "func",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_CRYPTO_set_locking_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "func",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_CRYPTO_set_dynlock_create_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "func",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_CRYPTO_set_dynlock_lock_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "func",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_CRYPTO_set_dynlock_destroy_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "func",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_set_tmp_dh_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "dh",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_X509_BC_get_pathlen": {
+      "return": { "type": "ASN1_INTEGER*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bc",
+          "field": { "0": { "field": {} } },
+          "type": "BASIC_CONSTRAINTS*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_PEM_read_bio_DHparams": {
+      "return": { "type": "DH*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "DH**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "u",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_PEM_read_bio_ECPKParameters": {
+      "return": { "type": "EC_GROUP*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bp",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "x",
+          "field": { "0": { "field": {} } },
+          "type": "DH**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "u",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_CONF_modules_unload": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": { "0": { "name": "all", "type": "int" } }
+    },
+    "ecall_EVP_cleanup": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_ERR_remove_state": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": { "0": { "name": "pid", "type": "unsigned long int" } }
+    },
+    "ecall_ERR_free_strings": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_get_verify_result": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_get_peer_certificate": {
+      "return": { "type": "X509*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_get_SSL_CTX": {
+      "return": { "type": "SSL_CTX*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_get_verify_mode": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_set_verify": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "mode", "type": "int" },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_set_SSL_CTX": {
+      "return": { "type": "SSL_CTX*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_SSL_CTX_get_verify_mode": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_CTX_get_verify_callback": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_BN_dec2bn": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "bn",
+          "field": { "0": { "field": {} } },
+          "type": "BIGNUM**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "a",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_ENGINE_get_name": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "e",
+          "field": { "0": { "field": {} } },
+          "type": "ENGINE*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_ENGINE_get_id": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "e",
+          "field": { "0": { "field": {} } },
+          "type": "ENGINE*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ecall_SSL_get_privatekey": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_EVP_PKEY_type": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": { "0": { "name": "type", "type": "int" } }
+    },
+    "ecall_EVP_PKEY_bits": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "pkey",
+          "field": { "0": { "field": {} } },
+          "type": "EVP_PKEY*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_ENGINE_load_builtin_engines": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    },
+    "ecall_SSL_CTX_use_certificate_file": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "file",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        },
+        "2": { "name": "type", "type": "int" }
+      }
+    },
+    "ecall_start_sgx_thread": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {
+        "0": {
+          "name": "eq",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "oq",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": { "name": "tid", "type": "int" },
+        "3": { "name": "appthreads", "type": "int" },
+        "4": { "name": "sgxthreads", "type": "int" },
+        "5": { "name": "lthread_tasks", "type": "int" },
+        "6": { "name": "ncycles", "type": "int" },
+        "7": {
+          "name": "rdtsc_value",
+          "field": { "0": { "field": {} } },
+          "type": "uint64_t*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ecall_tls_processing_module_init": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "public": true,
+      "parameter": {}
+    }
+  },
+  "untrusted": {
+    "ocall_print_string": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "str",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        }
+      }
+    },
+    "ocall_println_string": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "str",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        }
+      }
+    },
+    "ocall_fsync": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": { "0": { "name": "fd", "type": "int" } }
+    },
+    "ocall_ftruncate": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "fd", "type": "int" },
+        "1": { "name": "length", "type": "off_t" }
+      }
+    },
+    "ocall_unlink": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "str",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        }
+      }
+    },
+    "ocall_lseek": {
+      "return": { "type": "off_t" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "fd", "type": "int" },
+        "1": { "name": "offset", "type": "off_t" },
+        "2": { "name": "whence", "type": "int" }
+      }
+    },
+    "ocall_lstat": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "pathname",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "struct stat*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "out": true,
+          "size": { "co_param": "size", "co_param_pos": 2 }
+        },
+        "2": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall_fstat": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "fd", "type": "int" },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "struct stat*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "out": true,
+          "size": { "co_param": "size", "co_param_pos": 2 }
+        },
+        "2": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall_stat": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "path",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "struct stat*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "out": true,
+          "size": { "co_param": "size", "co_param_pos": 2 }
+        },
+        "2": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall_fcntl": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "fd", "type": "int" },
+        "1": { "name": "cmd", "type": "int" },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "size": { "co_param": "size", "co_param_pos": 3 }
+        },
+        "3": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall_getcwd": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true,
+          "size": { "co_param": "size", "co_param_pos": 1 }
+        },
+        "1": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall_exit": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": { "0": { "name": "s", "type": "int" } }
+    },
+    "ocall_malloc": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": { "0": { "name": "size", "type": "size_t" } }
+    },
+    "ocall_mmap": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "addr",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "length", "type": "size_t" },
+        "2": { "name": "prot", "type": "int" },
+        "3": { "name": "flags", "type": "int" },
+        "4": { "name": "fd", "type": "int" },
+        "5": { "name": "offset", "type": "off_t" }
+      }
+    },
+    "ocall_realloc": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "ptr",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall_free": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "ptr",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_fopen": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "path",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "mode",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "ocall_fwrite_copy": {
+      "return": { "type": "size_t" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "ptr",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true,
+          "size": { "co_param": "size", "co_param_pos": 1 },
+          "count": { "co_param": "nmemb", "co_param_pos": 2 }
+        },
+        "1": { "name": "size", "type": "size_t" },
+        "2": { "name": "nmemb", "type": "size_t" },
+        "3": {
+          "name": "stream",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_fwrite": {
+      "return": { "type": "size_t" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "ptr",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "size", "type": "size_t" },
+        "2": { "name": "nmemb", "type": "size_t" },
+        "3": {
+          "name": "stream",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_fflush": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "stream",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_fclose": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "fp",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_close": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": { "0": { "name": "fd", "type": "int" } }
+    },
+    "ocall_fgets": {
+      "return": { "type": "char*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true,
+          "size": { "co_param": "size", "co_param_pos": 1 }
+        },
+        "1": { "name": "size", "type": "int" },
+        "2": {
+          "name": "stream",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_get_cpuid_for_openssl": {
+      "return": { "type": "unsigned long long" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {}
+    },
+    "ocall_open": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "filename",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        },
+        "1": { "name": "flags", "type": "int" },
+        "2": { "name": "mode", "type": "mode_t" }
+      }
+    },
+    "ocall_open64": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "filename",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": true,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true
+        },
+        "1": { "name": "flags", "type": "int" },
+        "2": { "name": "mode", "type": "mode_t" }
+      }
+    },
+    "ocall_read": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "fd", "type": "int" },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true,
+          "size": { "co_param": "count", "co_param_pos": 2 }
+        },
+        "2": { "name": "count", "type": "size_t" }
+      }
+    },
+    "ocall_write": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": true,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "fd", "type": "int" },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true,
+          "size": { "co_param": "count", "co_param_pos": 2 }
+        },
+        "2": { "name": "count", "type": "size_t" }
+      }
+    },
+    "ocall_getpid": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {}
+    },
+    "ocall_getuid": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {}
+    },
+    "ocall_time": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "t",
+          "field": { "0": { "field": {} } },
+          "type": "long int*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true
+        }
+      }
+    },
+    "ocall_calloc": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "nmemb", "type": "size_t" },
+        "1": { "name": "size", "type": "size_t" }
+      }
+    },
+    "ocall__getpagesize": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {}
+    },
+    "ocall_gettimeofday": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "tv",
+          "field": { "0": { "field": {} } },
+          "type": "struct timeval*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true
+        },
+        "1": {
+          "name": "tz",
+          "field": { "0": { "field": {} } },
+          "type": "struct timezone*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true
+        }
+      }
+    },
+    "ocall_sgx_thread_sleep": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {}
+    },
+    "ocall_sgx_thread_wake_up": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {}
+    },
+    "ocall_nanosleep": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": { "name": "sec", "type": "unsigned long int" },
+        "1": { "name": "nanosec", "type": "unsigned long int" }
+      }
+    },
+    "ocall_execute_ssl_ctx_info_callback": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [
+        "ecall_SSL_state", "ecall_BIO_int_ctrl", "ecall_SSL_get_wbio",
+        "ecall_SSL_get_rbio"
+      ],
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": { "name": "type", "type": "int" },
+        "2": { "name": "val", "type": "int" },
+        "3": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_alpn_select_cb": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [
+        "ecall_SSL_select_next_proto", "ecall_SSL_get_servername"
+      ],
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "out",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char**",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "out": true
+        },
+        "2": {
+          "name": "outlen",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true
+        },
+        "3": {
+          "name": "in",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true,
+          "size": { "co_param": "inlen", "co_param_pos": 4 }
+        },
+        "4": { "name": "inlen", "type": "unsigned int" },
+        "5": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "6": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_next_protos_advertised_cb": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char**",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "out": true
+        },
+        "2": {
+          "name": "len",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned int*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "out": true
+        },
+        "3": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_pem_password_cb": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "size": { "co_param": "size", "co_param_pos": 1 }
+        },
+        "1": { "name": "size", "type": "int" },
+        "2": { "name": "rwflag", "type": "int" },
+        "3": {
+          "name": "userdata",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_new_session_callback": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [
+        "ecall_SSL_SESSION_set_timeout", "ecall_SSL_CTX_get_timeout",
+        "ecall_SSL_SESSION_get_id", "ecall_SSL_CTX_get_ex_data",
+        "ecall_i2d_SSL_SESSION"
+      ],
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "struct ssl_st*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "sess",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_remove_session_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "ctx",
+          "field": { "0": { "field": {} } },
+          "type": "SSL_CTX*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "sess",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_get_session_cb": {
+      "return": { "type": "void*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [ "ecall_SSL_CTX_get_ex_data", "ecall_d2i_SSL_SESSION" ],
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "struct ssl_st*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "size": { "co_param": "len", "co_param_pos": 2 }
+        },
+        "2": { "name": "len", "type": "int" },
+        "3": {
+          "name": "copy",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true
+        },
+        "4": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_ssl_ctx_callback_ctrl": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [ "ecall_SSL_get_servername" ],
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "ad",
+          "field": { "0": { "field": {} } },
+          "type": "int*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_crypto_set_locking_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "mode", "type": "int" },
+        "2": { "name": "type", "type": "int" },
+        "3": {
+          "name": "file",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "4": { "name": "line", "type": "int" }
+      }
+    },
+    "ocall_crypto_set_id_cb": {
+      "return": { "type": "unsigned long int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_bio_create": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "b",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_bio_destroy": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "b",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_bio_read": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [ "ecall_ssl3_get_cipher_name_by_char" ],
+      "parameter": {
+        "0": {
+          "name": "b",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true,
+          "size": { "co_param": "len", "co_param_pos": 2 }
+        },
+        "2": { "name": "len", "type": "int" },
+        "3": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_bio_write": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [
+        "ecall_SSL_CIPHER_get_name", "ecall_SSL_get_ciphers",
+        "ecall_sk_value", "ecall_sk_num", "ecall_SSL_state"
+      ],
+      "parameter": {
+        "0": {
+          "name": "b",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "buf",
+          "field": { "0": { "field": {} } },
+          "type": "char*",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "in": true,
+          "size": { "co_param": "len", "co_param_pos": 2 }
+        },
+        "2": { "name": "len", "type": "int" },
+        "3": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_bio_ctrl": {
+      "return": { "type": "long int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "b",
+          "field": { "0": { "field": {} } },
+          "type": "BIO*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "cmd", "type": "int" },
+        "2": { "name": "argl", "type": "long int" },
+        "3": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "4": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_SSL_CTX_set_tmp_dh_cb": {
+      "return": { "type": "DH*" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [
+        "ecall_EVP_PKEY_bits", "ecall_EVP_PKEY_type",
+        "ecall_SSL_get_privatekey"
+      ],
+      "parameter": {
+        "0": {
+          "name": "ssl",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": { "name": "is_export", "type": "int" },
+        "2": { "name": "keylength", "type": "int" },
+        "3": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_crypto_ex_free_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "parent",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "ptr",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "ad",
+          "field": { "0": { "field": {} } },
+          "type": "CRYPTO_EX_DATA*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": { "name": "idx", "type": "int" },
+        "4": { "name": "argl", "type": "long int" },
+        "5": {
+          "name": "argp",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "6": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_sk_pop_free_cb": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [ "ecall_GENERAL_NAME_free" ],
+      "parameter": {
+        "0": {
+          "name": "data",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "ocall_ssl_ctx_set_next_proto_select_cb": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "NOCONVENTION",
+      "dllimport": false,
+      "allow_list": [ "ecall_SSL_select_next_proto" ],
+      "parameter": {
+        "0": {
+          "name": "s",
+          "field": { "0": { "field": {} } },
+          "type": "SSL*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "1": {
+          "name": "out",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char**",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "2": {
+          "name": "outlen",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "3": {
+          "name": "in",
+          "field": { "0": { "field": {} } },
+          "type": "unsigned char*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "4": { "name": "inlen", "type": "unsigned int" },
+        "5": {
+          "name": "arg",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        },
+        "6": {
+          "name": "cb",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false
+        }
+      }
+    },
+    "sgx_oc_cpuidex": {
+      "return": { "type": "void" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "CDECL",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "cpuinfo",
+          "c_array": true,
+          "dims_str": "[4]",
+          "c_array_total_count": 4,
+          "c_array_count": 4,
+          "field": { "0": { "field": {} } },
+          "type": "int",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": false,
+          "out": true
+        },
+        "1": { "name": "leaf", "type": "int" },
+        "2": { "name": "subleaf", "type": "int" }
+      }
+    },
+    "sgx_thread_wait_untrusted_event_ocall": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "CDECL",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "self",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "sgx_thread_set_untrusted_event_ocall": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "CDECL",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "waiter",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "sgx_thread_setwait_untrusted_events_ocall": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "CDECL",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "waiter",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        },
+        "1": {
+          "name": "self",
+          "field": { "0": { "field": {} } },
+          "type": "void*",
+          "user_check": true,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true
+        }
+      }
+    },
+    "sgx_thread_set_multiple_untrusted_events_ocall": {
+      "return": { "type": "int" },
+      "switchless": false,
+      "propagate_errno": false,
+      "call_conv": "CDECL",
+      "dllimport": false,
+      "allow_list": [],
+      "parameter": {
+        "0": {
+          "name": "waiters",
+          "field": { "0": { "field": {} } },
+          "type": "void**",
+          "user_check": false,
+          "string": false,
+          "wstring": false,
+          "isptr": false,
+          "readonly": true,
+          "in": true,
+          "count": { "co_param": "total", "co_param_pos": 1 }
+        },
+        "1": { "name": "total", "type": "size_t" }
+      }
+    }
+  }
+}

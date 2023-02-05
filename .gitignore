@@ -6,3 +6,6 @@
 *_u.c
 *_t.h
 *_u.h
+ghidra*
+coverage*
+enclave.signed.so*

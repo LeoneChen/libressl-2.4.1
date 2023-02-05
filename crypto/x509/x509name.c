@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: x509name.c,v 1.12 2014/07/11 08:44:49 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -68,6 +69,7 @@
 
 int
 ecall_X509_NAME_get_text_by_NID(X509_NAME *name, int nid, char *buf, int len) {
+    LogEnter(__func__);
 	return X509_NAME_get_text_by_NID(name, nid, buf, len);
 }
 int
@@ -112,6 +114,7 @@ X509_NAME_entry_count(X509_NAME *name)
 
 int
 ecall_X509_NAME_get_index_by_NID(X509_NAME *name, int nid, int lastpos) {
+    LogEnter(__func__);
 	return X509_NAME_get_index_by_NID(name, nid, lastpos);
 }
 int
@@ -149,6 +152,7 @@ X509_NAME_get_index_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj, int lastpos)
 
 X509_NAME_ENTRY *
 ecall_X509_NAME_get_entry(X509_NAME *name, int loc) {
+    LogEnter(__func__);
 	return X509_NAME_get_entry(name, loc);
 }
 X509_NAME_ENTRY *
@@ -163,6 +167,7 @@ X509_NAME_get_entry(X509_NAME *name, int loc)
 
 X509_NAME_ENTRY *
 ecall_X509_NAME_delete_entry(X509_NAME *name, int loc) {
+    LogEnter(__func__);
 	return X509_NAME_delete_entry(name, loc);
 }
 X509_NAME_ENTRY *
@@ -221,6 +226,7 @@ X509_NAME_add_entry_by_OBJ(X509_NAME *name, ASN1_OBJECT *obj, int type,
 int
 ecall_X509_NAME_add_entry_by_NID(X509_NAME *name, int nid, int type,
     unsigned char *bytes, int len, int loc, int set) {
+    LogEnter(__func__);
 	return X509_NAME_add_entry_by_NID(name, nid, type, bytes, len, loc, set);
 }
 int
@@ -425,6 +431,7 @@ X509_NAME_ENTRY_get_object(X509_NAME_ENTRY *ne)
 ASN1_STRING *
 ecall_X509_NAME_ENTRY_get_data(X509_NAME_ENTRY *ne)
 {
+    LogEnter(__func__);
 	return X509_NAME_ENTRY_get_data(ne);
 }
 ASN1_STRING *

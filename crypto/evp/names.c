@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: names.c,v 1.11 2014/06/12 15:49:29 deraadt Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -122,6 +123,7 @@ EVP_get_cipherbyname(const char *name)
 }
 
 EVP_MD *ecall_EVP_get_digestbyname(const char *name) {
+    LogEnter(__func__);
 	EVP_MD* md = (EVP_MD*)EVP_get_digestbyname(name);
 	return md;
 }
@@ -137,6 +139,7 @@ EVP_get_digestbyname(const char *name)
 void
 ecall_EVP_cleanup(void)
 {
+    LogEnter(__func__);
 	EVP_cleanup();
 }
 void

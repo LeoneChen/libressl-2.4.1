@@ -1,3 +1,4 @@
+#include "kafl_hc.h"
 /* $OpenBSD: ec_key.c,v 1.11 2015/02/09 15:49:22 jsing Exp $ */
 /*
  * Written by Nils Larsch for the OpenSSL project.
@@ -92,6 +93,7 @@ EC_KEY_new(void)
 
 EC_KEY *
 ecall_EC_KEY_new_by_curve_name(int nid) {
+    LogEnter(__func__);
 	return EC_KEY_new_by_curve_name(nid);
 }
 
@@ -111,6 +113,7 @@ EC_KEY_new_by_curve_name(int nid)
 
 void 
 ecall_EC_KEY_free(EC_KEY * r) {
+    LogEnter(__func__);
 	EC_KEY_free(r);
 }
 
