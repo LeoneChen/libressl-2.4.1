@@ -1120,7 +1120,7 @@ int my_stat(const char *path, struct stat *buf) {
 
 /******************** TIME ********************/
 
-int gettimeofday(struct timeval *tv, struct timezone *tz) {
+int gettimeofday(struct timeval *tv, void *tz) {
 	return 0;
 	int ret = 0;
 	sgx_status_t s = ocall_gettimeofday(&ret, tv, tz);

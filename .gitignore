@@ -1,0 +1,12 @@
+*.i
+*.o
+*.a
+*.so
+enclave_t.c
+enclave_t.h
+enclave_u.c
+enclave_u.h
+Enclave.edl.json
+*.sgxsan.typeinfo.json
+vtune
+FuzzTaLoS
