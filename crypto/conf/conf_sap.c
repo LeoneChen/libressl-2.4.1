@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: conf_sap.c,v 1.10 2014/07/11 08:44:48 jsing Exp $ */
 /* Written by Stephen Henson (steve@openssl.org) for the OpenSSL
  * project 2001.
@@ -79,6 +87,7 @@ static int openssl_configured = 0;
 
 void
 ecall_OPENSSL_config(const char *config_name) {
+    LogEnter(__func__);
 	OPENSSL_config(config_name);
 }
 void

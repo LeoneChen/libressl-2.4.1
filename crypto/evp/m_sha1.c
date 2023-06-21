@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: m_sha1.c,v 1.16 2014/07/10 22:45:57 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -111,6 +119,7 @@ static const EVP_MD sha1_md = {
 
 const EVP_MD *
 ecall_EVP_sha1(void) {
+    LogEnter(__func__);
 	return EVP_sha1();
 }
 

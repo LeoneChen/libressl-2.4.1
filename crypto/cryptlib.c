@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: cryptlib.c,v 1.36 2015/09/13 10:02:49 miod Exp $ */
 /* ====================================================================
  * Copyright (c) 1998-2006 The OpenSSL Project.  All rights reserved.
@@ -401,6 +409,7 @@ struct CRYPTO_dynlock_value* crypto_set_dynlock_create_fake_cb(const char *file,
 void
 ecall_CRYPTO_set_dynlock_create_callback(void* func)
 {
+    LogEnter(__func__);
 	struct CRYPTO_dynlock_value *(*cb)(const char *, int );
 #ifdef COMPILE_WITH_INTEL_SGX
 	crypto_set_dynlock_create_cb_addr = (struct CRYPTO_dynlock_value *(*)(const char *, int))func;
@@ -431,6 +440,7 @@ void crypto_set_dynlock_lock_fake_cb(int mode, struct CRYPTO_dynlock_value *l, c
 void
 ecall_CRYPTO_set_dynlock_lock_callback(void* func)
 {
+    LogEnter(__func__);
 	void (*cb)(int, struct CRYPTO_dynlock_value*, const char*, int);
 #ifdef COMPILE_WITH_INTEL_SGX
 	crypto_set_dynlock_lock_cb_addr = (void (*)(int, struct CRYPTO_dynlock_value*, const char*, int))func;
@@ -460,6 +470,7 @@ void crypto_set_dynlock_destroy_fake_cb(struct CRYPTO_dynlock_value *l, const ch
 void
 ecall_CRYPTO_set_dynlock_destroy_callback(void* func)
 {
+    LogEnter(__func__);
 	void (*cb)(struct CRYPTO_dynlock_value*, const char*, int);
 #ifdef COMPILE_WITH_INTEL_SGX
 	crypto_set_dynlock_destroy_cb_addr = (void (*)(struct CRYPTO_dynlock_value*, const char*, int))func;
@@ -522,6 +533,7 @@ void crypto_set_locking_fake_cb(int mode, int type, const char *file, int line) 
 
 void
 ecall_CRYPTO_set_locking_callback(void *func) {
+    LogEnter(__func__);
 	void (*cb)(int, int,const char *, int);
 #ifdef COMPILE_WITH_INTEL_SGX
 	crypto_set_locking_cb_address = (void (*)(int, int,const char *, int))func;
@@ -658,6 +670,7 @@ unsigned long crypto_set_id_fake_cb(void) {
 void
 ecall_CRYPTO_set_id_callback(void* func)
 {
+    LogEnter(__func__);
 	unsigned long (*cb)(void);
 #ifdef COMPILE_WITH_INTEL_SGX
 	crypto_set_id_cb_address = (unsigned long (*)(void))func;
@@ -732,6 +745,7 @@ CRYPTO_lock(int mode, int type, const char *file, int line)
 int
 ecall_CRYPTO_add_lock(int *pointer, int amount, int type, const char *file,
     int line) {
+    LogEnter(__func__);
 	return CRYPTO_add_lock(pointer, amount, type, file, line);
 }
 int

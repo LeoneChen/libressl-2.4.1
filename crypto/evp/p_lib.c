@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: p_lib.c,v 1.15 2014/07/11 08:44:48 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -86,6 +94,7 @@ static void EVP_PKEY_free_it(EVP_PKEY *x);
 
 int
 ecall_EVP_PKEY_bits(EVP_PKEY *pkey) {
+    LogEnter(__func__);
 	return EVP_PKEY_bits(pkey);
 }
 int
@@ -379,6 +388,7 @@ EVP_PKEY_get1_DH(EVP_PKEY *pkey)
 int
 ecall_EVP_PKEY_type(int type)
 {
+    LogEnter(__func__);
 return EVP_PKEY_type(type);
 }
 int
@@ -413,6 +423,7 @@ EVP_PKEY_base_id(const EVP_PKEY *pkey)
 
 void
 ecall_EVP_PKEY_free(EVP_PKEY *x) {
+    LogEnter(__func__);
 	EVP_PKEY_free(x);
 }
 void

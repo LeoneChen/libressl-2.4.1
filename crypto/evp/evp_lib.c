@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: evp_lib.c,v 1.13 2014/07/11 08:44:48 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -278,6 +286,7 @@ EVP_MD_block_size(const EVP_MD *md)
 int
 ecall_EVP_MD_type(const EVP_MD *md)
 {
+    LogEnter(__func__);
 	return EVP_MD_type(md);
 }
 

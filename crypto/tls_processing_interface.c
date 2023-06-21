@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /*
  * Copyright 2017 Imperial College London
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,6 +66,7 @@ void tls_processing_register_free_connection_cb(void (*cb)(const SSL*)) {
 // Called by TaLoS to initialize your TLS processing module.  It calls
 // tls_processing_module_init(), which must be defined in your module.
 void ecall_tls_processing_module_init(void) {
+    LogEnter(__func__);
 	tls_processing_module_init();
 }
 

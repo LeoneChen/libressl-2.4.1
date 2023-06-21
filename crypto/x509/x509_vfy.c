@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x509_vfy.c,v 1.48 2015/12/14 03:38:13 beck Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -1625,6 +1633,7 @@ end:
 }
 
 ASN1_TIME* ecall_X509_get_notBefore(X509* x) {
+    LogEnter(__func__);
 	return X509_get_notBefore(x);
 }
 ASN1_TIME* X509_get_notBefore(X509* x) {
@@ -1632,6 +1641,7 @@ ASN1_TIME* X509_get_notBefore(X509* x) {
 }
 
 ASN1_TIME* ecall_X509_get_notAfter(X509* x) {
+    LogEnter(__func__);
 	return X509_get_notAfter(x);
 }
 ASN1_TIME* X509_get_notAfter(X509* x) {

@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: ssl_cert.c,v 1.51 2015/09/11 17:37:47 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -501,6 +509,7 @@ SSL_CTX_set_client_CA_list(SSL_CTX *ctx, STACK_OF(X509_NAME) *name_list)
 
 void*
 ecall_SSL_CTX_get_client_CA_list(const SSL_CTX *ctx) {
+    LogEnter(__func__);
 	return SSL_CTX_get_client_CA_list(ctx);
 }
 void*

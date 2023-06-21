@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x_x509a.c,v 1.13 2015/02/11 04:00:39 jsing Exp $ */
 /* Written by Dr Stephen N Henson (steve@openssl.org) for the OpenSSL
  * project 1999.
@@ -198,6 +206,7 @@ static unsigned char* ecall_alias_buffer = NULL;
 static int ecall_alias_buffer_len = 0;
 unsigned char *
 ecall_X509_alias_get0(X509 *x, int *len) {
+    LogEnter(__func__);
 	unsigned char* p = X509_alias_get0(x, len);
 	if (!p) {
 		return NULL;

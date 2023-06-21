@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x_name.c,v 1.30 2015/07/15 17:41:56 miod Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -131,6 +139,7 @@ X509_NAME_ENTRY_new(void)
 
 void
 ecall_X509_NAME_ENTRY_free(X509_NAME_ENTRY *a) {
+    LogEnter(__func__);
 	X509_NAME_ENTRY_free(a);
 }
 void

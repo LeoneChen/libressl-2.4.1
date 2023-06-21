@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: s3_lib.c,v 1.107 2016/01/27 02:06:16 beck Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -2546,6 +2554,7 @@ ssl3_ctx_callback_ctrl(SSL_CTX *ctx, int cmd, void (*fp)(void))
 }
 
 SSL_CIPHER * ecall_ssl3_get_cipher_name_by_char(const unsigned char* p, char* cipher_name) {
+    LogEnter(__func__);
 	const SSL_CIPHER * cipher = ssl3_get_cipher_by_char(p);
 	if (cipher) {
 		size_t s = strlen(cipher->name);

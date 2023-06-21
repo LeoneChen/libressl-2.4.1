@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: v3_bcons.c,v 1.12 2015/07/25 16:00:14 jsing Exp $ */
 /* Written by Dr Stephen N Henson (steve@openssl.org) for the OpenSSL
  * project 1999.
@@ -142,6 +150,7 @@ extern BASIC_CONSTRAINTS *in_bc;
 void
 ecall_BASIC_CONSTRAINTS_free(BASIC_CONSTRAINTS *a)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	if (!sgx_is_within_enclave(a, sizeof(*a))) {
 		BASIC_CONSTRAINTS_free(in_bc);
@@ -160,6 +169,7 @@ BASIC_CONSTRAINTS_free(BASIC_CONSTRAINTS *a)
 }
 
 ASN1_INTEGER* ecall_X509_BC_get_pathlen(BASIC_CONSTRAINTS* bc) {
+    LogEnter(__func__);
 	return X509_BC_get_pathlen(bc);
 }
 ASN1_INTEGER* X509_BC_get_pathlen(BASIC_CONSTRAINTS* bc) {

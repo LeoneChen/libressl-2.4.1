@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: v3_genn.c,v 1.11 2015/07/25 16:00:14 jsing Exp $ */
 /* Written by Dr Stephen N Henson (steve@openssl.org) for the OpenSSL
  * project 1999.
@@ -268,6 +276,7 @@ GENERAL_NAME_new(void)
 	return (GENERAL_NAME *)ASN1_item_new(&GENERAL_NAME_it);
 }
 void ecall_GENERAL_NAME_free(GENERAL_NAME *a) {
+    LogEnter(__func__);
 	GENERAL_NAME_free(a);
 }
 void

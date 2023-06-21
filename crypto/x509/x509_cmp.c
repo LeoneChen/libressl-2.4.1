@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x509_cmp.c,v 1.25 2014/09/26 19:31:09 miod Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -166,6 +174,7 @@ X509_issuer_name_hash_old(X509 *x)
 
 X509_NAME *
 ecall_X509_get_subject_name(X509 *a) {
+    LogEnter(__func__);
 	return X509_get_subject_name(a);
 }
 X509_NAME *
@@ -178,11 +187,13 @@ ASN1_OBJECT* X509_get_cert_key_algor_algorithm(X509* x) {
 	return x->cert_info->key->algor->algorithm;
 }
 ASN1_OBJECT* ecall_X509_get_cert_key_algor_algorithm(X509* x) {
+    LogEnter(__func__);
 	return X509_get_cert_key_algor_algorithm(x);
 }
 
 ASN1_INTEGER *
 ecall_X509_get_serialNumber(X509 *a) {
+    LogEnter(__func__);
 	return X509_get_serialNumber(a);
 }
 ASN1_INTEGER *
@@ -351,6 +362,7 @@ X509_get0_pubkey_bitstr(const X509 *x)
 
 int
 ecall_X509_check_private_key(X509 *x, EVP_PKEY *k) {
+    LogEnter(__func__);
 	return X509_check_private_key(x, k);
 }
 int

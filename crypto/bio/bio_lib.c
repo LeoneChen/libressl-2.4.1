@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: bio_lib.c,v 1.21 2014/07/25 06:05:32 doug Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -198,6 +206,7 @@ int bio_fake_destroy(BIO *b) {
 
 BIO *
 ecall_BIO_new(BIO_METHOD *method, int* method_in_enclave) {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	if (sgx_is_within_enclave(method, sizeof(*method))) {
 		*method_in_enclave = 1;
@@ -328,6 +337,7 @@ BIO_set(BIO *bio, BIO_METHOD *method)
 }
 
 int ecall_BIO_free(BIO *a) {
+    LogEnter(__func__);
 	return BIO_free(a);
 }
 
@@ -574,6 +584,7 @@ BIO_indent(BIO *b, int indent, int max)
 long
 ecall_BIO_int_ctrl(BIO *b, int cmd, long larg, int iarg)
 {
+    LogEnter(__func__);
 	return BIO_int_ctrl(b, cmd, larg, iarg);
 }
 
@@ -616,6 +627,7 @@ BIO_ptr_ctrl(BIO *b, int cmd, long larg)
 
 long
 ecall_BIO_ctrl(BIO *b, int cmd, long larg, void *parg) {
+    LogEnter(__func__);
 	return BIO_ctrl(b, cmd, larg, parg);
 }
 long

@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: conf_mall.c,v 1.8 2014/07/10 22:45:56 jsing Exp $ */
 /* Written by Stephen Henson (steve@openssl.org) for the OpenSSL
  * project 2001.
@@ -73,6 +81,7 @@
 
 void
 ecall_OPENSSL_load_builtin_modules(void) {
+    LogEnter(__func__);
 	OPENSSL_load_builtin_modules();
 }
 void
