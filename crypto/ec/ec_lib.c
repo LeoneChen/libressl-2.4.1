@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: ec_lib.c,v 1.19 2015/09/10 15:56:25 jsing Exp $ */
 /*
  * Originally written by Bodo Moeller for the OpenSSL project.
@@ -114,6 +122,7 @@ EC_GROUP_new(const EC_METHOD * meth)
 
 void 
 ecall_EC_GROUP_free(EC_GROUP * group) {
+    LogEnter(__func__);
 	return EC_GROUP_free(group);
 }
 void

@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: err_all.c,v 1.21 2015/02/11 03:55:42 beck Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -108,6 +116,7 @@
 
 void
 ecall_ERR_load_crypto_strings(void) {
+    LogEnter(__func__);
 	ERR_load_crypto_strings();
 }
 void

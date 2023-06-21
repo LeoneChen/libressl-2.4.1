@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: ssl_ciph.c,v 1.85 2016/04/28 16:06:53 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -1575,6 +1583,7 @@ SSL_CIPHER_get_by_value(uint16_t value)
 
 char *
 ecall_SSL_CIPHER_description(const SSL_CIPHER *cipher, char *buf, int len) {
+    LogEnter(__func__);
 	return SSL_CIPHER_description(cipher, buf, len);
 }
 char *
@@ -1766,6 +1775,7 @@ char* SSL_CIPHER_name_buffer = NULL;
 const char *
 ecall_SSL_CIPHER_get_name(const SSL_CIPHER *c)
 {
+    LogEnter(__func__);
 	const char* ret = SSL_CIPHER_get_name(c);
 #ifdef COMPILE_WITH_INTEL_SGX
 	if (!SSL_CIPHER_name_buffer) {

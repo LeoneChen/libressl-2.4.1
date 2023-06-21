@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: a_int.c,v 1.28 2015/07/29 14:58:34 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -407,6 +415,7 @@ ASN1_INTEGER_get(const ASN1_INTEGER *a)
 
 ASN1_INTEGER *
 ecall_BN_to_ASN1_INTEGER(const BIGNUM *bn, ASN1_INTEGER *ai) {
+    LogEnter(__func__);
 	return BN_to_ASN1_INTEGER(bn, ai);
 }
 ASN1_INTEGER *
@@ -454,6 +463,7 @@ err:
 
 BIGNUM *
 ecall_ASN1_INTEGER_to_BN(const ASN1_INTEGER *ai, BIGNUM *bn) {
+    LogEnter(__func__);
 	return ASN1_INTEGER_to_BN(ai, bn);
 }
 BIGNUM *

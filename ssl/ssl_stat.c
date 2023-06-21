@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: ssl_stat.c,v 1.11 2014/07/13 00:08:44 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -97,6 +105,7 @@ char* SSL_state_string_long_buffer = NULL;
 char*
 ecall_SSL_state_string_long(const SSL *s)
 {
+    LogEnter(__func__);
 	char* ret = (char*) SSL_state_string_long(s);
 #ifdef COMPILE_WITH_INTEL_SGX
 	if (!SSL_state_string_long_buffer) {

@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x_x509.c,v 1.23 2015/02/11 04:00:39 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -262,6 +270,7 @@ i2d_X509(X509 *a, unsigned char **out)
 X509 *
 ecall_X509_new(void)
 {
+    LogEnter(__func__);
 	return X509_new();
 }
 X509 *
@@ -272,6 +281,7 @@ X509_new(void)
 
 void
 ecall_X509_free(X509 *a) {
+    LogEnter(__func__);
 	return X509_free(a);
 }
 void
@@ -289,6 +299,7 @@ X509_dup(X509 *x)
 int
 ecall_X509_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
     CRYPTO_EX_dup *dup_func, CRYPTO_EX_free *free_func) {
+    LogEnter(__func__);
 	return X509_get_ex_new_index(argl, argp, new_func, dup_func, free_func);
 }
 int
@@ -301,6 +312,7 @@ X509_get_ex_new_index(long argl, void *argp, CRYPTO_EX_new *new_func,
 
 int
 ecall_X509_set_ex_data(X509 *r, int idx, void *arg) {
+    LogEnter(__func__);
 	return X509_set_ex_data(r, idx, arg);
 }
 int
@@ -311,6 +323,7 @@ X509_set_ex_data(X509 *r, int idx, void *arg)
 
 void *
 ecall_X509_get_ex_data(X509 *r, int idx) {
+    LogEnter(__func__);
 	return X509_get_ex_data(r, idx);
 }
 void *

@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: conf_mod.c,v 1.25 2014/07/22 02:21:20 beck Exp $ */
 /* Written by Stephen Henson (steve@openssl.org) for the OpenSSL
  * project 2001.
@@ -412,6 +420,7 @@ memerr:
 
 void
 ecall_CONF_modules_unload(int all) {
+    LogEnter(__func__);
 	CONF_modules_unload(all);
 }
 void

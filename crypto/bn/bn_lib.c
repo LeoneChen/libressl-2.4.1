@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: bn_lib.c,v 1.35 2016/03/04 16:23:30 deraadt Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -138,6 +146,7 @@ BN_get_params(int which)
 #endif
 
 int ecall_BN_is_zero(const BIGNUM* a) {
+    LogEnter(__func__);
 	return BN_is_zero(a);
 }
 int BN_is_zero(const BIGNUM* a) {
@@ -208,6 +217,7 @@ BN_num_bits_word(BN_ULONG l)
 
 int
 ecall_BN_num_bits(const BIGNUM *a) {
+    LogEnter(__func__);
 	return BN_num_bits(a);
 }
 int
@@ -242,6 +252,7 @@ BN_clear_free(BIGNUM *a)
 
 void
 ecall_BN_free(BIGNUM *a) {
+    LogEnter(__func__);
 	BN_free(a);
 }
 void
@@ -259,6 +270,7 @@ BN_init(BIGNUM *a)
 
 BIGNUM *
 ecall_BN_new(void) {
+    LogEnter(__func__);
 	return BN_new();
 }
 BIGNUM *
@@ -447,6 +459,7 @@ bn_expand2(BIGNUM *b, int words)
 
 BIGNUM *
 ecall_BN_dup(const BIGNUM *a) {
+    LogEnter(__func__);
 	return BN_dup(a);
 }
 BIGNUM *
@@ -586,6 +599,7 @@ bn_expand(BIGNUM *a, int bits)
 
 int
 ecall_BN_set_word(BIGNUM *a, BN_ULONG w) {
+    LogEnter(__func__);
 	return BN_set_word(a, w);
 }
 int
@@ -603,6 +617,7 @@ BN_set_word(BIGNUM *a, BN_ULONG w)
 
 BIGNUM *
 ecall_BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret) {
+    LogEnter(__func__);
 	return BN_bin2bn(s, len, ret);
 }
 BIGNUM *
@@ -759,6 +774,7 @@ BN_set_bit(BIGNUM *a, int n)
 int
 ecall_BN_clear_bit(BIGNUM *a, int n)
 {
+    LogEnter(__func__);
 	return BN_clear_bit(a, n);
 }
 int
@@ -782,6 +798,7 @@ BN_clear_bit(BIGNUM *a, int n)
 
 int
 ecall_BN_is_bit_set(const BIGNUM *a, int n) {
+    LogEnter(__func__);
 	return BN_is_bit_set(a, n);
 }
 int

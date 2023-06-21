@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: t1_srvr.c,v 1.18 2015/02/06 08:30:23 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -209,6 +217,7 @@ tls1_get_server_method(int ver)
 
 SSL_METHOD *
 ecall_SSLv23_server_method(void) {
+    LogEnter(__func__);
 	return (SSL_METHOD*)SSLv23_server_method();
 }
 const SSL_METHOD *

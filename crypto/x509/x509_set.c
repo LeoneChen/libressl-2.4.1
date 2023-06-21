@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x509_set.c,v 1.11 2015/09/30 17:30:16 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -66,6 +74,7 @@
 int
 ecall_X509_set_version(X509 *x, long version)
 {
+    LogEnter(__func__);
 	return X509_set_version(x, version);
 }
 int
@@ -100,6 +109,7 @@ X509_set_serialNumber(X509 *x, ASN1_INTEGER *serial)
 
 int
 ecall_X509_set_issuer_name(X509 *x, X509_NAME *name) {
+    LogEnter(__func__);
 	return X509_set_issuer_name(x, name);
 }
 int
@@ -112,6 +122,7 @@ X509_set_issuer_name(X509 *x, X509_NAME *name)
 
 int
 ecall_X509_set_subject_name(X509 *x, X509_NAME *name) {
+    LogEnter(__func__);
 	return X509_set_subject_name(x, name);
 }
 int
@@ -124,6 +135,7 @@ X509_set_subject_name(X509 *x, X509_NAME *name)
 
 int
 ecall_X509_set_notBefore(X509 *x, const ASN1_TIME *tm) {
+    LogEnter(__func__);
 	return X509_set_notBefore(x, tm);
 }
 int
@@ -146,6 +158,7 @@ X509_set_notBefore(X509 *x, const ASN1_TIME *tm)
 
 int
 ecall_X509_set_notAfter(X509 *x, const ASN1_TIME *tm) {
+    LogEnter(__func__);
 	return X509_set_notAfter(x, tm);
 }
 int
@@ -168,6 +181,7 @@ X509_set_notAfter(X509 *x, const ASN1_TIME *tm)
 
 int
 ecall_X509_set_pubkey(X509 *x, EVP_PKEY *pkey) {
+    LogEnter(__func__);
 	return X509_set_pubkey(x, pkey);
 }
 int

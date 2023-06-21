@@ -1,3 +1,11 @@
+#if defined(__cplusplus)
+extern "C"{
+#endif
+void SGXSanLogEnter(const char *str);
+#if defined(__cplusplus)
+}
+#endif
+#define LogEnter SGXSanLogEnter
 /* $OpenBSD: x509_obj.c,v 1.15 2014/07/10 13:58:23 jsing Exp $ */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
@@ -75,6 +83,7 @@ char* X509_name_online_buffer = NULL;
 char *
 ecall_X509_NAME_oneline(X509_NAME *a, char *buf, int len)
 {
+    LogEnter(__func__);
 #ifdef COMPILE_WITH_INTEL_SGX
 	if (!buf) {
 		if (!X509_name_online_buffer) {
@@ -202,6 +211,7 @@ err:
 }
 
 ASN1_OBJECT* ecall_X509_get_algorithm(X509* ptr) {
+    LogEnter(__func__);
 	return X509_get_algorithm(ptr);
 }
 ASN1_OBJECT* X509_get_algorithm(X509* ptr) {
