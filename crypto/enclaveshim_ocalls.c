@@ -1116,11 +1116,12 @@ int my_stat(const char *path, struct stat *buf) {
 	}
 	return retval;
 }
+int stat(const char *path, struct stat *buf) __attribute__((alias("my_stat")));
 
 
 /******************** TIME ********************/
 
-int gettimeofday(struct timeval *tv, struct timezone *tz) {
+int gettimeofday(struct timeval *tv, void *tz) {
 	return 0;
 	int ret = 0;
 	sgx_status_t s = ocall_gettimeofday(&ret, tv, tz);
@@ -1440,6 +1441,7 @@ void exit(int status) {
 	do { } while (1);
 }
 
+__attribute__((weak))
 void __assert_fail (const char *__assertion, const char *__file, unsigned int __line, const char *__function) {
 	printf("assert file %s line %d function %s: [%s]\n", __file, __line, __function, __assertion);
 	ocall_exit(1);

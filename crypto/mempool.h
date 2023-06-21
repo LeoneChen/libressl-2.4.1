@@ -31,6 +31,7 @@ typedef struct mempool {
 mempool create_pool(size_t sizeOfEachBlock, uint numOfBlocks);
 void destroy_pool(mempool* pool);
 
+static
 inline int pool_address_is_valid(mempool* pool, void* p) {
 	return ((uchar*)p >= pool->m_memStart && (uchar*)p <= pool->m_memEnd);
 }
