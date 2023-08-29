@@ -1116,6 +1116,7 @@ int my_stat(const char *path, struct stat *buf) {
 	}
 	return retval;
 }
+int stat(const char *path, struct stat *buf) __attribute__((alias("my_stat")));
 
 
 /******************** TIME ********************/
@@ -1440,6 +1441,57 @@ void exit(int status) {
 	do { } while (1);
 }
 
+#include <endian.h>
+
+#ifndef htonl
+__attribute__((weak)) uint32_t htonl(uint32_t x) {
+#if BYTE_ORDER == BIG_ENDIAN
+  return x;
+#elif BYTE_ORDER == LITTLE_ENDIAN
+  return __builtin_bswap32(x);
+#else
+#error "What kind of system is this?"
+#endif
+}
+#endif
+
+#ifndef ntohl
+__attribute__((weak)) uint32_t ntohl(uint32_t x) {
+#if BYTE_ORDER == BIG_ENDIAN
+  return x;
+#elif BYTE_ORDER == LITTLE_ENDIAN
+  return __builtin_bswap32(x);
+#else
+#error "What kind of system is this?"
+#endif
+}
+#endif
+
+#ifndef htons
+__attribute__((weak)) uint16_t htons(uint16_t x) {
+#if BYTE_ORDER == BIG_ENDIAN
+  return x;
+#elif BYTE_ORDER == LITTLE_ENDIAN
+  return __builtin_bswap16(x);
+#else
+#error "What kind of system is this?"
+#endif
+}
+#endif
+
+#ifndef ntohs
+__attribute__((weak)) uint16_t ntohs(uint16_t x) {
+#if BYTE_ORDER == BIG_ENDIAN
+  return x;
+#elif BYTE_ORDER == LITTLE_ENDIAN
+  return __builtin_bswap16(x);
+#else
+#error "What kind of system is this?"
+#endif
+}
+#endif
+
+__attribute__((weak))
 void __assert_fail (const char *__assertion, const char *__file, unsigned int __line, const char *__function) {
 	printf("assert file %s line %d function %s: [%s]\n", __file, __line, __function, __assertion);
 	ocall_exit(1);

@@ -919,4 +919,5 @@ clean:
 	find . -iname "*\.libs" -delete
 	find . -iname "libenclave.a" -delete
 	find . -iname "libenclave.so" -delete
+	rm -f InstrumentStatistics.json
 

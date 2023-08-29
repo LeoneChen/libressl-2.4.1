@@ -10,3 +10,4 @@ Enclave.edl.json
 *.sgxsan.typeinfo.json
 vtune
 FuzzTaLoS
+crypto/InstrumentStatistics.json
