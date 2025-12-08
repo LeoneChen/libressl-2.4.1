@@ -127,7 +127,7 @@ App_Link_Flags += \
 endif
 
 enclave_u.c: $(SGX_EDGER8R) enclave.edl
-	@$(SGX_EDGER8R) --untrusted enclave.edl --search-path . --search-path $(SGX_SDK)/include --dump-parse Enclave.edl.json
+	@$(SGX_EDGER8R) --untrusted enclave.edl --search-path . --search-path $(SGX_SDK)/include --dump-parse Enclave.edl.json --export-ocall
 	@echo "GEN  =>  $@"
 
 enclave_u.o: enclave_u.c $(Enclave_Name)
@@ -135,9 +135,7 @@ enclave_u.o: enclave_u.c $(Enclave_Name)
 	-flegacy-pass-manager \
 	-Xclang -load -Xclang $(SGX_SDK)/lib64/libSGXFuzzerPass.so \
 	-mllvm -max-depth-recursively-prepare-pointer=6 \
-	-mllvm -type-info-dirs=.. \
-	-flegacy-pass-manager \
-	-Xclang -load -Xclang $(SGX_SDK)/lib64/libGetOCallTable.so
+	-mllvm -type-info-dirs=..
 	@echo "CC   <=  $<"
 
 hashmap-nosgx.o: hashmap.c
