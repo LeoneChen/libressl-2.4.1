@@ -1,0 +1,8 @@
+*.i
+*.o
+enclave_t.[ch]
+enclave_u.[ch]
+link
+libenclave.a
+libenclave.so
+enclave.so
